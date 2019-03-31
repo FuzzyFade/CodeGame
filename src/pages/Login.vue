@@ -5,22 +5,29 @@
                 <div>
                     <img class="avatar" src="../assets/logo.png" alt="avatar">
                 </div>
-                <p>
+                <span>
                     新用户
-                </p>
+                </span>
             </div>
             <div>
-                <input type="text" v-model="loginForm.username" placeholder="用户名"/>
+                <input style="font-size: 16px" type="text" v-model="loginForm.username" placeholder="用户名"/>
             </div>
-            <div>
-                <input type="text" v-model="loginForm.password" placeholder="密码"/>
-            </div>
+            <!--<div>-->
+                <!--<input type="text" v-model="loginForm.password" placeholder="密码"/>-->
+            <!--</div>-->
         </div>
         <div>
             <div class="footer">
-                <button class="btn1" @click="login">注册</button>
+                <div class="register">
+                    <router-link tag="button" class="btn1" to="/register">注册</router-link>
+                    <div class="text1">
+                        <span style="font-size: 14px">注 册</span>
+                    </div>
+                </div>
                 <div class="next_step">
-                    <p style="font-size: 12px">下一步</p>
+                    <div class="text2">
+                        <span style="font-size: 14px">下一步</span>
+                    </div>
                     <button class="btn2" @click="login">登录</button>
                 </div>
             </div>
@@ -49,7 +56,7 @@
                     alert('账号或密码不能为空');
                 } else {
                     axios
-                        .post('/user/login',data)
+                        .post('/api/user/login',data)
                         .then(res => {
                             console.log(res.data);
                             _this.userToken = 'Bearer ' + res.data.data.body.token;
@@ -82,17 +89,30 @@
         position fixed
         bottom 0
         z-index -1
-        .btn1
+        .register
+            display flex
             position float
             float left
-            margin-left 20px
-            width 54px
-            height 54px
-            border-radius 27px
+            margin-left 30px
+            .text1
+                display flex
+                flex-direction column
+                justify-content center
+                margin-left 12px
+            .btn1
+                width 54px
+                height 54px
+                border-radius 27px
         .next_step
+            display flex
             position float
             float right
-            margin-right 20px
+            margin-right 30px
+            .text2
+                display flex
+                flex-direction column
+                justify-content center
+                margin-right 12px
             .btn2
                 width 54px
                 height 54px
