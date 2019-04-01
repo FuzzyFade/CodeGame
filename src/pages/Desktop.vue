@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <div class="courses">
-      <div v-for="course in courses" :id="course.name" class="course-wrapper">
+      <div v-for="(course,index) in courses" :id="course.name" class="course.lock ? 'locked' : 'unlocked'" @click="course.method">
         <img class="course-img" :src="course.img"></img>
         <div class="course-name" >{{course.name}}</div>
       </div>
@@ -10,24 +10,24 @@
       <div class="item-wrapper">
         <div id="self-info"></div>
         <div class="slide-item" @click="changeWall()">
-          <div></div>
+          <i></i>
           <p>修改桌面主题</p>
         </div>
         <div class="slide-item" @click="changePass()">
-          <div></div>
+          <i></i>
           <p>修改密码</p>
         </div>
         <div id="blank"></div>
         <div class="slide-item" @click="aboutUs()">
-          <div></div>
+          <i></i>
           <p>关于我们</p>
         </div>
         <div class="slide-item" @click="logOut()">
-          <div></div>
+          <i></i>
           <p>注销</p>
         </div>
         <div class="slide-item" @click="shutDown()">
-          <div></div>
+          <i></i>
           <p>关机</p>
         </div>
       </div>
@@ -48,33 +48,41 @@
       courses: [{
         name: "",
         img: "",
+        method: "",
+        lock: true,
       },
       {
         name: "",
         img: "",
+        method: "",
+        lock: true,
       },
       {
         name: "",
         img: "",
-      }
-      ]
-      }),
+        method: "",
+        lock: true,
+      },
+      ],
       nowTime: "",
       show: false,
+      chapter: "",
+      }),
     methods: {
       options() {
         this.show = !this.show
+        //背景模糊
       },
       getTime() {
         setInterval(() => {
           this.nowTime = new Date().toLocaleDateString()
-        }, 36000)
+        }, 1000)
       },
       shutDown() {
-
+        window.close()
       },
       logOut() {
-
+        //清除登陆数据
       },
       aboutUs() {
 
@@ -95,7 +103,15 @@
 <style lang="less" scoped>
 .courses {
   display: flex;
+  .locked, .unlocked {
 
+  }
+  .locked {
+
+  }
+  .unlocked {
+    
+  }
 }
 .slide {
   display: absolute;
