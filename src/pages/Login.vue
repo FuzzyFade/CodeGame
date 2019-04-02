@@ -2,13 +2,28 @@
   <div>
     <div class="container">
       <div>
-        <div>
-          <img alt="avatar" class="avatar" src="../assets/logo.png">
+        <div class="AvatarBorder">
+          <v-avatar
+                  size="108px"
+                  color="grey lighten-4"
+          >
+            <img src="https://vuetifyjs.com/apple-touch-icon-180x180.png" class="avatar" alt="avatar">
+          </v-avatar>
         </div>
-        <span>新用户</span>
+        <div style="line-height: 25px;font-size: 25px">
+          <span>{{loginForm.username || "新用户" }}</span>
+        </div>
       </div>
-      <div>
-        <input placeholder="用户名" style="font-size: 16px" type="text" v-model="loginForm.username"/>
+      <div class="text-field">
+        <v-text-field
+                label="用户名"
+                v-model="loginForm.username"
+        ></v-text-field>
+        <v-text-field
+                :type="'password'"
+                label="密码"
+                v-model="loginForm.password"
+        ></v-text-field>
       </div>
       <!--<div>-->
       <!--<input typ¬e="text" v-model="loginForm.password" placeholder="密码"/>-->
@@ -17,7 +32,9 @@
     <div>
       <div class="footer">
         <div class="register">
-          <router-link class="btn1" tag="button" to="/register">注册</router-link>
+          <v-btn @click="login" class="btn2" fab outline>
+            <v-icon>fa-plus</v-icon>
+          </v-btn>
           <div class="text1">
             <span style="font-size: 14px">注 册</span>
           </div>
@@ -26,7 +43,9 @@
           <div class="text2">
             <span style="font-size: 14px">下一步</span>
           </div>
-          <button @click="login" class="btn2">登录</button>
+          <v-btn @click="login" class="btn2" fab outline>
+            <v-icon>fa-arrow-right</v-icon>
+          </v-btn>
         </div>
       </div>
     </div>
@@ -44,7 +63,7 @@
         username: '',
         password: ''
       },
-      userToken: ''
+      userToken: '',
     }),
     methods: {
       ...mapMutations(['changeLogin']),
@@ -80,13 +99,24 @@
     flex-direction column
     justify-content center
 
-    .avatar
-      width 140px
-      height 140px
+    .AvatarBorder
+      margin-top 96px
+      margin-bottom 16px
+
+      .avatar
+        width 108px
+        height 108px
+        border solid 1px #CFCFCF
+        border-radius 54px
+
+    .text-field
+      margin-top 40px
+      padding-right 28px
+      padding-left 28px
 
   .footer
     width 100%
-    height 80px
+    height 90px
     position fixed
     bottom 0
     z-index -1
