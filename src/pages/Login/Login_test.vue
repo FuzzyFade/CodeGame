@@ -1,51 +1,51 @@
 <template>
   <div>
-    <div class="container">
-      <div>
-        <div class="AvatarBorder">
-          <v-avatar
-                  size="108px"
-                  color="grey lighten-4"
-          >
-            <img src="https://vuetifyjs.com/apple-touch-icon-180x180.png" class="avatar" alt="avatar">
-          </v-avatar>
-        </div>
-        <div style="line-height: 25px;font-size: 25px">
-          <span>{{loginForm.username || "新用户" }}</span>
-        </div>
-      </div>
-      <div class="text-field">
-        <v-text-field
-                label="用户名"
-                v-model="loginForm.username"
-        ></v-text-field>
-        <v-text-field
-                :type="'password'"
-                label="密码"
-                v-model="loginForm.password"
-        ></v-text-field>
-      </div>
-      <!--<div>-->
-      <!--<input typ¬e="text" v-model="loginForm.password" placeholder="密码"/>-->
-      <!--</div>-->
-    </div>
     <div>
-      <div class="footer">
-        <div class="register">
-          <v-btn @click="login" class="btn2" fab outline>
-            <v-icon>fa-plus</v-icon>
-          </v-btn>
-          <div class="text1">
-            <span style="font-size: 14px">注 册</span>
+      <div class="container">
+        <div>
+          <div class="AvatarBorder">
+            <v-avatar
+                    color="grey lighten-4"
+                    size="108px"
+            >
+              <img alt="avatar" class="avatar" src="https://vuetifyjs.com/apple-touch-icon-180x180.png">
+            </v-avatar>
+          </div>
+          <div style="line-height: 25px;font-size: 23px;letter-spacing: 1.3px;">
+            <span>{{loginForm.username || "新用户" }}</span>
           </div>
         </div>
-        <div class="next_step">
-          <div class="text2">
-            <span style="font-size: 14px">下一步</span>
+        <div class="text-field">
+          <v-text-field
+                  max-
+                  label="用户名"
+                  v-model="loginForm.username"
+          ></v-text-field>
+          <v-text-field
+                  :type="'password'"
+                  label="密码"
+                  v-model="loginForm.password"
+          ></v-text-field>
+        </div>
+      </div>
+      <div style="background-color: bisque">
+        <div class="footer">
+          <div class="register">
+            <v-btn @click="login" class="btn2" fab outline>
+              <v-icon>fa-plus</v-icon>
+            </v-btn>
+            <div class="text1">
+              <span style="font-size: 14px">注 册</span>
+            </div>
           </div>
-          <v-btn @click="login" class="btn2" fab outline>
-            <v-icon>fa-arrow-right</v-icon>
-          </v-btn>
+          <div class="next_step">
+            <div class="text2">
+              <span style="font-size: 14px">下一步</span>
+            </div>
+            <v-btn @click="login" class="btn2" fab outline>
+              <v-icon>fa-arrow-right</v-icon>
+            </v-btn>
+          </div>
         </div>
       </div>
     </div>
@@ -74,7 +74,7 @@
           alert('账号或密码不能为空');
         } else {
           axios
-            .post('/api/user/login', data)
+            .post('/api/auth/login', data)
             .then(res => {
               console.log(res.data);
               _this.userToken = 'Bearer ' + res.data.data.body.token;
@@ -100,8 +100,8 @@
     justify-content center
 
     .AvatarBorder
-      margin-top 96px
-      margin-bottom 16px
+      margin-top 80px
+      margin-bottom 24px
 
       .avatar
         width 108px
@@ -110,9 +110,9 @@
         border-radius 54px
 
     .text-field
-      margin-top 40px
-      padding-right 28px
-      padding-left 28px
+      margin-top 35px
+      padding-right 30px
+      padding-left 30px
 
   .footer
     width 100%

@@ -1,39 +1,44 @@
 <template>
   <div id="app">
     <div class="courses">
-      <div v-for="(course,index) in courses" :id="course.name" class="course.lock ? 'locked' : 'unlocked'" @click="course.method">
-        <img class="course-img" :src="course.img"></img>
-        <div class="course-name" >{{course.name}}</div>
+      <div :id="course.name"
+           @click="course.method"
+           class="course.lock ? 'locked' : 'unlocked'"
+           v-for="(course,index) in courses"
+           :key="index"
+      >
+        <img :src="course.img" alt="app" class="course-img">
+        <div class="course-name">{{course.name}}</div>
       </div>
     </div>
     <div class="slide" v-if="show">
       <div class="item-wrapper">
         <div id="self-info"></div>
-        <div class="slide-item" @click="changeWall()">
+        <div @click="changeWall" class="slide-item">
           <i></i>
           <p>修改桌面主题</p>
         </div>
-        <div class="slide-item" @click="changePass()">
+        <div @click="changePass" class="slide-item">
           <i></i>
           <p>修改密码</p>
         </div>
         <div id="blank"></div>
-        <div class="slide-item" @click="aboutUs()">
+        <div @click="aboutUs" class="slide-item">
           <i></i>
           <p>关于我们</p>
         </div>
-        <div class="slide-item" @click="logOut()">
+        <div @click="logOut" class="slide-item">
           <i></i>
           <p>注销</p>
         </div>
-        <div class="slide-item" @click="shutDown()">
+        <div @click="shutDown" class="slide-item">
           <i></i>
           <p>关机</p>
         </div>
       </div>
     </div>
     <div class="footer">
-      <div class="os-button" @click="options()"></div>
+      <div @click="options()" class="os-button"></div>
       <div class="local-time">
         {{nowTime}}
       </div>
@@ -51,23 +56,22 @@
         method: "",
         lock: true,
       },
-      {
-        name: "",
-        img: "",
-        method: "",
-        lock: true,
-      },
-      {
-        name: "",
-        img: "",
-        method: "",
-        lock: true,
-      },
-      ],
+        {
+          name: "",
+          img: "",
+          method: "",
+          lock: true,
+        },
+        {
+          name: "",
+          img: "",
+          method: "",
+          lock: true,
+        }],
       nowTime: "",
       show: false,
       chapter: "",
-      }),
+    }),
     methods: {
       options() {
         this.show = !this.show
@@ -101,31 +105,35 @@
 </script>
 
 <style lang="less" scoped>
-.courses {
-  display: flex;
-  .locked, .unlocked {
-
-  }
-  .locked {
-
-  }
-  .unlocked {
-    
-  }
-}
-.slide {
-  display: absolute;
-  bottom: ;
-  .item-wrapper {
+  .courses {
     display: flex;
-    flex-direction: column;
-    .slide-item {
-      display: flex;
+
+    .locked, .unlocked {
+
+    }
+
+    .locked {
+
+    }
+
+    .unlocked {
 
     }
   }
-}
-.footer {
-  display: flex;
-}
+
+  .slide {
+    .item-wrapper {
+      display: flex;
+      flex-direction: column;
+
+      .slide-item {
+        display: flex;
+
+      }
+    }
+  }
+
+  .footer {
+    display: flex;
+  }
 </style>

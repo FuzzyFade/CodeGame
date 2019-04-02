@@ -6,7 +6,6 @@ Vue.use(Vuex);
 const store = new Vuex.Store({
 
   state: {
-    // 存储token
     Authorization: localStorage.getItem('Authorization') ? localStorage.getItem('Authorization') : ''
   },
 
