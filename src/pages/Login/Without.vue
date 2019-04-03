@@ -11,58 +11,37 @@
               <img alt="avatar" class="avatar" src="https://vuetifyjs.com/apple-touch-icon-180x180.png">
             </v-avatar>
           </div>
-          <div style="line-height: 25px;font-size: 23px;letter-spacing: 1.3px;">
-            <span>{{"登记您的通行证"}}</span>
+          <div style="line-height: 25px;font-size: 18px;letter-spacing: 1.3px;">
+            <span>{{"用户不存在，请注册一个新账户"}}</span>
           </div>
-          <div class="text-field">
-            <v-text-field
-                    :rules="[rules.empty]"
-                    hint="最多输入 9 个字符"
-                    label="用户名"
-                    maxlength="9"
-                    v-model="loginForm.username"
-            ></v-text-field>
-          </div>
-        </div>
-        <div style="height:auto;"></div>
-      </div>
-      <div>
-        <div class="footer">
-          <transition name="fade">
-            <v-btn @click="change"
-                   flat
-                   style="font-size: 16px"
-                   v-show="loginForm.username"
-            >> 嗯，我确定
-            </v-btn>
-          </transition>
         </div>
       </div>
     </div>
+    <div>
+      <div class="footer">
+        <transition name="fade">
+          <div class="next_step" v-show="loginForm.password">
+            <div class="text2">
+              <span style="font-size: 14px">下一步</span>
+            </div>
+            <v-btn @click="login" class="foot_btn" fab outline>
+              <v-icon>fa-arrow-right</v-icon>
+            </v-btn>
+          </div>
+        </transition>
+      </div>
+    </div>
+  </div>
   </div>
 </template>
 
 <script>
   export default {
-    name: "Username",
-    data: () => ({
-      loginForm: {
-        username: ''
-      },
-      rules: {
-        empty: value => !!value || '用户名不可以为空'
-      }
-    }),
+    name: "Without",
     methods: {
-      change() {
-        //请求 并检查用户名是否重复，如果重复返回false，不重复返回true
-        this.$router.push({
-          path: '/register/second',
-          query: {
-            user: this.loginForm.username
-          }
-        })
-      }
+      register() {
+        this.$router.push({path: '/register/first'})
+      },
     }
   }
 </script>
@@ -109,21 +88,18 @@
 
       .text1
         display flex
-        display -webkit-flex
         flex-direction column
         justify-content center
-        margin-left 11.64px
+        margin-left 12px
 
     .next_step
       display flex
-      display -webkit-flex
       position float
       float right
       margin-right 30px
 
       .text2
         display flex
-        display -webkit-flex
         flex-direction column
         justify-content center
         margin-right 12px

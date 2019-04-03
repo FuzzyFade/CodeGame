@@ -8,19 +8,27 @@
                     color="grey lighten-4"
                     size="108px"
             >
-              <img alt="avatar" class="avatar" src="https://vuetifyjs.com/apple-touch-icon-180x180.png">
+              <img alt="avatar" class="avatar" src="https://avatars2.githubusercontent.com/u/25416941?s=460&v=4">
             </v-avatar>
           </div>
           <div style="line-height: 25px;font-size: 23px;letter-spacing: 1.3px;">
-            <span>{{"登记您的通行证"}}</span>
+            <span>{{"你好 "+loginForm.username}}</span>
           </div>
           <div class="text-field">
+            <div style="height:67px">
+              <v-text-field
+                      :rules="[rules.empty_email,rules.email]"
+                      label="邮箱"
+                      maxlength="40"
+                      v-model="loginForm.email"
+              ></v-text-field>
+            </div>
             <v-text-field
-                    :rules="[rules.empty]"
-                    hint="最多输入 9 个字符"
-                    label="用户名"
-                    maxlength="9"
-                    v-model="loginForm.username"
+                    :rules="[rules.empty_pwd,rules.pwd]"
+                    label="密码"
+                    maxlength="16"
+                    v-model="loginForm.password"
+                    style="line-height: 15px"
             ></v-text-field>
           </div>
         </div>
@@ -29,11 +37,10 @@
       <div>
         <div class="footer">
           <transition name="fade">
-            <v-btn @click="change"
-                   flat
+            <v-btn flat
                    style="font-size: 16px"
-                   v-show="loginForm.username"
-            >> 嗯，我确定
+                   v-show="show_button()"
+            >> 确认信息
             </v-btn>
           </transition>
         </div>
@@ -47,17 +54,34 @@
     name: "Username",
     data: () => ({
       loginForm: {
-        username: ''
+        email: '',
+        username: '',
+        password: ''
       },
       rules: {
-        empty: value => !!value || '用户名不可以为空'
+        empty_email: value => !!value || '邮箱不可以为空',
+        empty_pwd: value => !!value || '密码不可以为空',
+        email: value => {
+          const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+          return pattern.test(value) || '请输入正确的邮箱地址'
+        },
+        pwd: value => value.length >= 8 || '长度为8-16个字符'
       }
     }),
+    created() {
+      this.getName()
+    },
     methods: {
+      show_button(){
+        return this.loginForm.email && this.loginForm.password
+      },// 展示确定按钮
+      getName() {
+        this.loginForm.username = this.$route.query.user;
+      },
       change() {
-        //请求 并检查用户名是否重复，如果重复返回false，不重复返回true
+        // ...code 还会发一个请求给后段，查询是否由其人，返回一个是或否
         this.$router.push({
-          path: '/register/second',
+          path: '/login/password',
           query: {
             user: this.loginForm.username
           }

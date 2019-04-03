@@ -62,7 +62,7 @@
     }),
     methods: {
       register() {
-        this.$router.push({path:'/register/first'})
+        this.$router.push({path: '/register/first'})
       },
       change() {
         //code 还会发一个请求给后段，查询是否由其人，返回一个是或否

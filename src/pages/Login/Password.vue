@@ -17,10 +17,10 @@
         </div>
         <div class="text-field">
           <v-text-field
+                  :rules="[rules.empty]"
                   :type="'password'"
                   label="密码"
-                  :rules="[rules.empty]"
-                  maxlength="18"
+                  maxlength="16"
                   v-model="loginForm.password"
           ></v-text-field>
         </div>
@@ -64,7 +64,7 @@
       //post用户名，请求个头像序号
     },
     methods: {
-      getName(){
+      getName() {
         this.loginForm.username = this.$route.query.user;
       },
       ...mapMutations(['changeLogin']),
