@@ -11,11 +11,11 @@
               <img alt="avatar" class="avatar" src="https://avatars2.githubusercontent.com/u/25416941?s=460&v=4">
             </v-avatar>
           </div>
-          <div style="line-height: 25px;font-size: 23px;letter-spacing: 1.3px;">
+          <div class="tile">
             <span>{{"你好 "+loginForm.username}}</span>
           </div>
           <div class="text-field">
-            <div style="height:67px">
+            <div style="height:70px">
               <v-text-field
                       :rules="[rules.empty_email,rules.email]"
                       label="邮箱"
@@ -25,10 +25,11 @@
             </div>
             <v-text-field
                     :rules="[rules.empty_pwd,rules.pwd]"
+                    :type="'password'"
                     label="密码"
                     maxlength="16"
-                    v-model="loginForm.password"
                     style="line-height: 15px"
+                    v-model="loginForm.password"
             ></v-text-field>
           </div>
         </div>
@@ -72,7 +73,7 @@
       this.getName()
     },
     methods: {
-      show_button(){
+      show_button() {
         return this.loginForm.email && this.loginForm.password
       },// 展示确定按钮
       getName() {
@@ -112,6 +113,11 @@
         height 108px
         border solid 1px #CFCFCF
         border-radius 54px
+
+    .tile
+      line-height 25px
+      font-size 23px
+      letter-spacing 1.3px
 
     .text-field
       margin-top 35px

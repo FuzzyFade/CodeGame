@@ -11,8 +11,8 @@
               <img alt="avatar" class="avatar" src="https://vuetifyjs.com/apple-touch-icon-180x180.png">
             </v-avatar>
           </div>
-          <div style="line-height: 25px;font-size: 18px;letter-spacing: 1.3px;">
-            <span>{{"用户不存在，请注册一个新账户"}}</span>
+          <div class="tile">
+            <span>用户不存在，请注册一个新账户</span>
           </div>
         </div>
       </div>
@@ -20,18 +20,12 @@
     <div>
       <div class="footer">
         <transition name="fade">
-          <div class="next_step" v-show="loginForm.password">
-            <div class="text2">
-              <span style="font-size: 14px">下一步</span>
-            </div>
-            <v-btn @click="login" class="foot_btn" fab outline>
-              <v-icon>fa-arrow-right</v-icon>
-            </v-btn>
-          </div>
+          <v-btn flat>
+            <span class="footer_text">> 好的，这就去</span>
+          </v-btn>
         </transition>
       </div>
     </div>
-  </div>
   </div>
 </template>
 
@@ -60,13 +54,18 @@
 
     .AvatarBorder
       margin-top 114px
-      margin-bottom 24px
+      margin-bottom 100px
 
       .avatar
         width 108px
         height 108px
         border solid 1px #CFCFCF
         border-radius 54px
+
+    .tile
+      line-height 25px
+      font-size 17px
+      letter-spacing 1.3px
 
     .text-field
       margin-top 35px
@@ -80,29 +79,9 @@
     bottom 0
     z-index 1
 
-    .register
-      display flex
-      position float
-      float left
-      margin-left 30px
-
-      .text1
-        display flex
-        flex-direction column
-        justify-content center
-        margin-left 12px
-
-    .next_step
-      display flex
-      position float
-      float right
-      margin-right 30px
-
-      .text2
-        display flex
-        flex-direction column
-        justify-content center
-        margin-right 12px
+    .footer_text
+      font-size 16px
+      letter-spacing 0.89px
 
   .foot_btn
     width 50px

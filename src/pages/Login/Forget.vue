@@ -11,32 +11,31 @@
               <img alt="avatar" class="avatar" src="https://vuetifyjs.com/apple-touch-icon-180x180.png">
             </v-avatar>
           </div>
-          <div style="line-height: 25px;font-size: 23px;letter-spacing: 1.3px;">
-            <span>{{"登记您的通行证"}}</span>
+          <div class="tile1">
+            <span>我们已将验证码发送到</span>
           </div>
-          <div class="text-field">
-            <v-text-field
-                    :rules="[rules.empty]"
-                    hint="最多输入 9 个字符"
-                    label="用户名"
-                    maxlength="9"
-                    v-model="loginForm.username"
-            ></v-text-field>
-          </div>
-          <div class="qst">
-            <span>一旦确定就不可修改哦</span>
+          <div class="tile2">
+            <span>{{loginForm.email}}</span>
           </div>
         </div>
-        <div style="height:auto;"></div>
+        <div class="text-field">
+          <v-text-field
+                  style="max-width:200px"
+                  :type="'password'"
+                  label="验证码"
+                  maxlength="16"
+                  outline
+                  v-model="loginForm.password"
+          ></v-text-field>
+        </div>
+        <div class="forget">
+        </div>
       </div>
       <div>
         <div class="footer">
           <transition name="fade">
-            <v-btn @click="change"
-                   flat
-                   style="font-size: 16px"
-                   v-show="loginForm.username"
-            >> 嗯，我确定
+            <v-btn flat>
+              <span>重新发送验证码</span>
             </v-btn>
           </transition>
         </div>
@@ -46,26 +45,24 @@
 </template>
 
 <script>
+
   export default {
-    name: "Username",
+    name: "Forget",
     data: () => ({
       loginForm: {
-        username: ''
+        username: '',
+        password: '',
+        email: '1339184537@qq.com'
       },
+      userToken: '',
       rules: {
-        empty: value => !!value || '用户名不可以为空'
+        empty: value => !!value || '密码不可以为空'
       }
     }),
     methods: {
-      change() {
-        //请求 并检查用户名是否重复，如果重复返回false，不重复返回true
-        this.$router.push({
-          path: '/register/second',
-          query: {
-            user: this.loginForm.username
-          }
-        })
-      }
+      getName() {
+        this.loginForm.username = this.$route.query.user;
+      },
     }
   }
 </script>
@@ -92,17 +89,29 @@
         border solid 1px #CFCFCF
         border-radius 54px
 
+    .tile1
+      line-height 25px
+      font-size 16px
+      letter-spacing .89px
+
+    .tile2
+      margin-top 13px
+      line-height 25px
+      font-size 30px
+      letter-spacing .89px
+
     .text-field
       margin-top 35px
-      padding-right 48px
-      padding-left 48px
-      height 56px
+      height 67px
 
-    .qst
-      margin-top 170px
-      font-size 14px
-      letter-spacing .78
-      color #979797
+    .forget
+      margin-top 34px
+
+      .forget_text
+        color #585858
+        font-size 16px
+        letter-spacing .89px
+        font-weight 400
 
   .footer
     width 100%
@@ -119,21 +128,18 @@
 
       .text1
         display flex
-        display -webkit-flex
         flex-direction column
         justify-content center
-        margin-left 11.64px
+        margin-left 12px
 
     .next_step
       display flex
-      display -webkit-flex
       position float
       float right
       margin-right 30px
 
       .text2
         display flex
-        display -webkit-flex
         flex-direction column
         justify-content center
         margin-right 12px

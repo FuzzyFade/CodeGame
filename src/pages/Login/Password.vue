@@ -11,7 +11,7 @@
               <img alt="avatar" class="avatar" src="https://vuetifyjs.com/apple-touch-icon-180x180.png">
             </v-avatar>
           </div>
-          <div style="line-height: 25px;font-size: 23px;letter-spacing: 1.3px;">
+          <div style="line-height: 25px;font-size: 23px;letter-spacing: 1.3px">
             <span>{{loginForm.username}}</span>
           </div>
         </div>
@@ -23,6 +23,11 @@
                   maxlength="16"
                   v-model="loginForm.password"
           ></v-text-field>
+        </div>
+        <div class="forget">
+          <v-btn @click="forget" flat>
+            <span class="forget_text">忘记密码？</span>
+          </v-btn>
         </div>
       </div>
       <div>
@@ -66,6 +71,9 @@
     methods: {
       getName() {
         this.loginForm.username = this.$route.query.user;
+      },
+      forget() {
+        this.$router.push({path: '/login/forget'})
       },
       ...mapMutations(['changeLogin']),
       login() {
@@ -120,6 +128,16 @@
       margin-top 35px
       padding-right 48px
       padding-left 48px
+      height 67px
+
+    .forget
+      margin-top 34px
+
+      .forget_text
+        color #585858
+        font-size 16px
+        letter-spacing .89px
+        font-weight 400
 
   .footer
     width 100%

@@ -5,6 +5,7 @@ import Login from './pages/Login/Login'
 import Username from './pages/Login/Username'
 import Password from './pages/Login/Password'
 import Without from './pages/Login/Without'
+import Forget from './pages/Login/Forget'
 
 import Register from './pages/Register/Register'
 import Page1 from './pages/Register/Page1'
@@ -31,6 +32,10 @@ const router = new VueRouter({
         {
           path: 'without',
           component: Without
+        },
+        {
+          path: 'forget',
+          component: Forget
         }
       ]
     },

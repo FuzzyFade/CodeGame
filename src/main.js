@@ -6,11 +6,13 @@ import 'babel-polyfill'
 import Vuetify from 'vuetify'
 import 'vuetify/dist/vuetify.min.css'
 import '@fortawesome/fontawesome-free/css/all.css'
-import VueSocketio from 'vue-socket.io';
-import socketio from 'socket.io-client';
+import lottie from 'vue-lottie';
+// import VueSocketio from 'vue-socket.io';
+// import socketio from 'socket.io-client';
 
 Vue.use(Vuetify,{iconfont: 'fa'});
 Vue.config.productionTip = false;
+Vue.component('lottie', lottie);
 
 new Vue({
   router,

@@ -5,10 +5,18 @@
         <div>
           <div class="AvatarBorder">
             <v-avatar
-                    color="grey lighten-4"
-                    size="108px"
+                    color="#4C4C4C"
+                    size="160px"
             >
-              <img alt="avatar" class="avatar" src="https://vuetifyjs.com/apple-touch-icon-180x180.png">
+              <div>
+                <!--<img alt="avatar" class="avatar" src="https://vuetifyjs.com/apple-touch-icon-180x180.png">-->
+                <lottie :height="270"
+                        :options="defaultOptions"
+                        :width="270"
+                        v-on:animCreated="handleAnimation"
+                >
+                </lottie>
+              </div>
             </v-avatar>
           </div>
           <div class="text-field">
@@ -21,35 +29,34 @@
             ></v-text-field>
           </div>
         </div>
-        <div style="height:auto;"></div>
       </div>
-      <div>
-        <div class="footer">
-          <div class="register">
-            <v-btn @click="register" class="foot_btn" fab outline>
-              <v-icon>fa-plus</v-icon>
-            </v-btn>
-            <div class="text1">
-              <span style="font-size: 13px">注 册</span>
-            </div>
+      <div class="footer">
+        <div class="register">
+          <v-btn @click="register" class="foot_btn" fab outline>
+            <v-icon>fa-plus</v-icon>
+          </v-btn>
+          <div class="text1">
+            <span style="font-size: 13px">注 册</span>
           </div>
-          <transition name="fade">
-            <div class="next_step" v-show="loginForm.username">
-              <div class="text2">
-                <span style="font-size: 13px">下一步</span>
-              </div>
-              <v-btn @click="change" class="foot_btn" fab outline>
-                <v-icon>fa-arrow-right</v-icon>
-              </v-btn>
-            </div>
-          </transition>
         </div>
+        <transition name="fade">
+          <div class="next_step" v-show="loginForm.username">
+            <div class="text2">
+              <span style="font-size: 13px">下一步</span>
+            </div>
+            <v-btn @click="change" class="foot_btn" fab outline>
+              <v-icon>fa-arrow-right</v-icon>
+            </v-btn>
+          </div>
+        </transition>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+  import * as animationData from "@/assets/Lottie/Amt1.json"
+
   export default {
     name: "Username",
     data: () => ({
@@ -58,12 +65,23 @@
       },
       rules: {
         empty: value => !!value || '用户名不可以为空'
-      }
+      },
+      defaultOptions: {animationData: animationData.default},
+      animationSpeed: 1,
+      anim: {}
     }),
+    mounted() {
+
+    },
     methods: {
+      handleAnimation(anim) {
+        this.anim = anim;
+        console.log(anim); //这里可以看到 lottie 对象的全部属性
+      },
       register() {
         this.$router.push({path: '/register/first'})
-      },
+      }
+      ,
       change() {
         //code 还会发一个请求给后段，查询是否由其人，返回一个是或否
         this.$router.push({
@@ -83,15 +101,15 @@
     display -webkit-flex
     flex-direction column
     justify-content start
-    position: absolute
+    position absolute
     bottom 0
     top 0
     left 0
     right 0
-
+    z-index 0
     .AvatarBorder
       margin-top 114px
-      margin-bottom 89px
+      margin-bottom 84px
 
       .avatar
         width 108px
@@ -105,15 +123,14 @@
       padding-left 48px
 
   .footer
+    position fixed
     width 100%
     height 90px
-    position fixed
     bottom 0
-    z-index 1
-
+    z-index 0
     .register
       display flex
-      position float
+      position flex
       float left
       margin-left 30px
 
