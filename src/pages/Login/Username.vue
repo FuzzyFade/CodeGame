@@ -30,7 +30,7 @@
           </div>
         </div>
       </div>
-      <div class="footer">
+      <div class="footer" :style="{top:(docmHeight-98)+'px'}">
         <div class="register">
           <v-btn @click="register" class="foot_btn" fab outline>
             <v-icon>fa-plus</v-icon>
@@ -60,6 +60,7 @@
   export default {
     name: "Username",
     data: () => ({
+      docmHeight: document.documentElement.clientHeight,
       loginForm: {
         username: ''
       },
@@ -126,7 +127,6 @@
     position fixed
     width 100%
     height 90px
-    bottom 0
     z-index 0
     .register
       display flex
