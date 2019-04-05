@@ -30,9 +30,15 @@
           </div>
         </div>
       </div>
-      <div class="footer" :style="{top:(docmHeight-98)+'px'}">
+      <div :style="{top:(docmHeight-98)+'px'}"
+           class="footer"
+      >
         <div class="register">
-          <v-btn @click="register" class="foot_btn" fab outline>
+          <v-btn @click="register"
+                 class="foot_btn"
+                 fab
+                 outline
+          >
             <v-icon>fa-plus</v-icon>
           </v-btn>
           <div class="text1">
@@ -44,7 +50,11 @@
             <div class="text2">
               <span style="font-size: 13px">下一步</span>
             </div>
-            <v-btn @click="change" class="foot_btn" fab outline>
+            <v-btn @click="change"
+                   class="foot_btn"
+                   fab
+                   outline
+            >
               <v-icon>fa-arrow-right</v-icon>
             </v-btn>
           </div>
@@ -71,9 +81,6 @@
       animationSpeed: 1,
       anim: {}
     }),
-    mounted() {
-
-    },
     methods: {
       handleAnimation(anim) {
         this.anim = anim;
@@ -108,9 +115,10 @@
     left 0
     right 0
     z-index 0
+
     .AvatarBorder
-      margin-top 114px
-      margin-bottom 84px
+      margin-top 24%
+      margin-bottom 74px
 
       .avatar
         width 108px
@@ -120,14 +128,15 @@
 
     .text-field
       margin-top 35px
-      padding-right 48px
-      padding-left 48px
+      padding-right 50px
+      padding-left 50px
 
   .footer
     position fixed
     width 100%
     height 90px
     z-index 0
+
     .register
       display flex
       position flex

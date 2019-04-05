@@ -8,7 +8,7 @@
                     color="grey lighten-4"
                     size="108px"
             >
-              <img alt="avatar" class="avatar" src="https://vuetifyjs.com/apple-touch-icon-180x180.png">
+              <img alt="avatar" class="avatar" src="https://avatars2.githubusercontent.com/u/25416941?s=460&v=4">
             </v-avatar>
           </div>
           <div style="line-height: 25px;font-size: 23px;letter-spacing: 1.3px">

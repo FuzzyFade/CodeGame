@@ -8,7 +8,7 @@
                     color="grey lighten-4"
                     size="108px"
             >
-              <img alt="avatar" class="avatar" src="https://vuetifyjs.com/apple-touch-icon-180x180.png">
+              <img alt="avatar" class="avatar" src="https://avatars2.githubusercontent.com/u/25416941?s=460&v=4">
             </v-avatar>
           </div>
           <div class="tile1">
@@ -19,14 +19,7 @@
           </div>
         </div>
         <div class="text-field">
-          <v-text-field
-                  style="max-width:200px"
-                  :type="'password'"
-                  label="验证码"
-                  maxlength="16"
-                  outline
-                  v-model="loginForm.password"
-          ></v-text-field>
+          <security-code v-model="authCode"></security-code>
         </div>
         <div class="forget">
         </div>
@@ -45,15 +38,19 @@
 </template>
 
 <script>
-
+  import SecurityCode from '@/components/SecurityCode'
   export default {
     name: "Forget",
+    components:{
+      SecurityCode
+    },
     data: () => ({
       loginForm: {
         username: '',
         password: '',
         email: '1339184537@qq.com'
       },
+      authCode:'',
       userToken: '',
       rules: {
         empty: value => !!value || '密码不可以为空'
