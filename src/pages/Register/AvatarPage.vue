@@ -5,16 +5,10 @@
         <div>
           <div class="AvatarBorder">
             <v-avatar
-                    size="160px"
+                    color="grey lighten-4"
+                    size="108px"
             >
-              <div>
-                <lottie :height="200"
-                        :options="defaultOptions"
-                        :width="200"
-                        v-on:animCreated="handleAnimation"
-                >
-                </lottie>
-              </div>
+              <img alt="avatar" class="avatar" src="https://avatars2.githubusercontent.com/u/25416941?s=460&v=4">
             </v-avatar>
           </div>
           <div class="tile">
@@ -42,7 +36,7 @@
         <div style="height:auto;"></div>
       </div>
       <div>
-        <div class="footer">
+        <div class="footer" :style="{top:(docmHeight-98)+'px'}">
           <transition name="fade">
             <v-btn flat
                    style="font-size: 16px"
@@ -57,11 +51,10 @@
 </template>
 
 <script>
-  import * as animationData from "@/assets/Lottie/logo.json"
-
   export default {
-    name: "Username",
+    name: "AvatarPage",
     data: () => ({
+      docmHeight: document.documentElement.clientHeight,
       loginForm: {
         email: '',
         username: '',
@@ -71,37 +64,28 @@
         empty_email: value => !!value || '邮箱不可以为空',
         empty_pwd: value => !!value || '密码不可以为空',
         email: value => {
-          const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+          const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
           return pattern.test(value) || '请输入正确的邮箱地址'
         },
         pwd: value => value.length >= 8 || '长度为8-16个字符'
-      },
-      defaultOptions: {animationData: animationData.default},
-      animationSpeed: 1,
-      anim: {}
+      }
     }),
     created() {
       this.getName()
     },
     methods: {
       show_button() {
-        const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-        return pattern.test(this.loginForm.email) && this.loginForm.password.length >= 8
-      },
-      handleAnimation(anim) {
-        this.anim = anim;
-        console.log(anim); //这里可以看到 lottie 对象的全部属性
-      },
+        return this.loginForm.email && this.loginForm.password
+      },// 展示确定按钮
       getName() {
         this.loginForm.username = this.$route.query.user;
       },
       change() {
+        // ...code 还会发一个请求给后段，查询是否由其人，返回一个是或否
         this.$router.push({
-          path: '/register/third',
-          params: {
-            email: this.loginForm.email,
-            user: this.loginForm.username,
-            pwd: this.loginForm.password,
+          path: '/login/password',
+          query: {
+            user: this.loginForm.username
           }
         })
       }
@@ -122,8 +106,8 @@
     right 0
 
     .AvatarBorder
-      margin-top 21%
-      margin-bottom 8%
+      margin-top 114px
+      margin-bottom 24px
 
       .avatar
         width 108px

@@ -5,14 +5,20 @@
         <div>
           <div class="AvatarBorder">
             <v-avatar
-                    color="grey lighten-4"
-                    size="108px"
+                    size="160px"
             >
-              <img alt="avatar" class="avatar" src="https://vuetifyjs.com/apple-touch-icon-180x180.png">
+              <div>
+                <lottie :height="200"
+                        :options="defaultOptions"
+                        :width="200"
+                        v-on:animCreated="handleAnimation"
+                >
+                </lottie>
+              </div>
             </v-avatar>
           </div>
           <div style="line-height: 25px;font-size: 23px;letter-spacing: 1.3px;">
-            <span>{{"登记您的通行证"}}</span>
+            <span>登记您的通行证</span>
           </div>
           <div class="text-field">
             <v-text-field
@@ -23,14 +29,14 @@
                     v-model="loginForm.username"
             ></v-text-field>
           </div>
-          <div class="qst">
-            <span>一旦确定就不可修改哦</span>
-          </div>
         </div>
         <div style="height:auto;"></div>
       </div>
       <div>
-        <div class="footer">
+        <div :style="{top:(docmHeight-98)+'px'}" class="footer">
+          <div>
+            <span>一旦确定就不可修改哦</span>
+          </div>
           <transition name="fade">
             <v-btn @click="change"
                    flat
@@ -46,17 +52,27 @@
 </template>
 
 <script>
+  import * as animationData from "@/assets/Lottie/logo.json"
+
   export default {
     name: "Username",
     data: () => ({
+      docmHeight: document.documentElement.clientHeight,
       loginForm: {
         username: ''
       },
       rules: {
         empty: value => !!value || '用户名不可以为空'
-      }
+      },
+      defaultOptions: {animationData: animationData.default},
+      animationSpeed: 1,
+      anim: {}
     }),
     methods: {
+      handleAnimation(anim) {
+        this.anim = anim;
+        console.log(anim); //这里可以看到 lottie 对象的全部属性
+      },
       change() {
         //请求 并检查用户名是否重复，如果重复返回false，不重复返回true
         this.$router.push({
@@ -76,15 +92,16 @@
     display -webkit-flex
     flex-direction column
     justify-content start
-    position: absolute
+    position absolute
     bottom 0
     top 0
     left 0
     right 0
+    z-index 0
 
     .AvatarBorder
-      margin-top 114px
-      margin-bottom 24px
+      margin-top 21%
+      margin-bottom 8%
 
       .avatar
         width 108px
@@ -94,51 +111,12 @@
 
     .text-field
       margin-top 35px
-      padding-right 48px
-      padding-left 48px
-      height 56px
-
-    .qst
-      margin-top 170px
-      font-size 14px
-      letter-spacing .78
-      color #979797
+      padding-right 50px
+      padding-left 50px
 
   .footer
-    width 100%
-    height 90px
     position fixed
-    bottom 0
-    z-index 1
-
-    .register
-      display flex
-      position float
-      float left
-      margin-left 30px
-
-      .text1
-        display flex
-        display -webkit-flex
-        flex-direction column
-        justify-content center
-        margin-left 11.64px
-
-    .next_step
-      display flex
-      display -webkit-flex
-      position float
-      float right
-      margin-right 30px
-
-      .text2
-        display flex
-        display -webkit-flex
-        flex-direction column
-        justify-content center
-        margin-right 12px
-
-  .foot_btn
-    width 50px
-    height 50px
+    width 100%
+    height 110px
+    z-index 0
 </style>

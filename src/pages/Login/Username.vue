@@ -5,14 +5,12 @@
         <div>
           <div class="AvatarBorder">
             <v-avatar
-                    color="#4C4C4C"
                     size="160px"
             >
               <div>
-                <!--<img alt="avatar" class="avatar" src="https://vuetifyjs.com/apple-touch-icon-180x180.png">-->
-                <lottie :height="270"
+                <lottie :height="200"
                         :options="defaultOptions"
-                        :width="270"
+                        :width="200"
                         v-on:animCreated="handleAnimation"
                 >
                 </lottie>
@@ -65,7 +63,7 @@
 </template>
 
 <script>
-  import * as animationData from "@/assets/Lottie/Amt1.json"
+  import * as animationData from "@/assets/Lottie/logo.json"
 
   export default {
     name: "Username",
@@ -117,7 +115,7 @@
     z-index 0
 
     .AvatarBorder
-      margin-top 24%
+      margin-top 21%
       margin-bottom 74px
 
       .avatar
