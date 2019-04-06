@@ -1,4 +1,14 @@
-# hack2
+# 2219年hack-up game前端仓库
+
+## 项目简介
+
+> Mirror
+
+本项目使用Vue.js编写，采用Webpack作为持续集成系统。
+
+前端仓库: https://github.com/FuzzyFade/CodeGame
+
+后端仓库: https://github.com/ZhouYingSASA/2019hackup
 
 ## Project setup
 ```
