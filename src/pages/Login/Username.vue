@@ -37,7 +37,7 @@
                  fab
                  outline
           >
-            <v-icon>fa-left</v-icon>
+            <img alt="register"  src="">
           </v-btn>
           <div class="text1">
             <span style="font-size: 13px">注 册</span>
