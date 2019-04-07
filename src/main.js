@@ -7,8 +7,6 @@ import Vuetify from 'vuetify'
 import 'vuetify/dist/vuetify.min.css'
 import '@fortawesome/fontawesome-free/css/all.css'
 import lottie from 'vue-lottie';
-// import VueSocketio from 'vue-socket.io';
-// import socketio from 'socket.io-client';
 
 Vue.use(Vuetify,{iconfont: 'fa'});
 Vue.config.productionTip = false;
