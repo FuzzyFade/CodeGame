@@ -35,11 +35,9 @@
       }
     },
     // variables
-    data() {
-      return {
-        value: ''
-      }
-    },
+    data: () => ({
+      value: ''
+    }),
     methods: {
       hideKeyboard() {
         // 输入完成隐藏键盘
@@ -49,7 +47,7 @@
       handleSubmit() {
         this.$emit('input', this.value)
       },
-      handleInput(e) {
+      handleInput() {
         this.$refs.input.value = this.value;
         if (this.value.length >= this.number) {
           this.hideKeyboard()
@@ -60,6 +58,7 @@
   }
 
 </script>
+
 <style scoped lang="stylus">
   .security-code-wrap
     overflow hidden

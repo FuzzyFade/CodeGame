@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="23px" height="23px" viewBox="0 0 23 23" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.4 (67378) - http://www.bohemiancoding.com/sketch -->
+    <title>修改密码</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="菜单栏详解" transform="translate(-9.000000, -448.000000)">
+            <g id="修改密码" transform="translate(9.000000, 448.000000)">
+                <rect id="Rectangle-Copy-8" fill="#43A6FF" x="0" y="0" width="23" height="23" rx="5"></rect>
+                <path d="M18,11.6243873 L18,16.0033546 C18,16.5330293 17.789548,17.0409988 17.4149621,17.4154642 C17.0403763,17.7899297 16.5323565,18.0002011 16.0027128,17.9999999 L6.99652879,17.9999999 C5.89387639,17.9999999 5,17.1060713 5,16.0033546 L5,6.99664526 C5,6.46706916 5.21037399,5.95918589 5.58483678,5.58473682 C5.95929957,5.21028775 6.46717319,4.99994972 6.99671839,5.00000001 L12.3547343,5.00000001" id="Path" stroke="#FFFFFF" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round"></path>
+                <path d="M13.5091777,3.37875897 L14.3210561,3.39548264 C14.8483298,3.4063438 15.2846026,3.84253308 15.2955691,4.36980893 L15.5049703,14.5355401 C15.506883,14.6283972 15.4331581,14.7021222 15.340301,14.7002094 L12.9548007,14.6510711 C12.8619436,14.6491584 12.7851175,14.5723323 12.7832048,14.4794752 L12.5738036,4.313744 C12.5629409,3.78639588 12.981635,3.36770171 13.5089832,3.37856442 L13.5091777,3.37875897 Z" id="Path" stroke="#FFFFFF" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round" transform="translate(14.039302, 9.039302) rotate(45.000000) translate(-14.039302, -9.039302) "></path>
+                <polyline id="Path" stroke="#FFFFFF" stroke-width="0.6" stroke-linecap="round" stroke-linejoin="round" points="8.99596347 12.3 8 15.3 11 14.3040365"></polyline>
+            </g>
+        </g>
+    </g>
+</svg>

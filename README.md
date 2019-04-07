@@ -2,7 +2,7 @@
 
 ## 项目简介
 
-> Mirror
+> Python escape
 
 本项目使用Vue.js编写，采用Webpack作为持续集成系统。
 

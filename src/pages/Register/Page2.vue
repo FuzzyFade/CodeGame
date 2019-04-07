@@ -9,9 +9,9 @@
             >
               <div>
                 <lottie :height="200"
-                        :options="defaultOptions"
                         :width="200"
-                        v-on:animCreated="handleAnimation"
+                        :options="defaultOptions"
+                        @animCreated="handleAnimation"
                 >
                 </lottie>
               </div>
