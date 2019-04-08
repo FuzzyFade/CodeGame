@@ -38,7 +38,7 @@
                 <span style="font-size: 14px">下一步</span>
               </div>
               <v-btn @click="login" class="foot_btn" fab outline>
-                <v-icon>fa-arrow-right</v-icon>
+                <img alt="next_step" src="../../assets/icons/next_step.svg">
               </v-btn>
             </div>
           </transition>
