@@ -261,8 +261,8 @@
     }),
     methods: {
       switchSlide() {
-        this.slideShow = !this.slideShow
-        let backOb = document.getElementsByClassName('courses')[0]
+        this.slideShow = !this.slideShow;
+        let backOb = document.getElementsByClassName('courses')[0];
         if (this.slideShow) {
           backOb.style.filter = "blur(1.8px)"
         } else {
@@ -270,15 +270,15 @@
         }
       },
       slideFade() {
-        this.slideShow = false
-        let backOb = document.getElementsByClassName('courses')[0]
+        this.slideShow = false;
+        let backOb = document.getElementsByClassName('courses')[0];
         backOb.style.filter = "blur(0px)"
       },
       getTime() {
-        let date = new Date()
-        this.nowTime = "2219" + "年" + (date.getMonth() + 1) + "月" + (date.getDay() + 7) + "日"
+        let date = new Date();
+        this.nowTime = "2219" + "年" + (date.getMonth() + 1) + "月" + (date.getDay() + 7) + "日";
         setInterval(() => {
-          date = new Date()
+          date = new Date();
           this.nowTime = "2219" + "年" + (date.getMonth() + 1) + "月" + (date.getDay() + 7) + "日"
         }, 3600000)
       },
@@ -298,11 +298,11 @@
 
       },
       runEx(course) {
-        course.run = true
-        course.show = true
-        if (course.name == '此电脑') {
+        course.run = true;
+        course.show = true;
+        if (course.name === '此电脑') {
           course.computerPage = true
-        } else if (course.name == '文档') {
+        } else if (course.name === '文档') {
           course.folderPage = true
         }
       },
@@ -310,29 +310,29 @@
         course.show = false
       },
       maximize(course) {
-        let maxHeightNumber = window.innerHeight - 55
-        let mh = String(maxHeightNumber)
-        course.size.top = '0'
-        course.size.left = '0'
-        course.size.width = '100vw'
+        let maxHeightNumber = window.innerHeight - 55;
+        let mh = String(maxHeightNumber);
+        course.size.top = '0';
+        course.size.left = '0';
+        course.size.width = '100vw';
         course.size.height = mh + 'px'
       },
       close(course) {
-        let initSize = course.initSize
-        course.run = false
-        course.show = false
-        course.size.width = initSize.width
-        course.size.height = initSize.height
-        course.size.top = initSize.top
-        course.size.left = initSize.left
-        if (course.name == '此电脑') {
+        let initSize = course.initSize;
+        course.run = false;
+        course.show = false;
+        course.size.width = initSize.width;
+        course.size.height = initSize.height;
+        course.size.top = initSize.top;
+        course.size.left = initSize.left;
+        if (course.name === '此电脑') {
           course.computerPage = false
-        } else if (course.name == '文档') {
+        } else if (course.name === '文档') {
           course.folderPage = false
         }
-        if (course.name == '2219-4-1') {
+        if (course.name === '2219-4-1') {
           course.foldOnePage = false
-        } else if (course.name == '折返吧') {
+        } else if (course.name === '折返吧') {
           course.foldTwoPage = false
         }
       },
@@ -340,11 +340,11 @@
         course.show = !course.show
       },
       openFold(fold) {
-        fold.run = true
-        fold.show = true
-        if (fold.name == '2219-4-1') {
+        fold.run = true;
+        fold.show = true;
+        if (fold.name === '2219-4-1') {
           fold.foldOnePage = true
-        } else if (course.name == '折返吧') {
+        } else if (course.name === '折返吧') {
           fold.foldTwoPage = true
         }
       }
@@ -355,18 +355,18 @@
     directives: {
       drag: {
         bind: function (el) {
-          let oDiv = el
+          let oDiv = el;
           oDiv.onmousedown = function (e) {
-            let disX = e.clientX - oDiv.offsetLeft
-            let disY = e.clientY - oDiv.offsetTop
+            let disX = e.clientX - oDiv.offsetLeft;
+            let disY = e.clientY - oDiv.offsetTop;
             document.onmousemove = function (e) {
-              let l = e.clientX - disX
-              let t = e.clientY - disY
-              oDiv.style.left = l + 'px'
+              let l = e.clientX - disX;
+              let t = e.clientY - disY;
+              oDiv.style.left = l + 'px';
               oDiv.style.top = t + 'px'
-            }
-            document.onmouseup = function (e) {
-              document.onmousemove = null
+            };
+            document.onmouseup = function () {
+              document.onmousemove = null;
               document.onmouseup = null
             }
           }
@@ -426,13 +426,13 @@
         }
 
         #image-0 {
-          background-image: url("./assets/icons/Desktop/computer.svg");
+          background-image: url("../assets/icons/Desktop/computer.svg");
         }
 
         #image-1 {
-          background-image: url("./assets/icons/Desktop/folder.svg");
+          background-image: url("../assets/icons/Desktop/folder.svg");
           background-repeat: no-repeat;
-          background-position: 5px 0px;
+          background-position: 5px 0;
         }
 
         #image-3 {
@@ -482,7 +482,7 @@
           .portrait {
             width: 41px;
             height: 41px;
-            background: url("./assets/avatars/2_00000.png");
+            background: url("../assets/avatars/2_00000.png");
             background-size: 100%;
             border-radius: 50%;
             margin-right: 10px;
@@ -532,23 +532,23 @@
         }
 
         #cPortrait {
-          background: url("./assets/icons/toolbar/修改头像.svg");
+          background: url("../assets/icons/toolbar/修改头像.svg");
         }
 
         #cPassword {
-          background: url("./assets/icons/toolbar/修改密码.svg");
+          background: url("../assets/icons/toolbar/修改密码.svg");
         }
 
         #aboutUs {
-          background: url("./assets/icons/toolbar/关于.svg");
+          background: url("../assets/icons/toolbar/关于.svg");
         }
 
         #logOut {
-          background: url("./assets/icons/toolbar/注销.svg");
+          background: url("../assets/icons/toolbar/注销.svg");
         }
 
         #shutDown {
-          background: url("./assets/icons/toolbar/关机.svg");
+          background: url("../assets/icons/toolbar/关机.svg");
         }
 
         p {
@@ -604,7 +604,7 @@
           .pro-icon {
             width: 11px;
             height: 12px;
-            background-image: url("./assets/icons/Desktop/folder.svg");
+            background-image: url("../assets/icons/Desktop/folder.svg");
             background-repeat: no-repeat;
           }
         }
@@ -638,9 +638,8 @@
           margin-left: 15px;
           width: 20px;
           height: 20px;
-          background: url("./assets/icons/windows/X.svg");
           background-size: 180%;
-          background-position: -8.5px -6.5px;
+          background: url("../assets/icons/windows/X.svg") -8.5px -6.5px;
         }
       }
 
@@ -659,7 +658,7 @@
       .os-logo {
         width: 189px;
         height: 189px;
-        background: url("./assets/icons/logo.svg");
+        background: url("../assets/icons/logo.svg");
         background-size: 100%;
       }
 
@@ -721,7 +720,6 @@
       .folds {
         display: flex;
         margin-top: 27px;
-        margin-left: px;
 
         .fold {
           margin-left: 25px;
@@ -740,15 +738,11 @@
 
           #fold-icon-0 {
             margin-left: 0;
-            background: url("./assets/icons/2_00000.svg");
-            background-position: 0 2px;
-            background-repeat: no-repeat;
+            background: url("../assets/icons/2_00000.svg") no-repeat 0 2px;
           }
 
           #fold-icon-1 {
-            background-position: 0 3px;
-            background-repeat: no-repeat;
-            background: url("./assets/icons/system.svg");
+            background: url("../assets/icons/system.svg") no-repeat 0 3px;
           }
         }
       }
@@ -773,7 +767,7 @@
         margin-left: 14px;
         width: 42px;
         height: 42px;
-        background-image: url("./assets/icons/logo.svg");
+        background-image: url("../assets/icons/logo.svg");
         background-size: 140%;
         background-position: -8px -8px;
         background-repeat: no-repeat;
@@ -814,12 +808,12 @@
         #task-0 {
           background-size: 100%;
           background-repeat: no-repeat;
-          background-image: url("./assets/icons/Desktop/computer.svg");
+          background-image: url("../assets/icons/Desktop/computer.svg");
         }
 
         #task-1 {
           background-repeat: no-repeat;
-          background-image: url("./assets/icons/Desktop/folder.svg");
+          background-image: url("../assets/icons/Desktop/folder.svg");
         }
       }
     }
