@@ -37,7 +37,7 @@
                  fab
                  outline
           >
-            <img alt="register"  src="">
+            <img alt="register" src="../../assets/icons/register.svg">
           </v-btn>
           <div class="text1">
             <span style="font-size: 13px">注 册</span>
@@ -53,7 +53,7 @@
                    fab
                    outline
             >
-              <v-icon>fa-arrow-right</v-icon>
+              <img alt="login" src="../../assets/icons/next_step.svg">
             </v-btn>
           </div>
         </transition>
@@ -82,7 +82,6 @@
     methods: {
       handleAnimation(anim) {
         this.anim = anim;
-        console.log(anim); //这里可以看到 lottie 对象的全部属性
       },
       register() {
         this.$router.push({path: '/register/first'})
