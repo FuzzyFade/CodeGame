@@ -12,12 +12,18 @@ import Page1 from './pages/Register/Page1'
 import Page2 from './pages/Register/Page2'
 import AvatarPage from "@/pages/Register/AvatarPage";
 
+import Desktop from "@/pages/Desktop"
+
 Vue.use(VueRouter);
 
 const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes: [
+    {
+      path: '/desktop/',
+      component: Desktop,
+    },
     {
       path: '/login/',
       component: Login,
