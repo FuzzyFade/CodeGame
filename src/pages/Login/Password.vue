@@ -25,7 +25,7 @@
         </div>
       </div>
       <div>
-        <div class="footer">
+        <div class="footer" :style="{top:(docmHeight-98)+'px'}">
           <transition name="fade">
             <div class="next_step" v-show="loginForm.password">
               <div class="text2">
@@ -55,6 +55,7 @@
       Avatar
     },
     data: () => ({
+      docmHeight: document.documentElement.clientHeight,
       userToken: '',
       rules: {
         empty: value => !!value || '密码不可以为空'
@@ -118,35 +119,37 @@
         font-weight 400
 
   .footer
+    position fixed
     width 100%
     height 90px
-    position fixed
-    bottom 0
-    z-index 1
+    z-index 0
 
-    .register
+  .register
+    display flex
+    position flex
+    float left
+    margin-left 30px
+
+    .text1
       display flex
-      position float
-      float left
-      margin-left 30px
+      display -webkit-flex
+      flex-direction column
+      justify-content center
+      margin-left 11.64px
 
-      .text1
-        display flex
-        flex-direction column
-        justify-content center
-        margin-left 12px
+  .next_step
+    display flex
+    display -webkit-flex
+    position float
+    float right
+    margin-right 30px
 
-    .next_step
+    .text2
       display flex
-      position float
-      float right
-      margin-right 30px
-
-      .text2
-        display flex
-        flex-direction column
-        justify-content center
-        margin-right 12px
+      display -webkit-flex
+      flex-direction column
+      justify-content center
+      margin-right 12px
 
   .foot_btn
     width 50px

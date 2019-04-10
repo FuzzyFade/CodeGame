@@ -43,7 +43,7 @@
         <div style="height:auto;"></div>
       </div>
       <div>
-        <div class="footer">
+        <div class="footer" :style="{top:(docmHeight-98)+'px'}">
           <transition name="fade">
             <v-btn @click="change()"
                    flat
@@ -74,6 +74,7 @@
       })
     },
     data: () => ({
+      docmHeight: document.documentElement.clientHeight,
       rules: {
         empty_email: value => !!value || '邮箱不可以为空',
         empty_pwd: value => !!value || '密码不可以为空',
@@ -142,7 +143,6 @@
     width 100%
     height 90px
     position fixed
-    bottom 0
     z-index 1
 
     .register

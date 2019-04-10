@@ -32,7 +32,7 @@
     z-index -4
     heigh 100%
     overflow hidden
-    background linear-gradient(to bottom, rgba(255, 255, 255, 1), rgba(255, 255, 255, .24))
+    background linear-gradient(to bottom, rgba(255, 255, 255, .94), rgba(255, 255, 255, .12))
 
   .haas
     display flex

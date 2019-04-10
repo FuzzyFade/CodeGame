@@ -5,7 +5,7 @@
       <div class="containers">
         <div>
           <div class="AvatarBorder">
-            <avatar :state="loginForm.ava" size="108px"></avatar>
+            <avatar :key="index" :state="loginForm.ava" size="108px"></avatar>
           </div>
           <div class="tile">
             <span>请选择您的头像</span>
@@ -136,6 +136,7 @@
   .ava
     padding-left 23px
     padding-right 23px
+
     .ava-field
       display flex
       justify-content space-around
