@@ -1,12 +1,11 @@
 <template>
   <div>
     <div>
+      <bg></bg>
       <div class="containers">
         <div>
           <div class="AvatarBorder">
-            <v-avatar
-                    size="160px"
-            >
+            <v-avatar size="160px">
               <div>
                 <lottie :height="200"
                         :options="defaultOptions"
@@ -63,10 +62,14 @@
 </template>
 
 <script>
+  import Bg from "@/components/BackGround"
   import * as animationData from "@/assets/Lottie/logo.json"
 
   export default {
     name: "Username",
+    components:{
+      Bg
+    },
     data: () => ({
       docmHeight: document.documentElement.clientHeight,
       loginForm: {

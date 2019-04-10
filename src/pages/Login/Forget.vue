@@ -1,15 +1,11 @@
 <template>
   <div>
     <div>
+      <bg></bg>
       <div class="containers">
         <div>
           <div class="AvatarBorder">
-            <v-avatar
-                    color="grey lighten-4"
-                    size="108px"
-            >
-              <img alt="avatar" class="avatar" src="https://avatars2.githubusercontent.com/u/25416941?s=460&v=4">
-            </v-avatar>
+            <avatar :state="ava" size="108px"></avatar>
           </div>
           <div class="tile1">
             <span>我们已将验证码发送到</span>
@@ -38,13 +34,18 @@
 </template>
 
 <script>
+  import Avatar from "@/components/Avatar"
+  import Bg from "@/components/BackGround"
   import SecurityCode from '@/components/SecurityCode'
   export default {
     name: "Forget",
     components:{
-      SecurityCode
+      Bg,
+      SecurityCode,
+      Avatar
     },
     data: () => ({
+      ava:2,
       loginForm: {
         username: '',
         password: '',

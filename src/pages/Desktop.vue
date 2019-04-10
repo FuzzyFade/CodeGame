@@ -482,7 +482,7 @@
           .portrait {
             width: 41px;
             height: 41px;
-            background: url("../assets/avatars/2_00000.png");
+            background: url("../assets/avatars/2.png");
             background-size: 100%;
             border-radius: 50%;
             margin-right: 10px;

@@ -1,48 +1,40 @@
 <template>
   <div>
     <div>
+      <bg></bg>
       <div class="containers">
         <div>
           <div class="AvatarBorder">
-            <v-avatar
-                    color="grey lighten-4"
-                    size="108px"
-            >
-              <img alt="avatar" class="avatar" src="https://avatars2.githubusercontent.com/u/25416941?s=460&v=4">
-            </v-avatar>
+            <avatar :state="loginForm.ava" size="108px"></avatar>
           </div>
           <div class="tile">
-            <span>{{"你好 "+loginForm.username}}</span>
+            <span>请选择您的头像</span>
           </div>
-          <div class="text-field">
-            <div style="height:70px">
-              <v-text-field
-                      :rules="[rules.empty_email,rules.email]"
-                      label="邮箱"
-                      maxlength="40"
-                      v-model="loginForm.email"
-              ></v-text-field>
+          <div class="ava">
+            <div class="ava-field">
+              <div @click="switch_ava(1)">
+                <div :class="{ ava_active:isActive1 }">
+                  <avatar :state="1" size="80px"></avatar>
+                </div>
+              </div>
+              <div @click="switch_ava(2)">
+                <div :class="{ ava_active:isActive2 }">
+                  <avatar :state="2" size="80px"></avatar>
+                </div>
+              </div>
+              <div @click="switch_ava(3)">
+                <div :class="{ ava_active:isActive3 }">
+                  <avatar :state="3" size="80px"></avatar>
+                </div>
+              </div>
             </div>
-            <v-text-field
-                    :rules="[rules.empty_pwd,rules.pwd]"
-                    :type="'password'"
-                    label="密码"
-                    maxlength="16"
-                    style="line-height: 15px"
-                    v-model="loginForm.password"
-            ></v-text-field>
           </div>
         </div>
-        <div style="height:auto;"></div>
       </div>
       <div>
-        <div class="footer" :style="{top:(docmHeight-98)+'px'}">
+        <div :style="{top:(docmHeight-98)+'px'}" class="footer">
           <transition name="fade">
-            <v-btn flat
-                   style="font-size: 16px"
-                   v-show="show_button()"
-            >> 确认信息
-            </v-btn>
+            <v-btn flat style="font-size: 16px" @click="submit">> 选它了</v-btn>
           </transition>
         </div>
       </div>
@@ -51,11 +43,23 @@
 </template>
 
 <script>
+  import Avatar from "@/components/Avatar";
+  import Bg from "@/components/BackGround";
+  import axios from "axios"
+
   export default {
     name: "AvatarPage",
+    components: {
+      Avatar,
+      Bg
+    },
     data: () => ({
+      isActive1: false,
+      isActive2: true,
+      isActive3: false,
       docmHeight: document.documentElement.clientHeight,
       loginForm: {
+        ava: 2,
         email: '',
         username: '',
         password: ''
@@ -71,29 +75,39 @@
       }
     }),
     created() {
-      this.getName()
+      this.getForm()
     },
     methods: {
-      show_button() {
-        return this.loginForm.email && this.loginForm.password
-      },// 展示确定按钮
-      getName() {
-        this.loginForm.username = this.$route.query.user;
+      switch_ava(n) {
+        this.loginForm.ava = n;
+        (n === 1) && ([this.isActive1, this.isActive2, this.isActive3] = [true, false, false]);
+        (n === 2) && ([this.isActive1, this.isActive2, this.isActive3] = [false, true, false]);
+        (n === 3) && ([this.isActive1, this.isActive2, this.isActive3] = [false, false, true]);
       },
-      change() {
-        // ...code 还会发一个请求给后段，查询是否由其人，返回一个是或否
-        this.$router.push({
-          path: '/login/password',
-          query: {
-            user: this.loginForm.username
-          }
-        })
+      getForm() {
+        this.loginForm= this.$route.params().loginFrom;
+      },
+      submit() {
+
       }
     }
   }
 </script>
 
 <style lang="stylus" scoped>
+  .ava_active
+    border-radius 100%
+    animation flash 1600ms infinite
+    -webkit-animation flash 1600ms infinite
+
+    @keyframes flash
+      from
+        box-shadow 0 0 0 2.6px rgb(255, 255, 255), 0 0 0 5.5px rgb(0, 159, 255)
+      50%
+        box-shadow 0 0 0 2.6px rgb(255, 255, 255), 0 0 0 5.5px rgb(255, 255, 255)
+      to
+        box-shadow 0 0 0 2.6px rgb(255, 255, 255), 0 0 0 5.5px rgb(0, 159, 255)
+
   .containers
     display flex
     display -webkit-flex
@@ -120,10 +134,17 @@
       font-size 23px
       letter-spacing 1.3px
 
-    .text-field
-      margin-top 35px
-      padding-right 48px
-      padding-left 48px
+  .ava
+    text-align center
+
+    .ava-field
+      display flex
+      justify-content space-around
+      margin-top 66px
+
+      .atom
+        width 81px
+        height 81px
 
   .footer
     width 100%

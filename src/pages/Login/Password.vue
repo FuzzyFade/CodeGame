@@ -1,19 +1,13 @@
 <template>
   <div>
     <div>
+      <bg></bg>
       <div class="containers">
-        <div>
-          <div class="AvatarBorder">
-            <v-avatar
-                    color="grey lighten-4"
-                    size="108px"
-            >
-              <img alt="avatar" class="avatar" src="https://avatars2.githubusercontent.com/u/25416941?s=460&v=4">
-            </v-avatar>
-          </div>
-          <div style="line-height: 25px;font-size: 23px;letter-spacing: 1.3px">
-            <span>{{loginForm.username}}</span>
-          </div>
+        <div class="AvatarBorder">
+          <avatar :state="ava" size="108px"></avatar>
+        </div>
+        <div style="line-height: 25px;font-size: 23px;letter-spacing: 1.3px">
+          <span>{{loginForm.username}}</span>
         </div>
         <div class="text-field">
           <v-text-field
@@ -49,12 +43,19 @@
 </template>
 
 <script>
+  import Bg from "@/components/BackGround"
+  import Avatar from "@/components/Avatar"
   import {mapMutations} from 'vuex';
   import axios from 'axios'
 
   export default {
     name: "Password",
+    components: {
+      Bg,
+      Avatar
+    },
     data: () => ({
+      ava: 2,
       loginForm: {
         username: '',
         password: ''

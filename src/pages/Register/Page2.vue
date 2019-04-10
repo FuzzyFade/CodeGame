@@ -1,6 +1,7 @@
 <template>
   <div>
     <div>
+      <bg></bg>
       <div class="containers">
         <div>
           <div class="AvatarBorder">
@@ -57,10 +58,14 @@
 </template>
 
 <script>
+  import Bg from "@/components/BackGround"
   import * as animationData from "@/assets/Lottie/logo.json"
 
   export default {
     name: "Username",
+    components:{
+      Bg
+    },
     data: () => ({
       loginForm: {
         email: '',
