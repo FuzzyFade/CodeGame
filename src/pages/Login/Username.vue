@@ -64,17 +64,20 @@
 <script>
   import Bg from "@/components/BackGround"
   import * as animationData from "@/assets/Lottie/logo.json"
+  import {mapMutations, mapState} from "vuex"
 
   export default {
     name: "Username",
-    components:{
+    components: {
       Bg
+    },
+    computed: {
+      ...mapState({
+        loginForm: state => state.login
+      })
     },
     data: () => ({
       docmHeight: document.documentElement.clientHeight,
-      loginForm: {
-        username: ''
-      },
       rules: {
         empty: value => !!value || '用户名不可以为空'
       },
@@ -83,20 +86,20 @@
       anim: {}
     }),
     methods: {
+      ...mapMutations({
+        input_name: 'INPUT_NAME'
+      }),
       handleAnimation(anim) {
         this.anim = anim;
       },
       register() {
         this.$router.push({path: '/register/first'})
-      }
-      ,
+      },
       change() {
-        //code 还会发一个请求给后段，查询是否由其人，返回一个是或否
+        //发一个post给后端，查询是否有其人，返回一个是或否，如果有则执行下面代码，如果没有则跳转到without
+        this.input_name(this.loginForm);
         this.$router.push({
           path: '/login/password',
-          query: {
-            user: this.loginForm.username
-          }
         })
       }
     }

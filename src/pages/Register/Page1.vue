@@ -53,17 +53,20 @@
 <script>
   import Bg from "@/components/BackGround"
   import * as animationData from "@/assets/Lottie/logo.json"
+  import {mapMutations, mapState} from "vuex"
 
   export default {
     name: "Username",
-    components:{
+    components: {
       Bg
+    },
+    computed: {
+      ...mapState({
+        loginForm: state => state.register
+      }),
     },
     data: () => ({
       docmHeight: document.documentElement.clientHeight,
-      loginForm: {
-        username: ''
-      },
       rules: {
         empty: value => !!value || '用户名不可以为空'
       },
@@ -72,18 +75,16 @@
       anim: {}
     }),
     methods: {
+      ...mapMutations({
+        addName: 'ADD_NAME'
+      }),
       handleAnimation(anim) {
-        this.anim = anim;
-        console.log(anim); //这里可以看到 lottie 对象的全部属性
+        this.anim = anim
       },
       change() {
         //请求 并检查用户名是否重复，如果重复返回false，不重复返回true
-        this.$router.push({
-          path: '/register/second',
-          query: {
-            user: this.loginForm.username
-          }
-        })
+        this.addName(this.loginForm); //不存在的话就8要存！！！
+        this.$router.push({path: '/register/second'});
       }
     }
   }

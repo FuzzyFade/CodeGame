@@ -1,6 +1,7 @@
 <template>
   <div>
     <div class="top"></div>
+    <div class="bottom"></div>
     <div class="haas">
       <div id='stars'></div>
       <div id='stars2'></div>
@@ -17,6 +18,7 @@
 
 <style lang="stylus" scoped>
   @import "../CSS/stars.css";
+  .bottom
   .top
     display flex
     display -webkit-flex
@@ -28,9 +30,9 @@
     left 0
     right 0
     z-index -4
-    heigh: 100%
+    heigh 100%
     overflow hidden
-    background: linear-gradient(to bottom, rgba(255, 255, 255, 1), rgba(255, 255, 255, .24));
+    background linear-gradient(to bottom, rgba(255, 255, 255, 1), rgba(255, 255, 255, .24))
 
   .haas
     display flex

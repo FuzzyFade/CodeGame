@@ -4,7 +4,7 @@
       <bg></bg>
       <div class="containers">
         <div class="AvatarBorder">
-          <avatar :state="ava" size="108px"></avatar>
+          <avatar :state="loginForm.ava" size="108px"></avatar>
         </div>
         <div style="line-height: 25px;font-size: 23px;letter-spacing: 1.3px">
           <span>{{loginForm.username}}</span>
@@ -45,7 +45,7 @@
 <script>
   import Bg from "@/components/BackGround"
   import Avatar from "@/components/Avatar"
-  import {mapMutations} from 'vuex';
+  import {mapState} from 'vuex';
   import axios from 'axios'
 
   export default {
@@ -55,19 +55,15 @@
       Avatar
     },
     data: () => ({
-      ava: 2,
-      loginForm: {
-        username: '',
-        password: ''
-      },
       userToken: '',
       rules: {
         empty: value => !!value || '密码不可以为空'
-      }
+      },
     }),
-    created() {
-      this.getName()
-      //post用户名，请求个头像序号
+    computed:{
+      ...mapState({
+        loginForm: state => state.login
+      })
     },
     methods: {
       getName() {
@@ -76,28 +72,9 @@
       forget() {
         this.$router.push({path: '/login/forget'})
       },
-      ...mapMutations(['changeLogin']),
       login() {
-        let _this = this;
-        let data = this.loginForm;
-        if (this.loginForm.username === '' || this.loginForm.password === '') {
-          alert('密码不能为空');
-        } else {
-          axios
-            .post('/api/auth/login', data)
-            .then(res => {
-              console.log(res.data);
-              _this.userToken = 'Bearer ' + res.data.data.body.token;
-              // 将用户token保存到vuex中
-              _this.changeLogin({Authorization: _this.userToken});
-              _this.$router.push('/home');
-              alert('登陆成功');
-            })
-            .catch(error => {
-              alert('账号或密码错误');
-              console.log(error);
-            });
-        }
+        //post loginForm
+        this.$router.push({path:'/login/start'})
       },
     }
   }

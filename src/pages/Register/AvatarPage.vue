@@ -34,7 +34,7 @@
       <div>
         <div :style="{top:(docmHeight-98)+'px'}" class="footer">
           <transition name="fade">
-            <v-btn flat style="font-size: 16px" @click="submit">> 选它了</v-btn>
+            <v-btn @click="change" flat style="font-size: 16px">> 选它了</v-btn>
           </transition>
         </div>
       </div>
@@ -45,7 +45,7 @@
 <script>
   import Avatar from "@/components/Avatar";
   import Bg from "@/components/BackGround";
-  import axios from "axios"
+  import {mapMutations, mapState} from "vuex"
 
   export default {
     name: "AvatarPage",
@@ -58,12 +58,6 @@
       isActive2: true,
       isActive3: false,
       docmHeight: document.documentElement.clientHeight,
-      loginForm: {
-        ava: 2,
-        email: '',
-        username: '',
-        password: ''
-      },
       rules: {
         empty_email: value => !!value || '邮箱不可以为空',
         empty_pwd: value => !!value || '密码不可以为空',
@@ -74,21 +68,26 @@
         pwd: value => value.length >= 8 || '长度为8-16个字符'
       }
     }),
-    created() {
-      this.getForm()
+    computed: {
+      ...mapState({
+        loginForm: state => state.register
+      })
     },
     methods: {
+      ...mapMutations({
+        add_ava: 'ADD_AVA'
+      }),
       switch_ava(n) {
         this.loginForm.ava = n;
         (n === 1) && ([this.isActive1, this.isActive2, this.isActive3] = [true, false, false]);
         (n === 2) && ([this.isActive1, this.isActive2, this.isActive3] = [false, true, false]);
         (n === 3) && ([this.isActive1, this.isActive2, this.isActive3] = [false, false, true]);
       },
-      getForm() {
-        this.loginForm= this.$route.params().loginFrom;
-      },
-      submit() {
-
+      change() {
+        this.add_ava(this.loginForm);
+        this.$router.push({
+          path: '/register/fourth',
+        })
       }
     }
   }
@@ -135,16 +134,12 @@
       letter-spacing 1.3px
 
   .ava
-    text-align center
-
+    padding-left 23px
+    padding-right 23px
     .ava-field
       display flex
       justify-content space-around
       margin-top 66px
-
-      .atom
-        width 81px
-        height 81px
 
   .footer
     width 100%

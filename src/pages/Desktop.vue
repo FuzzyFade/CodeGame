@@ -43,7 +43,7 @@
           <div class="stora">内存 Null</div>
           <div class="gpu">图形卡 Null</div>
         </div>
-        <div class="advancedOp">高级设置</div>
+        <v-btn dark flat>高级设置</v-btn>
       </div>
       <div class="w-body" id="folder" v-if="course.folderPage">
         <div class="folds">
@@ -300,11 +300,15 @@
       runEx(course) {
         course.run = true;
         course.show = true;
-        if (course.name === '此电脑') {
-          course.computerPage = true
+
+        /*if (course.name === '此电脑') {
+          course.computerPage = false
         } else if (course.name === '文档') {
-          course.folderPage = true
-        }
+          course.folderPage = false
+        }*/
+
+        course.name === '此电脑' && (course.computerPage = true);
+        course.name === '文档' && (course.folderPage = true);
       },
       minimize(course) {
         course.show = false
@@ -325,7 +329,8 @@
         course.size.height = initSize.height;
         course.size.top = initSize.top;
         course.size.left = initSize.left;
-        if (course.name === '此电脑') {
+
+        /*if (course.name === '此电脑') {
           course.computerPage = false
         } else if (course.name === '文档') {
           course.folderPage = false
@@ -334,7 +339,12 @@
           course.foldOnePage = false
         } else if (course.name === '折返吧') {
           course.foldTwoPage = false
-        }
+        }*/
+
+        course.name === '此电脑' && (course.computerPage = false);
+        course.name === '文档' && (course.folderPage = false);
+        course.name === '2219-4-1' && (course.foldOnePage = false);
+        course.name === '折返吧' && (course.foldTwoPage = false);
       },
       toSwitch(course) {
         course.show = !course.show
@@ -342,11 +352,15 @@
       openFold(fold) {
         fold.run = true;
         fold.show = true;
-        if (fold.name === '2219-4-1') {
+
+        /*if (fold.name === '2219-4-1') {
           fold.foldOnePage = true
         } else if (course.name === '折返吧') {
           fold.foldTwoPage = true
-        }
+        }*/
+
+        course.name === '2219-4-1' && (course.foldOnePage = false);
+        course.name === '折返吧' && (course.foldTwoPage = false);
       }
     },
     created() {

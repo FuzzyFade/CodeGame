@@ -10,8 +10,8 @@
             >
               <div>
                 <lottie :height="200"
-                        :width="200"
                         :options="defaultOptions"
+                        :width="200"
                         @animCreated="handleAnimation"
                 >
                 </lottie>
@@ -45,7 +45,8 @@
       <div>
         <div class="footer">
           <transition name="fade">
-            <v-btn flat
+            <v-btn @click="change()"
+                   flat
                    style="font-size: 16px"
                    v-show="show_button()"
             >> 确认信息
@@ -60,18 +61,19 @@
 <script>
   import Bg from "@/components/BackGround"
   import * as animationData from "@/assets/Lottie/logo.json"
+  import {mapMutations, mapState} from "vuex"
 
   export default {
     name: "Username",
-    components:{
+    components: {
       Bg
     },
+    computed: {
+      ...mapState({
+        loginForm: state => state.register
+      })
+    },
     data: () => ({
-      loginForm: {
-        email: '',
-        username: '',
-        password: ''
-      },
       rules: {
         empty_email: value => !!value || '邮箱不可以为空',
         empty_pwd: value => !!value || '密码不可以为空',
@@ -85,30 +87,20 @@
       animationSpeed: 1,
       anim: {}
     }),
-    created() {
-      this.getName()
-    },
     methods: {
+      ...mapMutations({
+        add_meg: 'ADD_MEG'
+      }),
       show_button() {
         const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         return pattern.test(this.loginForm.email) && this.loginForm.password.length >= 8
       },
       handleAnimation(anim) {
-        this.anim = anim;
-        console.log(anim); //这里可以看到 lottie 对象的全部属性
-      },
-      getName() {
-        this.loginForm.username = this.$route.query.user;
+        this.anim = anim
       },
       change() {
-        this.$router.push({
-          path: '/register/third',
-          params: {
-            email: this.loginForm.email,
-            user: this.loginForm.username,
-            pwd: this.loginForm.password,
-          }
-        })
+        this.add_meg(this.loginForm);
+        this.$router.push({path: '/register/third'})
       }
     }
   }
