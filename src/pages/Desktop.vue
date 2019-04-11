@@ -18,12 +18,13 @@
          :style="course.size"
          class="window"
          v-drag
+         v-getMaxHeight
          v-for="(course,index) in courses"
          v-if="course.show">
       <div class="w-bar">
         <div class="pro">
           <div class="pro-icon-wrapper">
-            <i class="pro-icon"></i>
+            <i class="pro-icon" :id="'wpi-'+index"></i>
           </div>
           <span class="pro-name">{{course.name}}</span>
         </div>
@@ -54,18 +55,19 @@
         </div>
       </div>
     </div>
-    <div :id="'fwin-'+index"
-         :key="index"
-         :style="fold.size"
-         class="window"
-         v-drag
-         v-for="(fold,index) in folds"
-         v-if="fold.show"
-    >
+    <div 
+      :id="'fwin-'+index"
+      :key="index"
+      :style="fold.size"
+      class="window"
+      v-drag
+      v-getMaxHeight
+      v-for="(fold,index) in folds"
+      v-if="fold.show">
       <div class="w-bar">
         <div class="pro">
           <div class="pro-icon-wrapper">
-            <i class="pro-icon"></i>
+            <i class="pro-icon" :id="'fwpi-'+ index"></i>
           </div>
           <span class="pro-name">{{fold.name}}</span>
         </div>
@@ -75,7 +77,14 @@
           <i @click="close(fold)" class="close-button"></i>
         </div>
       </div>
-      <div class="w-body"></div>
+      <div class="w-body" id="fold-0" v-if="fold.foldOnePage">
+        <div class="passage-wrapper">
+          <div class="passage" v-for="(passage,index) in fold.content" :id="'passage-'+index">{{passage}}</div>
+        </div>
+      </div>
+      <div class="w-body" id="fold-1" v-if="fold.foldTwoPage">
+        hellowGays
+      </div>
     </div>
     <transition name="slide-fade">
       <div class="slide" v-if="slideShow">
@@ -120,7 +129,7 @@
           {{nowTime}}
         </div>
       </div>
-      <div class="mini-tasks">
+      <div v-getMiniTasksWidth class="mini-tasks" id="mini-tasks">
         <div @click="toSwitch(course)"
              class="mini-task"
              v-for="(course,index) in courses"
@@ -131,7 +140,7 @@
         </div>
         <div @click="toSwitch(fold)"
              class="mini-task"
-             v-for="(fold,index) in fold"
+             v-for="(fold,index) in folds"
              v-if="fold.run">
           <div class="icon-wrapper">
             <div :id="'ftask-'+index" class="task-icon"></div>
@@ -209,6 +218,27 @@
           show: false,
           run: false,
         },
+        {
+          name: "第一章",
+          img: "",
+          size: {
+            top: '',
+            left: '',
+            width: '',
+            height: '',
+          },
+          initSize: {
+            top: '',
+            left: '',
+            width: '',
+            height: '',
+          },
+          computerPage: false,
+          folderPage: false,
+          lock: true,
+          show: false,
+          run: false,
+        },
       ],
       folds: [
         {
@@ -227,8 +257,19 @@
           },
           show: false,
           run: false,
-          computerPage: false,
-          folderPage: false,
+          foldTwoPage: false,
+          foldOnePage: false,
+          content: [
+            "”是哪儿？“",
+            "环顾四周，满是破铜烂铁以及废弃的新材料试验品，还有一些尚可辨认的机器人残体。",
+            "你发现自己似乎处在一个堆放机器人废品的工厂，",
+            "抬腕看向检测自己及周围环境的ID手环，似乎并没有信号",
+            "前方某个角落有一丝光亮",
+            "你不由得向着那个方向走去，就像黑暗中遇光的飞蛾",
+            "当你看不见发光物的全貌时，你的大脑开始高速运转起来",
+            "这是一台太过沧桑的机器，但毋庸置疑的是，它身上有现代机器的雏形",
+            "一台两百多年前的计算机出现在你的眼前，屏幕在黑暗中发出幽幽的光亮",
+          ],
         },
         {
           name: "折返吧",
@@ -246,8 +287,8 @@
           },
           show: false,
           run: false,
-          computerPage: false,
-          folderPage: false,
+          foldOnePage: false,
+          foldTwoPage: false,
         },
 
       ],
@@ -256,8 +297,6 @@
       chapter: "",
       userName: "Tony",
       userEmail: "23333@ncuos.com",
-      foldOnePage: false,
-      foldTwoPage: false,
     }),
     methods: {
       switchSlide() {
@@ -344,10 +383,10 @@
         fold.show = true;
         if (fold.name === '2219-4-1') {
           fold.foldOnePage = true
-        } else if (course.name === '折返吧') {
+        } else if (fold.name === '折返吧') {
           fold.foldTwoPage = true
         }
-      }
+      },
     },
     created() {
       this.getTime()
@@ -372,6 +411,20 @@
           }
         }
       },
+      getMiniTasksWidth: {
+        bind: function(el) {
+          let maxWidthNumber = window.innerWidth -199
+          let maxWdith = String(maxWidthNumber) + 'px'
+          el.style.width = maxWdith
+        }
+      },
+      getMaxHeight: {
+        bind: function(el) {
+          let maxHeightNumber = window.innerHeight - 55
+          let maxHeight = String(maxHeightNumber) + 'px'
+          el.style.maxHeight = maxHeight
+        }
+      }
     }
   }
 </script>
@@ -419,7 +472,6 @@
         width: 54px;
         flex-direction: column;
         margin-bottom: 28px;
-
         .course-img {
           width: 54px;
           height: 54px;
@@ -434,11 +486,12 @@
           background-repeat: no-repeat;
           background-position: 5px 0;
         }
-
         #image-3 {
 
         }
+        #image-4 {
 
+        }
         .course-name {
           font-size: 16px;
           letter-spacing: 0.9px;
@@ -448,11 +501,9 @@
           justify-content: center;
         }
       }
-
       .locked {
 
       }
-
       .unlocked {
 
       }
@@ -570,6 +621,10 @@
   }
 
   .window {
+    box-shadow: 0px 2px 10px 0px 
+		rgba(0, 0, 0, 0.26);
+    border-radius: 9px;
+    overflow: hidden;
     width: 300px;
     min-height: 400px;
     display: flex;
@@ -578,7 +633,6 @@
     top: 0;
     left: 0;
     background-color: #373c44;
-
     .w-bar {
       max-height: 41px;
       height: 6.1vh;
@@ -600,12 +654,34 @@
           border-radius: 5px;
           margin-right: 10px;
           margin-left: 10px;
-
+          display: flex;
+          justify-content: center;
+          align-items: center;
           .pro-icon {
+            display: block;
             width: 11px;
             height: 12px;
-            background-image: url("../assets/icons/Desktop/folder.svg");
             background-repeat: no-repeat;
+          }
+          #fwpi-0 {
+            background: url("../assets/icons/2_00000.svg");
+            background-size: 100%;
+          }
+          #fwpi-1 {
+            background: url("../assets/icons/system.svg");
+            background-size: 100%;
+          }
+          #wpi-0 {
+            background: url("../assets/icons/Desktop/computer.svg");
+            background-size: 100%;
+          }
+          #wpi-1 {
+            background: url("../assets/icons/Desktop/folder.svg");
+            background-size: 100%;
+          }
+          #wpi-2 {
+            background: url("");
+            background-size: 100%;
           }
         }
 
@@ -646,7 +722,43 @@
     }
 
     .w-body {
+      overflow: auto;
       flex-grow: 1;
+      .passage-wrapper {
+        margin: 32px 19px 27px 19px;
+        .passage {
+          color: #ffffff;
+          font-size: 12px;
+        }
+        #passage-0 {
+          margin-bottom: 45px;
+        }
+        #passage-1 {
+          margin-bottom: 45px;
+        }
+        #passage-2 {
+          margin-bottom: 29px;
+        }
+        #passage-3 {
+          margin-bottom: 44px;
+        }
+        #passage-4 {
+          margin-bottom: 17px;
+        }
+        #passage-5 {
+          margin-bottom: 45 px;
+        }
+        #passage-6 {
+          margin-bottom: 18px;
+        }
+        #passage-7 {
+          margin-bottom: 45px;
+        }
+        #passage-8 {
+          
+        }
+      }
+      
     }
 
     #computer {
@@ -720,27 +832,22 @@
       .folds {
         display: flex;
         margin-top: 27px;
-
         .fold {
           margin-left: 25px;
-
           .fold-icon {
             width: 56px;
             height: 72px;
             margin-bottom: 15px;
           }
-
           .fold-name {
             font-size: 11px;
             letter-spacing: 0.6px;
             color: rgba(236, 236, 236, 0.95);
           }
-
           #fold-icon-0 {
             margin-left: 0;
             background: url("../assets/icons/2_00000.svg") no-repeat 0 2px;
           }
-
           #fold-icon-1 {
             background: url("../assets/icons/system.svg") no-repeat 0 3px;
           }
@@ -776,13 +883,14 @@
       .local-time {
         margin-right: 10px;
         width: 99px;
-        font-size: 13px;
+        font-size: 12.9px;
         color: rgba(255, 255, 255, 0.95);
         letter-spacing: 0.7px;
       }
     }
 
     .mini-tasks {
+      overflow: hidden;
       display: flex;
       flex-wrap: nowrap;
       position: absolute;
@@ -790,30 +898,41 @@
       left: 80px;
       height: 55px;
       align-items: center;
-      max-width: 45.9vw;
-
       .mini-task {
         padding-right: 10px;
         flex-shrink: 1;
       }
 
       .icon-wrapper {
-        width: 9.3vw;
-        height: 9.3vw;
-        max-height: 35px;
-        max-width: 35px;
-        background-color: #f5f5f5;
-        border-radius: 6px;
-
+        .task-icon {
+          background-color: #f5f5f5;
+          border-radius: 6px;
+          width: 9.3vw;
+          height: 9.3vw;
+          max-height: 35px;
+          max-width: 35px;
+        }
         #task-0 {
           background-size: 100%;
           background-repeat: no-repeat;
           background-image: url("../assets/icons/Desktop/computer.svg");
         }
-
         #task-1 {
+          background-size: 100%;
           background-repeat: no-repeat;
           background-image: url("../assets/icons/Desktop/folder.svg");
+        }
+        #ftask-0 {
+          background-size: 75%;
+          background-position: 3.5px 0.5px;
+          background-repeat: no-repeat;
+          background-image: url("../assets/icons/2_00000.svg");
+        }
+        #ftask-1 {
+          background-size: 75%;
+          background-position: 3px 0.5px;
+          background-repeat: no-repeat;
+          background-image: url("../assets/icons/system.svg");
         }
       }
     }
