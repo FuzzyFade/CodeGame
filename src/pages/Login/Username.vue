@@ -58,6 +58,7 @@
         </transition>
       </div>
     </div>
+
   </div>
 </template>
 
@@ -87,7 +88,8 @@
     }),
     methods: {
       ...mapMutations({
-        input_name: 'INPUT_NAME'
+        input_name: 'INPUT_NAME',
+        input_ava:'INPUT_AVA'
       }),
       handleAnimation(anim) {
         this.anim = anim;
@@ -98,6 +100,7 @@
       change() {
         //发一个post给后端，查询是否有其人，返回一个是或否，如果有则执行下面代码，如果没有则跳转到without
         this.input_name(this.loginForm);
+        this.input_ava(this.loginForm);
         this.$router.push({
           path: '/login/password',
         })
