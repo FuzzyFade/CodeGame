@@ -4,7 +4,7 @@
       <bg></bg>
       <div class="containers">
         <div class="AvatarBorder">
-          <avatar :state="loginForm.ava" size="108px"></avatar>
+          <avatar :state="loginForm.icon" size="108px"></avatar>
         </div>
         <div style="line-height: 25px;font-size: 23px;letter-spacing: 1.3px">
           <span>{{loginForm.username}}</span>
@@ -25,7 +25,7 @@
         </div>
       </div>
       <div>
-        <div class="footer" :style="{top:(docmHeight-98)+'px'}">
+        <div :style="{top:(docmHeight-98)+'px'}" class="footer">
           <transition name="fade">
             <div class="next_step" v-show="loginForm.password">
               <div class="text2">
@@ -45,8 +45,7 @@
 <script>
   import Bg from "@/components/BackGround"
   import Avatar from "@/components/Avatar"
-  import {mapState} from 'vuex';
-  import axios from 'axios'
+  import {mapMutations, mapState} from 'vuex';
 
   export default {
     name: "Password",
@@ -61,21 +60,25 @@
         empty: value => !!value || '密码不可以为空'
       },
     }),
-    computed:{
+    computed: {
       ...mapState({
         loginForm: state => state.login
       })
     },
     methods: {
+      ...mapMutations({
+        input_email: 'INPUT_EMAIL'
+      }),
       getName() {
         this.loginForm.username = this.$route.query.user;
       },
       forget() {
+        // 请求 邮箱号
         this.$router.push({path: '/login/forget'})
       },
       login() {
         //post loginForm
-        this.$router.push({path:'/login/start'})
+        this.$router.push({path: '/login/start'})
       },
     }
   }

@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import {ADD_AVA, ADD_MEG, ADD_NAME, ATTACH_NAME, INPUT_NAME, INPUT_AVA} from "./mutations-type";
+import {ADD_AVA, ADD_MEG, ADD_NAME, ATTACH_NAME, INPUT_AVA, INPUT_EMAIL, INPUT_NAME} from "./mutations-type";
 
 
 Vue.use(Vuex);
@@ -77,12 +77,13 @@ const store = new Vuex.Store({
       email: '',
       username: '',
       password: '',
-      ava: 2
+      icon: 2
     },
     login: {
+      email: '',
       username: '',
       password: '',
-      ava: 2,
+      icon: 2
     },
   },
 
@@ -95,16 +96,19 @@ const store = new Vuex.Store({
       state.register.password = loginFrom.password;
     },
     [ADD_AVA](state, loginFrom) {
-      state.register.ava = loginFrom.ava;
+      state.register.icon = loginFrom.icon;
     },
     [ATTACH_NAME](state, loginFrom) {
       state.login.username = loginFrom.username;
     },
     [INPUT_AVA](state, loginFrom) {
-      state.login.ava = loginFrom.ava;
+      state.login.icon = loginFrom.icon;
     },
     [INPUT_NAME](state, loginFrom) {
       state.login.username = loginFrom.username;
+    },
+    [INPUT_EMAIL](state, loginFrom) {
+      state.login.email = loginFrom.email;
     }
   },
 });

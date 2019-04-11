@@ -5,7 +5,7 @@
       <div class="containers">
         <div>
           <div class="AvatarBorder">
-            <avatar :state="loginForm.ava" size="108px"></avatar>
+            <avatar :state="loginForm.icon" size="108px"></avatar>
           </div>
           <div class="tile">
             <span>请选择您的头像</span>
@@ -78,7 +78,7 @@
         add_ava: 'ADD_AVA'
       }),
       switch_ava(n) {
-        this.loginForm.ava = n;
+        this.loginForm.icon = n;
         (n === 1) && ([this.isActive1, this.isActive2, this.isActive3] = [true, false, false]);
         (n === 2) && ([this.isActive1, this.isActive2, this.isActive3] = [false, true, false]);
         (n === 3) && ([this.isActive1, this.isActive2, this.isActive3] = [false, false, true]);

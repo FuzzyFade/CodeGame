@@ -4,7 +4,7 @@
     <div class="containers">
       <div>
         <div class="AvatarBorder">
-          <avatar :state="loginForm.ava" size="108px"></avatar>
+          <avatar :state="loginForm.icon" size="108px"></avatar>
         </div>
         <div style="line-height: 25px;font-size: 23px;letter-spacing: 1.3px">
           <span>欢迎回来</span>

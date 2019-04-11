@@ -63,6 +63,7 @@
 </template>
 
 <script>
+  import axios from "axios"
   import Bg from "@/components/BackGround"
   import * as animationData from "@/assets/Lottie/logo.json"
   import {mapMutations, mapState} from "vuex"
@@ -78,6 +79,7 @@
       })
     },
     data: () => ({
+      url:'/auth/login',
       docmHeight: document.documentElement.clientHeight,
       rules: {
         empty: value => !!value || '用户名不可以为空'
@@ -97,7 +99,11 @@
       register() {
         this.$router.push({path: '/register/first'})
       },
+
       change() {
+        // axios
+        //   .post(this.url,)
+        //   .then();
         //发一个post给后端，查询是否有其人，返回一个是或否，如果有则执行下面代码，如果没有则跳转到without
         this.input_name(this.loginForm);
         this.input_ava(this.loginForm);

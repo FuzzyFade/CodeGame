@@ -567,7 +567,7 @@
 
         p {
           height: 39px;
-          width: 166px;
+          width: 134px;
           font-size: 14px;
           letter-spacing: 0.8px;
           color: rgba(255, 255, 255, 0.95);

@@ -5,7 +5,7 @@
       <div class="containers">
         <div>
           <div class="AvatarBorder">
-            <avatar :state="ava" size="108px"></avatar>
+            <avatar :state="loginForm.icon" size="108px"></avatar>
           </div>
           <div class="tile1">
             <span>我们已将验证码发送到</span>
@@ -37,6 +37,7 @@
   import Avatar from "@/components/Avatar"
   import Bg from "@/components/BackGround"
   import SecurityCode from '@/components/SecurityCode'
+  import {mapState} from 'vuex'
   export default {
     name: "Forget",
     components:{
@@ -44,13 +45,12 @@
       SecurityCode,
       Avatar
     },
+    computed:{
+      ...mapState({
+        loginForm: state => state.login
+      })
+    },
     data: () => ({
-      ava:2,
-      loginForm: {
-        username: '',
-        password: '',
-        email: '1339184537@qq.com'
-      },
       authCode:'',
       userToken: '',
       rules: {
