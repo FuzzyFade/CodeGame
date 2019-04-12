@@ -54,6 +54,54 @@
           </div>
         </div>
       </div>
+      <div class="w-body" id="chapter-1" v-if="course.chapterOne">
+        <div class="page" id="c1-p1" v-if="course.nowPage == '1'" @click="nextPage(course)">
+          <div class="titile-wrapper" id="tw1">
+            <div class="title">第一章 起点</div>
+            <div class="subt">回顾旧日向往</div>
+          </div>
+          <div class="tap-tip"><span>点击屏幕以继续</span></div>
+        </div>
+        <div class="page" id="c1-p2" v-if="course.nowPage == '2'" @click="nextPage(course)">
+          <div class="titile-wrapper" id="tw2">
+            <div class="titile" id="t2">print()</div>
+            <div class="subt-wrapper">
+              <div class="subt" id="s2-1">print() 方法用于打印输出，时python中最常见的一个【函数】。</div>
+              <div class="subt" id="s2-2">它可以输出多种类型的变量。</div>
+              <div class="subt" id="s2-3">变量就是储存在【内存】中的值，它可以指定不同的【数据类型】。</div>  
+            </div>
+          </div>
+          <div class="tap-tip">[Y]好，我懂了</div>
+        </div>  
+        <div class="page" id="c1-p3" v-if="course.nowPage == '3'" @click="nextPage(course)">
+          <div class="title">Python的五个标准的数据类型</div>
+          <div class="list">
+            <span>Numbers (数字)</span>
+            <span>String (字符串，往往使用引号('或")来创建字符串)</span>
+            <span>List (列表)</span>
+            <span>Tuple (元组)</span>
+            <span>Dictionary (字典)</span>
+          </div>
+          <div class="tip">数字和字符串是最基础的数据类型，而剩下的则会在以后的学习中接触到。</div>
+          <div class="tap-tip">[Y]好好好，下一步</div>
+        </div>
+        <div class="page" id="c1-p4" v-if="course.nowPage == '4'">
+          <div class="code-block">
+            <div class="code">
+              <span class="keyw">print</span><span class="qh">(</span><span class="string">"HELLO WORLD"</span><span class="qh">)</span>
+            </div>
+          </div>
+          <div class="tip">//点击 RUN 运行上面的代码</div>
+          <div class="run-btn" @click="nextPage(course)"><div class="run">[R]RUN</div></div>
+        </div>
+        <div class="page" id="c1-p5" v-if="course.nowPage == '5'">
+          <div class="title" id="c1-result">
+            <div id="HELLO">HELLO</div>
+            <div id="WORLD">WORLD</div>
+          </div>
+          <div class="tap-tip" id="c1-over"><span>over</span></div>
+        </div>
+      </div>
     </div>
     <div 
       :id="'fwin-'+index"
@@ -163,15 +211,19 @@
           left: '',
           width: '',
           height: '',
+          borderRadius: '',
         },
         initSize: {
           top: '',
           left: '',
           width: '',
           height: '',
+          borderRadius: '',
         },
         computerPage: false,
         folderPage: false,
+        chapterOne: false,
+        chapterTwo: false,
         lock: false,
         show: false,
         run: false,
@@ -184,37 +236,20 @@
             left: '',
             width: '',
             height: '',
+            borderRadius: '',
           },
           initSize: {
             top: '',
             left: '',
             width: '',
             height: '',
+            borderRadius: '',
           },
           computerPage: false,
           folderPage: false,
+          chapterOne: false,
+          chapterTwo: false,
           lock: false,
-          show: false,
-          run: false,
-        },
-        {
-          name: "0.序章",
-          img: "",
-          size: {
-            top: '',
-            left: '',
-            width: '',
-            height: '',
-          },
-          initSize: {
-            top: '',
-            left: '',
-            width: '',
-            height: '',
-          },
-          computerPage: false,
-          folderPage: false,
-          lock: true,
           show: false,
           run: false,
         },
@@ -224,17 +259,48 @@
           size: {
             top: '',
             left: '',
+            width: '375px',
+            height: '',
+            borderRadius: '',
+          },
+          initSize: {
+            top: '',
+            left: '',
+            width: '375px',
+            height: '',
+            borderRadius: '',
+          },
+          initPage: '1',
+          nowPage: '1',
+          computerPage: false,
+          folderPage: false,
+          chapterOne: true,
+          chapterTwo: false,
+          lock: true,
+          show: false,
+          run: false,
+        },
+        {
+          name: "第二章",
+          img: "",
+          size: {
+            top: '',
+            left: '',
             width: '',
             height: '',
+            borderRadius: '',
           },
           initSize: {
             top: '',
             left: '',
             width: '',
             height: '',
+            borderRadius: '',
           },
           computerPage: false,
           folderPage: false,
+          chapterOne: false,
+          chapterTwo: true,
           lock: true,
           show: false,
           run: false,
@@ -248,12 +314,14 @@
             left: '',
             width: '',
             height: '',
+            borderRadius: '',
           },
           initSize: {
             top: '',
             left: '',
             width: '',
             height: '',
+            borderRadius: '',
           },
           show: false,
           run: false,
@@ -278,12 +346,14 @@
             left: '',
             width: '',
             height: '',
+            borderRadius: '',
           },
           initSize: {
             top: '',
             left: '',
             width: '',
             height: '',
+            borderRadius: '',
           },
           show: false,
           run: false,
@@ -341,8 +411,15 @@
         course.show = true;
         if (course.name === '此电脑') {
           course.computerPage = true
-        } else if (course.name === '文档') {
+        } 
+        else if (course.name === '文档') {
           course.folderPage = true
+        }
+        else if (course.name === '第一章') {
+          course.chapterOne = true
+        }
+        else if (course.name === '第二章') {
+          course.chapterTwo = true
         }
       },
       minimize(course) {
@@ -355,6 +432,7 @@
         course.size.left = '0';
         course.size.width = '100vw';
         course.size.height = mh + 'px'
+        course.size.borderRadius = '0'
       },
       close(course) {
         let initSize = course.initSize;
@@ -364,10 +442,19 @@
         course.size.height = initSize.height;
         course.size.top = initSize.top;
         course.size.left = initSize.left;
+        course.size.borderRadius = initSize.borderRadius
         if (course.name === '此电脑') {
           course.computerPage = false
         } else if (course.name === '文档') {
           course.folderPage = false
+        }
+        else if (course.name === '第一章') {
+          course.chapterOne = false
+          course.nowPage = course.initPage
+        }
+        else if (course.name === '第二章') {
+          course.chapterTwo = false
+          course.nowPage = course.initPage
         }
         if (course.name === '2219-4-1') {
           course.foldOnePage = false
@@ -387,6 +474,10 @@
           fold.foldTwoPage = true
         }
       },
+      nextPage(course) {
+        course.nowPage ++
+
+      }
     },
     created() {
       this.getTime()
@@ -850,6 +941,158 @@
           }
           #fold-icon-1 {
             background: url("../assets/icons/system.svg") no-repeat 0 3px;
+          }
+        }
+      }
+    }
+    
+    #chapter-1 {
+      background: #ffffff;
+      .page {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+      }
+      #c1-p1 {
+        .titile {
+	        font-size: 23px;
+	        letter-spacing: 1.6px;
+	        color: rgba(0, 0, 0, 0.95);
+        }
+        .subt {
+          letter-spacing: 1px;
+          font-size: 14px;
+          color: rgba(0, 0, 0, 0.95);
+        }
+        .tap-tip {
+          width: 100%;
+          display: flex;
+          justify-content: center;
+           & span {
+            font-size: 14px;
+            letter-spacing: 1px;
+	          color: rgba(71, 71, 71, 0.95);
+          }
+        }
+      }
+      #c1-p2 {
+        #tw2 {
+          #t2 {
+            font-size: 23px;
+	          letter-spacing: 1px;
+	          color: rgba(71, 71, 71, 0.95);
+          }
+          .subt-wrapper {
+            .subt {
+              font-size: 14px;
+              letter-spacing: 1px;
+              color: rgba(71, 71, 71, 0.95);
+            }
+            #s2-1 {
+
+            }
+            #s2-2 {
+              margin-top: 24px;
+            }
+            #s2-3 {
+              #s2-2()
+            }
+          }
+        }
+        .tap-tip {
+          	font-size: 14px;
+            letter-spacing: 1px;
+            color: rgba(71, 71, 71, 0.95);
+        }
+      }
+      #c1-p3 {
+        .title {
+          font-size: 17px;
+          color: rgba(71,71,71,0.95);
+          letter-spacing: 1px;
+
+        }
+        .list {
+          font-size: 14px;
+          color: rgba(71,71,71,0.95);
+          letter-spacing: 1px;
+          display: flex;
+          flex-direction: column;
+        }
+        .tip {
+          font-size: 14px;
+          color: rgba(71,71,71,0.95);
+          letter-spacing: 1px;   
+        }
+        .tap-tip {
+          	font-size: 14px;
+            letter-spacing: 1px;
+            color: rgba(71, 71, 71, 0.95);          
+        }
+      }
+      #c1-p4 {
+        .code-block {
+          background: #333333;
+          border-radius: 7px;
+          width: 336px;
+          height: 193px;
+          .code {
+            width: 234px;
+	          height: 26px;
+            font-size: 14px;
+            letter-spacing: 1px;
+            .keyw {
+              color: rgba(10,205,255,0.95);
+            }
+            .qh {
+              color: rgba(255,255,255,0.95);
+            }
+            .string {
+              color: #5ddca4;
+            }
+          }
+        }
+        .tip {
+          margin-top: 30px;
+          width: 195px;
+          height: 20px;
+          font-size: 14px;
+          letter-spacing: 1px;
+          color: rgba(65, 65, 65, 0.95);
+        }
+        .run-btn {
+          margin-top: 40px;
+          width: 331px;
+	        height: 46px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          border: solid 1px #3a3a3a;
+          .run {
+            font-size: 14px;
+            letter-spacing: 1px;
+            color: rgba(33, 33, 33, 0.95);
+          }
+        }
+      }
+      #c1-p5 {
+        #c1-result {
+          width: 316px;
+          height: 216px;
+          font-size: 77px;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+        }
+        #c1-over {
+          & span {
+            width: 39px;
+            height: 24px;
+            font-size: 17px;
+            letter-spacing: 1.2px;
+	          color: rgba(0, 0, 0, 0.95);
           }
         }
       }
