@@ -3,6 +3,9 @@
     <div>
       <bg></bg>
       <div class="containers">
+        <v-alert outline dismissible :value="!password_state" type="error">
+          密码错误
+        </v-alert>
         <div class="AvatarBorder">
           <avatar :state="loginForm.icon" size="108px"></avatar>
         </div>
@@ -46,7 +49,6 @@
   import Bg from "@/components/BackGround"
   import Avatar from "@/components/Avatar"
   import {mapMutations, mapState} from 'vuex'
-  import axios from 'axios'
 
   export default {
     name: "Password",
@@ -56,7 +58,7 @@
     },
     data: () => ({
       password_state: true,
-      url: '/auth/login',
+      url: '/api/auth/login',
       docmHeight: document.documentElement.clientHeight,
       userToken: '',
       rules: {
@@ -73,20 +75,17 @@
         add_count: 'ADD_COUNT'
       }),
       forget() {
-        // 跳转email
+        this.$router.push({path:'/login/email'})
       },
       show_button() {
         return this.password_state && this.loginForm.password.length > 0
       },
-      out_message() {
-        return this.password_state === true || "密码错误"
-      },
       getData(res) {
         res.message === 'wrong password' && this.add_count(res.data) && this.$router.push({path: '/login/email'});
-        res.message === 'wrong password' || (this.password_state = true);
+        res.message === 'wrong password' || (this.password_state = false);
       },
       login() {
-        axios
+        this.$axios
           .post(this.url, {username: this.loginForm.username, password: this.loginForm.password})
           .then(this.getData);
       },

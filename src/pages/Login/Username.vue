@@ -65,7 +65,6 @@
   import Bg from "@/components/BackGround"
   import * as animationData from "@/assets/Lottie/logo.json"
   import {mapMutations, mapState} from "vuex"
-  import axios from 'axios'
 
   export default {
     name: "Username",
@@ -78,7 +77,7 @@
       })
     },
     data: () => ({
-      url: '/auth/login',
+      url: '/api/auth/login',
       docmHeight: document.documentElement.clientHeight,
       rules: {
         empty: value => !!value || '用户名不可以为空'
@@ -102,10 +101,14 @@
         (res.message === 'unknown user') && (this.$router.push({path: '/login/without'}));
       },
       change() {
-        axios
-          .post(this.url, {username: this.loginForm.username, password: this.loginForm.password})
+        const post_data = this.$qs.stringify({username: this.loginForm.username, password: this.loginForm.password});
+        const post_headers = {headers:{'Content-type': 'application/x-www-form-urlencoded'}};
+        this.$axios
+          .post(this.url, post_data, post_headers)
           .then(this.get_data);
         this.input_name(this.loginForm);
+
+        // input
         this.input_ava(this.loginForm);
         this.$router.push({
           path: '/login/password',

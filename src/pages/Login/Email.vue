@@ -7,7 +7,9 @@
           <avatar :state="loginForm.icon" size="108px"></avatar>
         </div>
         <div style="line-height: 25px;font-size: 23px;letter-spacing: 1.3px">
-          <span>{{loginForm.username}}</span>
+          <div style="height: 10px">
+            <span>{{loginForm.username}}</span>
+          </div>
           <span>{{"请输入你登记的邮箱"}}</span>
         </div>
         <div class="text-field">
@@ -45,7 +47,6 @@
   import Bg from "@/components/BackGround"
   import Avatar from "@/components/Avatar"
   import {mapMutations, mapState} from 'vuex'
-  import axios from 'axios'
 
   export default {
     name: "Email",
@@ -87,7 +88,7 @@
         res.message === 'wrong password' || (this.password_state = true);
       },
       login() {
-        axios
+        this.$axios
           .post(this.url, {username: this.loginForm.username, password: this.loginForm.password})
           .then(this.getData);
       },

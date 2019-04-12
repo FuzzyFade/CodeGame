@@ -4,6 +4,9 @@
       <bg></bg>
       <div class="containers">
         <div>
+          <v-alert :value="alert" dismissible outline type="error">
+            <span>用户名已存在</span>
+          </v-alert>
           <div class="AvatarBorder">
             <v-avatar size="160px">
               <div>
@@ -67,7 +70,8 @@
       }),
     },
     data: () => ({
-      url:'/auth/register',
+      alert: false,
+      url: '/api/auth/register',
       docmHeight: document.documentElement.clientHeight,
       rules: {
         empty: value => !!value || '用户名不可以为空'
@@ -84,15 +88,19 @@
         this.anim = anim
       },
       get_data(res) {
-        (res.message === 'username failed') && (this.$router.push({path: '/login/without'}));
-        (res.message === 'username failed') || (this.addName(this.loginForm));
+        (res.message === 'username failed') && (this.alert = true);
+        (res.message === 'username failed') || this.$router.push({path: '/register/second'});
       },
       change() {
+        const {username , password} = this.loginForm;
         axios
-          .post(this.url, {username: this.loginForm.username, password: this.loginForm.password})
+          .post(
+            this.url,
+            {username, password},
+            {headers:{'Content-Type':'application/x-www-form-urlencoded'}}
+            )
           .then(this.get_data);
         //请求 并检查用户名是否重复，如果重复返回false，不重复返回true
-        this.$router.push({path: '/register/second'});
       }
     }
   }
