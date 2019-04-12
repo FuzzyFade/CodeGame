@@ -38,30 +38,26 @@
   import Bg from "@/components/BackGround"
   import SecurityCode from '@/components/SecurityCode'
   import {mapState} from 'vuex'
+
   export default {
     name: "Forget",
-    components:{
+    components: {
       Bg,
       SecurityCode,
       Avatar
     },
-    computed:{
+    computed: {
       ...mapState({
         loginForm: state => state.login
       })
     },
     data: () => ({
-      authCode:'',
-      userToken: '',
+      url: '/auth/login',
+      authCode: '',
       rules: {
         empty: value => !!value || '密码不可以为空'
       }
     }),
-    methods: {
-      getName() {
-        this.loginForm.username = this.$route.query.user;
-      },
-    }
   }
 </script>
 

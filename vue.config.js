@@ -2,7 +2,7 @@ module.exports = {
   devServer: {
     proxy: {
       '/api': {
-        target: 'http://localhost:8081/',
+        target: 'zhouyingsasa.xyz:5000',
         changeOrigin: true,
         ws: true,
         pathRewrite: {

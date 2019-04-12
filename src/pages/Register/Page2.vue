@@ -43,7 +43,7 @@
         <div style="height:auto;"></div>
       </div>
       <div>
-        <div class="footer" :style="{top:(docmHeight-98)+'px'}">
+        <div :style="{top:(docmHeight-98)+'px'}" class="footer">
           <transition name="fade">
             <v-btn @click="change()"
                    flat

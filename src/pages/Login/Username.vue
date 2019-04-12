@@ -58,15 +58,14 @@
         </transition>
       </div>
     </div>
-
   </div>
 </template>
 
 <script>
-  import axios from "axios"
   import Bg from "@/components/BackGround"
   import * as animationData from "@/assets/Lottie/logo.json"
   import {mapMutations, mapState} from "vuex"
+  import axios from 'axios'
 
   export default {
     name: "Username",
@@ -79,19 +78,19 @@
       })
     },
     data: () => ({
-      url:'/auth/login',
+      url: '/auth/login',
       docmHeight: document.documentElement.clientHeight,
       rules: {
         empty: value => !!value || '用户名不可以为空'
       },
       defaultOptions: {animationData: animationData.default},
       animationSpeed: 1,
-      anim: {}
+      anim: {},
     }),
     methods: {
       ...mapMutations({
         input_name: 'INPUT_NAME',
-        input_ava:'INPUT_AVA'
+        input_ava: 'INPUT_AVA'
       }),
       handleAnimation(anim) {
         this.anim = anim;
@@ -99,12 +98,13 @@
       register() {
         this.$router.push({path: '/register/first'})
       },
-
+      get_data(res) {
+        (res.message === 'unknown user') && (this.$router.push({path: '/login/without'}));
+      },
       change() {
-        // axios
-        //   .post(this.url,)
-        //   .then();
-        //发一个post给后端，查询是否有其人，返回一个是或否，如果有则执行下面代码，如果没有则跳转到without
+        axios
+          .post(this.url, {username: this.loginForm.username, password: this.loginForm.password})
+          .then(this.get_data);
         this.input_name(this.loginForm);
         this.input_ava(this.loginForm);
         this.$router.push({

@@ -8,3 +8,5 @@ export const ATTACH_NAME = 'ATTACH_NAME';
 export const INPUT_NAME = 'INPUT_NAME';
 export const INPUT_AVA = 'INPUT_AVA';
 export const INPUT_EMAIL = 'INPUT_EMAIL';
+export const ADD_COUNT = 'ADD_COUNT';
+export const CLEAN_COUNT = 'CLEAN_COUNT';

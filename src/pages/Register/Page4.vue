@@ -29,7 +29,8 @@
 <script>
   import Avatar from "@/components/Avatar";
   import Bg from "@/components/BackGround";
-  import {mapMutations,mapState} from "vuex"
+  import {mapMutations, mapState} from "vuex"
+  import axios from 'axios'
 
   export default {
     name: "Page4",
@@ -38,6 +39,7 @@
       Bg
     },
     data: () => ({
+      url: '/auth/register',
       docmHeight: document.documentElement.clientHeight,
     }),
     computed: {
@@ -45,14 +47,21 @@
         loginForm: state => state.register
       })
     },
+    get_data(res){
+      (res.message === 'success')
+      && (this.attach_name(this.loginForm))
+      && this.$router.push({path: '/login',});
+    },
     methods: {
-      ...mapMutations({attach_name:'ATTACH_NAME'}),
+      ...mapMutations({attach_name: 'ATTACH_NAME'}),
       submit() {
-        //提交loginForm
-        this.attach_name(this.loginForm);
-        this.$router.push({
-          path: '/login',
-        })
+        axios
+          .post(this.url, {
+            username: this.loginForm.username,
+            password: this.loginForm.password,
+            email: this.loginForm.email
+          })
+          .then(this.get_data);
       }
     }
   }

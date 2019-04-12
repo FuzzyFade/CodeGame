@@ -1,7 +1,16 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import {ADD_AVA, ADD_MEG, ADD_NAME, ATTACH_NAME, INPUT_AVA, INPUT_EMAIL, INPUT_NAME} from "./mutations-type";
-
+import {
+  ADD_AVA,
+  ADD_COUNT,
+  ADD_MEG,
+  ADD_NAME,
+  ATTACH_NAME,
+  CLEAN_COUNT,
+  INPUT_AVA,
+  INPUT_EMAIL,
+  INPUT_NAME
+} from "./mutations-type";
 
 Vue.use(Vuex);
 
@@ -77,17 +86,27 @@ const store = new Vuex.Store({
       email: '',
       username: '',
       password: '',
-      icon: 2
+      icon: 2,
     },
     login: {
       email: '',
       username: '',
       password: '',
-      icon: 2
+      icon: 2,
+      status: 0,
+      token: '',
     },
   },
 
   mutations: {
+    [ADD_COUNT](state, token) { // 第一个参数为 state 用于变更状态 登录
+      sessionStorage.setItem("token", token);
+      state.login.token = token;
+    },
+    [CLEAN_COUNT](state, token) { // 退出登录
+      sessionStorage.removeItem("token");
+      state.login.token = token;
+    },
     [ADD_NAME](state, loginFrom) {
       state.register.username = loginFrom.username
     },

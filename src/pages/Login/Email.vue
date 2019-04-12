@@ -8,14 +8,13 @@
         </div>
         <div style="line-height: 25px;font-size: 23px;letter-spacing: 1.3px">
           <span>{{loginForm.username}}</span>
+          <span>{{"请输入你登记的邮箱"}}</span>
         </div>
         <div class="text-field">
           <v-text-field :messages="[]"
-                        :rules="[rules.empty]"
-                        :type="'password'"
-                        label="密码"
-                        maxlength="16"
-                        v-model="loginForm.password"
+                        :rules="[rules.empty,rules.email]"
+                        label="输入你的邮箱"
+                        v-model="loginForm.email"
           ></v-text-field>
         </div>
         <div class="forget">
@@ -49,18 +48,22 @@
   import axios from 'axios'
 
   export default {
-    name: "Password",
+    name: "Email",
     components: {
       Bg,
       Avatar
     },
     data: () => ({
       password_state: true,
-      url: '/auth/login',
+      url: '/', // 邮箱检查
       docmHeight: document.documentElement.clientHeight,
       userToken: '',
       rules: {
-        empty: value => !!value || '密码不可以为空',
+        empty: value => !!value || '邮箱不可以为空',
+        email: value => {
+          const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+          return pattern.test(value) || '请输入正确的邮箱地址'
+        },
       },
     }),
     computed: {
@@ -72,14 +75,12 @@
       ...mapMutations({
         add_count: 'ADD_COUNT'
       }),
+      show_button() {
+        const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return pattern.test(this.loginForm.email) && this.loginForm.password.length > 0
+      },
       forget() {
         // 跳转email
-      },
-      show_button() {
-        return this.password_state && this.loginForm.password.length > 0
-      },
-      out_message() {
-        return this.password_state === true || "密码错误"
       },
       getData(res) {
         res.message === 'wrong password' && this.add_count(res.data) && this.$router.push({path: '/login/email'});

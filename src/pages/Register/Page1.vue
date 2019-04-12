@@ -54,6 +54,7 @@
   import Bg from "@/components/BackGround"
   import * as animationData from "@/assets/Lottie/logo.json"
   import {mapMutations, mapState} from "vuex"
+  import axios from 'axios'
 
   export default {
     name: "Username",
@@ -66,6 +67,7 @@
       }),
     },
     data: () => ({
+      url:'/auth/register',
       docmHeight: document.documentElement.clientHeight,
       rules: {
         empty: value => !!value || '用户名不可以为空'
@@ -81,9 +83,15 @@
       handleAnimation(anim) {
         this.anim = anim
       },
+      get_data(res) {
+        (res.message === 'username failed') && (this.$router.push({path: '/login/without'}));
+        (res.message === 'username failed') || (this.addName(this.loginForm));
+      },
       change() {
+        axios
+          .post(this.url, {username: this.loginForm.username, password: this.loginForm.password})
+          .then(this.get_data);
         //请求 并检查用户名是否重复，如果重复返回false，不重复返回true
-        this.addName(this.loginForm); //不存在的话就8要存！！！
         this.$router.push({path: '/register/second'});
       }
     }

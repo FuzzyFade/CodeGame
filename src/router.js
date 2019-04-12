@@ -5,6 +5,7 @@ import Login from './pages/Login/Login'
 import Username from './pages/Login/Username'
 import Password from './pages/Login/Password'
 import Without from './pages/Login/Without'
+import Email from './pages/Login/Email'
 import Forget from './pages/Login/Forget'
 import Start from './pages/Login/Start'
 
@@ -29,6 +30,9 @@ const router = new VueRouter({
     {
       path: '/desktop/',
       component: Desktop,
+      meta: {
+        requireAuth: true
+      },
     },
     {
       path: '/login/',
@@ -46,6 +50,10 @@ const router = new VueRouter({
         {
           path: 'without',
           component: Without
+        },
+        {
+          path: 'email',
+          component: Email
         },
         {
           path: 'forget',
@@ -82,5 +90,6 @@ const router = new VueRouter({
     }
   ]
 });
+
 
 export default router
