@@ -7,25 +7,18 @@
           <div class="AvatarBorder">
             <avatar :state="loginForm.icon" size="108px"></avatar>
           </div>
-          <div class="tile1">
-            <span>我们已将验证码发送到</span>
+          <div class="tile">
+            <span>{{loginForm.username}}</span>
           </div>
-          <div class="tile2">
-            <span>{{loginForm.email}}</span>
+          <div class="text">
+            <span>“那么，就要开始了。”</span>
           </div>
-        </div>
-        <div class="text-field">
-          <security-code v-model="authCode"></security-code>
-        </div>
-        <div class="forget">
         </div>
       </div>
       <div>
-        <div class="footer">
+        <div :style="{top:(docmHeight-98)+'px'}" class="footer">
           <transition name="fade">
-            <v-btn flat>
-              <span>重新发送验证码</span>
-            </v-btn>
+            <v-btn @click="submit" flat style="font-size: 26px">确认</v-btn>
           </transition>
         </div>
       </div>
@@ -34,30 +27,30 @@
 </template>
 
 <script>
-  import Avatar from "@/components/Avatar"
-  import Bg from "@/components/BackGround"
-  import SecurityCode from '@/components/SecurityCode'
-  import {mapState} from 'vuex'
+  import Avatar from "@/components/Avatar";
+  import Bg from "@/components/BackGround";
+  import {mapState} from "vuex"
 
   export default {
-    name: "Forget",
+    name: "Page5",
     components: {
+      Avatar,
       Bg,
-      SecurityCode,
-      Avatar
-    },
-    computed: {
-      ...mapState({
-        loginForm: state => state.login
-      })
     },
     data: () => ({
-      url: '/auth/login',
-      authCode: '',
-      rules: {
-        empty: value => !!value || '密码不可以为空'
-      }
+      url: '/api/auth/register',
+      docmHeight: document.documentElement.clientHeight,
     }),
+    computed: {
+      ...mapState({
+        loginForm: state => state.register
+      })
+    },
+    methods: {
+      submit() {
+        this.$router.push({path: '/login/password',})
+      }
+    }
   }
 </script>
 
@@ -83,29 +76,16 @@
         border solid 1px #CFCFCF
         border-radius 54px
 
-    .tile1
+    .tile
       line-height 25px
-      font-size 16px
-      letter-spacing .89px
+      font-size 25px
+      letter-spacing 1.3px
 
-    .tile2
-      margin-top 13px
+    .text
+      margin-top 26px
       line-height 25px
-      font-size 30px
-      letter-spacing .89px
-
-    .text-field
-      margin-top 35px
-      height 67px
-
-    .forget
-      margin-top 34px
-
-      .forget_text
-        color #585858
-        font-size 16px
-        letter-spacing .89px
-        font-weight 400
+      font-size 19px
+      letter-spacing 1.06px
 
   .footer
     width 100%
@@ -122,18 +102,21 @@
 
       .text1
         display flex
+        display -webkit-flex
         flex-direction column
         justify-content center
-        margin-left 12px
+        margin-left 11.64px
 
     .next_step
       display flex
+      display -webkit-flex
       position float
       float right
       margin-right 30px
 
       .text2
         display flex
+        display -webkit-flex
         flex-direction column
         justify-content center
         margin-right 12px

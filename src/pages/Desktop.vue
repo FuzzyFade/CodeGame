@@ -68,11 +68,11 @@
             <div class="subt-wrapper">
               <div class="subt" id="s2-1">print() 方法用于打印输出，时python中最常见的一个【函数】。</div>
               <div class="subt" id="s2-2">它可以输出多种类型的变量。</div>
-              <div class="subt" id="s2-3">变量就是储存在【内存】中的值，它可以指定不同的【数据类型】。</div>  
+              <div class="subt" id="s2-3">变量就是储存在【内存】中的值，它可以指定不同的【数据类型】。</div>
             </div>
           </div>
           <div class="tap-tip">[Y]好，我懂了</div>
-        </div>  
+        </div>
         <div class="page" id="c1-p3" v-if="course.nowPage == '3'" @click="nextPage(course)">
           <div class="title">Python的五个标准的数据类型</div>
           <div class="list">
@@ -103,15 +103,15 @@
         </div>
       </div>
     </div>
-    <div 
-      :id="'fwin-'+index"
-      :key="index"
-      :style="fold.size"
-      class="window"
-      v-drag
-      v-getMaxHeight
-      v-for="(fold,index) in folds"
-      v-if="fold.show">
+    <div
+            :id="'fwin-'+index"
+            :key="index"
+            :style="fold.size"
+            class="window"
+            v-drag
+            v-getMaxHeight
+            v-for="(fold,index) in folds"
+            v-if="fold.show">
       <div class="w-bar">
         <div class="pro">
           <div class="pro-icon-wrapper">
@@ -360,7 +360,6 @@
           foldOnePage: false,
           foldTwoPage: false,
         },
-
       ],
       nowTime: "",
       slideShow: false,
@@ -398,20 +397,17 @@
         //清除登陆数据
       },
       aboutUs() {
-
       },
       changePass() {
-
       },
       changeWall() {
-
       },
       runEx(course) {
         course.run = true;
         course.show = true;
         if (course.name === '此电脑') {
           course.computerPage = true
-        } 
+        }
         else if (course.name === '文档') {
           course.folderPage = true
         }
@@ -476,7 +472,6 @@
       },
       nextPage(course) {
         course.nowPage ++
-
       }
     },
     created() {
@@ -527,27 +522,21 @@
     margin: 0;
     padding: 0;
   }
-
   .slide-fade-enter-active {
     transition: all .3s ease;
   }
-
   .slide-fade-leave-active {
     transition: all .3s ease;
     opacity: 0;
   }
-
   .slide-fade-enter, .slide-fade-leave-to {
     transform: translateY(10px);
   }
-
   #app {
     overflow: hidden;
   }
-
   .courses {
     height: 100vh;
-
     .courses-wrapper {
       display: flex;
       flex-direction: column;
@@ -556,7 +545,6 @@
       flex-wrap: wrap;
       padding-left: 39px;
       padding-top: 40px;
-
       .locked, .unlocked {
         display: flex;
         height: 86px;
@@ -567,21 +555,17 @@
           width: 54px;
           height: 54px;
         }
-
         #image-0 {
           background-image: url("../assets/icons/Desktop/computer.svg");
         }
-
         #image-1 {
           background-image: url("../assets/icons/Desktop/folder.svg");
           background-repeat: no-repeat;
           background-position: 5px 0;
         }
         #image-3 {
-
         }
         #image-4 {
-
         }
         .course-name {
           font-size: 16px;
@@ -593,25 +577,20 @@
         }
       }
       .locked {
-
       }
       .unlocked {
-
       }
     }
   }
-
   .slide {
     position: fixed;
     bottom: 55px;
     width: 188px;
     box-shadow: 0 0 14px 0 rgba(0, 0, 0, 0.12);
     border-radius: 12px 12px 0 0;
-
     .item-wrapper {
       display: flex;
       flex-direction: column;
-
       #self-info {
         .info-wrapper {
           border-radius: 12px 12px 0 0;
@@ -620,7 +599,6 @@
           justify-content: center;
           display: flex;
           background-color: @darkColor;
-
           .portrait {
             width: 41px;
             height: 41px;
@@ -629,18 +607,15 @@
             border-radius: 50%;
             margin-right: 10px;
           }
-
           .name-email {
             display: flex;
             flex-direction: column;
-
             .user-name {
               width: 63px;
               height: 36px;
               font-size: 25px;
               color: rgba(255, 255, 255, 0.95);
             }
-
             .user-email {
               width: 78px;
               height: 11px;
@@ -652,18 +627,15 @@
           }
         }
       }
-
       #blank {
         height: 14px;
         background-color: @darkColor;
       }
-
       .slide-item {
         height: 40px;
         display: flex;
         align-items: center;
         background-color: #2b3034;
-
         i {
           margin-left: 9px;
           margin-right: 7px;
@@ -672,27 +644,21 @@
           background-color: #b9b9b9;
           border-radius: 5px;
         }
-
         #cPortrait {
           background: url("../assets/icons/toolbar/修改头像.svg");
         }
-
         #cPassword {
           background: url("../assets/icons/toolbar/修改密码.svg");
         }
-
         #aboutUs {
           background: url("../assets/icons/toolbar/关于.svg");
         }
-
         #logOut {
           background: url("../assets/icons/toolbar/注销.svg");
         }
-
         #shutDown {
           background: url("../assets/icons/toolbar/关机.svg");
         }
-
         p {
           height: 39px;
           width: 166px;
@@ -704,16 +670,14 @@
           align-items: center;
         }
       }
-
       #blank-up p, #last p {
         border: none;
       }
     }
   }
-
   .window {
-    box-shadow: 0px 2px 10px 0px 
-		rgba(0, 0, 0, 0.26);
+    box-shadow: 0px 2px 10px 0px
+    rgba(0, 0, 0, 0.26);
     border-radius: 9px;
     overflow: hidden;
     width: 300px;
@@ -732,12 +696,10 @@
       align-items: center;
       justify-content: space-between;
       background: linear-gradient(280deg, rgba(54, 55, 58, 0.8), #373c44, #262a32, black, black);
-
       .pro {
         display: flex;
         align-items: center;
         width: 120px;
-
         .pro-icon-wrapper {
           width: 20px;
           height: 20px;
@@ -775,32 +737,27 @@
             background-size: 100%;
           }
         }
-
         .pro-name {
           font-size: 13px;
           letter-spacing: 0.7px;
           color: rgba(236, 236, 236, 0.95);
         }
       }
-
       .mmc-wrapper {
         width: 95px;
         display: flex;
         align-items: center;
-
         .minimize-button {
           width: 18px;
           height: 2px;
           background: #ffffff;
         }
-
         .maximize-button {
           margin-left: 15px;
           width: 12px;
           height: 13px;
           border: 2px solid #ffffff;
         }
-
         .close-button {
           margin-left: 15px;
           width: 20px;
@@ -809,9 +766,7 @@
           background: url("../assets/icons/windows/X.svg") -8.5px -6.5px;
         }
       }
-
     }
-
     .w-body {
       overflow: auto;
       flex-grow: 1;
@@ -846,79 +801,66 @@
           margin-bottom: 45px;
         }
         #passage-8 {
-          
+
         }
       }
-      
-    }
 
+    }
     #computer {
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-
       .os-logo {
         width: 189px;
         height: 189px;
         background: url("../assets/icons/logo.svg");
         background-size: 100%;
       }
-
       .os-name {
         margin-top: 5px;
         font-size: 20px;
         letter-spacing: 0.9px;
         color: rgba(255, 255, 255, 0.95);
       }
-
       .version {
         margin-top: 8px;
         font-size: 10px;
         letter-spacing: 0.6px;
         color: rgba(255, 255, 255, 0.95)
       }
-
       .os-info {
         margin-top: 40px;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-
         div {
           margin-bottom: 9px;
         }
-
         .activeDate {
           font-size: 12px;
           letter-spacing: 0.7px;
           color: rgba(234, 234, 234, 0.95);
         }
-
         .cpu {
           .activeDate()
         }
-
         .stora {
           .activeDate()
         }
-
         .gpu {
           .activeDate()
         }
       }
-
       .advancedOp {
         margin-top: 30px;
         margin-bottom: 25px;
         font-size: 15px;
         letter-spacing: 0.8px;
         color: rgba(255, 255, 255, 0.95);
-
       }
     }
-
     #folder {
       .folds {
         display: flex;
@@ -945,7 +887,7 @@
         }
       }
     }
-    
+
     #chapter-1 {
       background: #ffffff;
       .page {
@@ -956,9 +898,9 @@
       }
       #c1-p1 {
         .titile {
-	        font-size: 23px;
-	        letter-spacing: 1.6px;
-	        color: rgba(0, 0, 0, 0.95);
+          font-size: 23px;
+          letter-spacing: 1.6px;
+          color: rgba(0, 0, 0, 0.95);
         }
         .subt {
           letter-spacing: 1px;
@@ -969,10 +911,10 @@
           width: 100%;
           display: flex;
           justify-content: center;
-           & span {
+          & span {
             font-size: 14px;
             letter-spacing: 1px;
-	          color: rgba(71, 71, 71, 0.95);
+            color: rgba(71, 71, 71, 0.95);
           }
         }
       }
@@ -980,8 +922,8 @@
         #tw2 {
           #t2 {
             font-size: 23px;
-	          letter-spacing: 1px;
-	          color: rgba(71, 71, 71, 0.95);
+            letter-spacing: 1px;
+            color: rgba(71, 71, 71, 0.95);
           }
           .subt-wrapper {
             .subt {
@@ -990,7 +932,6 @@
               color: rgba(71, 71, 71, 0.95);
             }
             #s2-1 {
-
             }
             #s2-2 {
               margin-top: 24px;
@@ -1001,9 +942,9 @@
           }
         }
         .tap-tip {
-          	font-size: 14px;
-            letter-spacing: 1px;
-            color: rgba(71, 71, 71, 0.95);
+          font-size: 14px;
+          letter-spacing: 1px;
+          color: rgba(71, 71, 71, 0.95);
         }
       }
       #c1-p3 {
@@ -1011,7 +952,6 @@
           font-size: 17px;
           color: rgba(71,71,71,0.95);
           letter-spacing: 1px;
-
         }
         .list {
           font-size: 14px;
@@ -1023,12 +963,12 @@
         .tip {
           font-size: 14px;
           color: rgba(71,71,71,0.95);
-          letter-spacing: 1px;   
+          letter-spacing: 1px;
         }
         .tap-tip {
-          	font-size: 14px;
-            letter-spacing: 1px;
-            color: rgba(71, 71, 71, 0.95);          
+          font-size: 14px;
+          letter-spacing: 1px;
+          color: rgba(71, 71, 71, 0.95);
         }
       }
       #c1-p4 {
@@ -1039,7 +979,7 @@
           height: 193px;
           .code {
             width: 234px;
-	          height: 26px;
+            height: 26px;
             font-size: 14px;
             letter-spacing: 1px;
             .keyw {
@@ -1064,7 +1004,7 @@
         .run-btn {
           margin-top: 40px;
           width: 331px;
-	        height: 46px;
+          height: 46px;
           display: flex;
           justify-content: center;
           align-items: center;
@@ -1092,13 +1032,12 @@
             height: 24px;
             font-size: 17px;
             letter-spacing: 1.2px;
-	          color: rgba(0, 0, 0, 0.95);
+            color: rgba(0, 0, 0, 0.95);
           }
         }
       }
     }
   }
-
   .footer-wrapper {
     border-top: solid 1px #595959;
     z-index: 99;
@@ -1106,13 +1045,11 @@
     bottom: 0;
     width: 100%;
     background: linear-gradient(280deg, rgba(54, 55, 58, 0.8), #373c44, #262a32, black, black);
-
     .footer {
       height: 54px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-
       .os-button {
         margin-left: 14px;
         width: 42px;
@@ -1122,7 +1059,6 @@
         background-position: -8px -8px;
         background-repeat: no-repeat;
       }
-
       .local-time {
         margin-right: 10px;
         width: 99px;
@@ -1131,7 +1067,6 @@
         letter-spacing: 0.7px;
       }
     }
-
     .mini-tasks {
       overflow: hidden;
       display: flex;
@@ -1145,7 +1080,6 @@
         padding-right: 10px;
         flex-shrink: 1;
       }
-
       .icon-wrapper {
         .task-icon {
           background-color: #f5f5f5;

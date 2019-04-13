@@ -71,23 +71,24 @@
     justify-content center
 
     .field-wrap
-      border-radius 6px
+      border-radius 8px
       list-style none
       display block
       width 50px
       height 50px
+      font-weight 500
       line-height 50px
       font-size 22px
-      background-color #e8e8e8
+      background-color rgba(0, 0, 60, .05)
       margin 6.5px
-      color #070707
+      color #6a6a6a
 
       .char-field
         font-style normal
 
   .input-code
     position absolute
-    left -9999px
+    left -99999px
     top -99999px
     width 0
     height 0

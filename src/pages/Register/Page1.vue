@@ -1,17 +1,16 @@
 <template>
   <div>
     <div>
+      <bg></bg>
       <div class="containers">
         <div>
           <div class="AvatarBorder">
-            <v-avatar
-                    size="160px"
-            >
+            <v-avatar size="160px">
               <div>
                 <lottie :height="200"
                         :options="defaultOptions"
                         :width="200"
-                        v-on:animCreated="handleAnimation"
+                        @animCreated="handleAnimation"
                 >
                 </lottie>
               </div>
@@ -22,7 +21,8 @@
           </div>
           <div class="text-field">
             <v-text-field
-                    :rules="[rules.empty]"
+                    :rules="[rules.empty,error_message(alert)]"
+                    @input="clean_error"
                     hint="最多输入 9 个字符"
                     label="用户名"
                     maxlength="9"
@@ -52,15 +52,24 @@
 </template>
 
 <script>
+  import Bg from "@/components/BackGround"
   import * as animationData from "@/assets/Lottie/logo.json"
+  import {mapMutations, mapState} from "vuex"
 
   export default {
     name: "Username",
+    components: {
+      Bg
+    },
+    computed: {
+      ...mapState({
+        loginForm: state => state.register
+      }),
+    },
     data: () => ({
+      alert: false,
+      url: '/api/auth/login',
       docmHeight: document.documentElement.clientHeight,
-      loginForm: {
-        username: ''
-      },
       rules: {
         empty: value => !!value || '用户名不可以为空'
       },
@@ -69,18 +78,35 @@
       anim: {}
     }),
     methods: {
+      ...mapMutations({
+        addName: 'ADD_NAME'
+      }),
       handleAnimation(anim) {
-        this.anim = anim;
-        console.log(anim); //这里可以看到 lottie 对象的全部属性
+        this.anim = anim
+      },
+      clean_error() {
+        this.alert = false
+      },
+      error_message: alert => alert && '用户名已存在',
+      data_cook(info) {
+        info.message === 'unknown user' ? this.next_step() : (this.alert = true);
+      },
+      get_data(res) {
+        const info = res.data;
+        res.status === 200 && this.data_cook(info)
+      },
+      next_step() {
+        this.addName(this.loginForm);
+        this.$router.push({path: '/register/second'})
       },
       change() {
-        //请求 并检查用户名是否重复，如果重复返回false，不重复返回true
-        this.$router.push({
-          path: '/register/second',
-          query: {
-            user: this.loginForm.username
-          }
-        })
+        const post_data = this.$qs.stringify({
+          username: this.loginForm.username,
+          password: this.loginForm.password,
+        });
+        this.$axios
+          .post(this.url, post_data)
+          .then(this.get_data);
       }
     }
   }

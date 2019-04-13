@@ -1,48 +1,40 @@
 <template>
   <div>
     <div>
+      <bg></bg>
       <div class="containers">
         <div>
           <div class="AvatarBorder">
-            <v-avatar
-                    color="grey lighten-4"
-                    size="108px"
-            >
-              <img alt="avatar" class="avatar" src="https://avatars2.githubusercontent.com/u/25416941?s=460&v=4">
-            </v-avatar>
+            <avatar :state="loginForm.icon" size="108px"></avatar>
           </div>
           <div class="tile">
-            <span>{{"你好 "+loginForm.username}}</span>
+            <span>请选择您的头像</span>
           </div>
-          <div class="text-field">
-            <div style="height:70px">
-              <v-text-field
-                      :rules="[rules.empty_email,rules.email]"
-                      label="邮箱"
-                      maxlength="40"
-                      v-model="loginForm.email"
-              ></v-text-field>
+          <div class="ava">
+            <div class="ava-field">
+              <div @click="switch_ava(1)">
+                <div :class="{ ava_active:isActive1 }">
+                  <avatar :state="1" size="80px"></avatar>
+                </div>
+              </div>
+              <div @click="switch_ava(2)">
+                <div :class="{ ava_active:isActive2 }">
+                  <avatar :state="2" size="80px"></avatar>
+                </div>
+              </div>
+              <div @click="switch_ava(3)">
+                <div :class="{ ava_active:isActive3 }">
+                  <avatar :state="3" size="80px"></avatar>
+                </div>
+              </div>
             </div>
-            <v-text-field
-                    :rules="[rules.empty_pwd,rules.pwd]"
-                    :type="'password'"
-                    label="密码"
-                    maxlength="16"
-                    style="line-height: 15px"
-                    v-model="loginForm.password"
-            ></v-text-field>
           </div>
         </div>
-        <div style="height:auto;"></div>
       </div>
       <div>
-        <div class="footer" :style="{top:(docmHeight-98)+'px'}">
+        <div :style="{top:(docmHeight-98)+'px'}" class="footer">
           <transition name="fade">
-            <v-btn flat
-                   style="font-size: 16px"
-                   v-show="show_button()"
-            >> 确认信息
-            </v-btn>
+            <v-btn @click="submit" flat style="font-size: 16px">> 选它了</v-btn>
           </transition>
         </div>
       </div>
@@ -51,15 +43,22 @@
 </template>
 
 <script>
+  import Avatar from "@/components/Avatar";
+  import Bg from "@/components/BackGround";
+  import {mapMutations, mapState} from "vuex"
+
   export default {
     name: "AvatarPage",
+    components: {
+      Avatar,
+      Bg
+    },
     data: () => ({
+      url: '/api/auth/register',
+      isActive1: false,
+      isActive2: true,
+      isActive3: false,
       docmHeight: document.documentElement.clientHeight,
-      loginForm: {
-        email: '',
-        username: '',
-        password: ''
-      },
       rules: {
         empty_email: value => !!value || '邮箱不可以为空',
         empty_pwd: value => !!value || '密码不可以为空',
@@ -70,30 +69,63 @@
         pwd: value => value.length >= 8 || '长度为8-16个字符'
       }
     }),
-    created() {
-      this.getName()
+    computed: {
+      ...mapState({
+        loginForm: state => state.register
+      })
     },
     methods: {
-      show_button() {
-        return this.loginForm.email && this.loginForm.password
-      },// 展示确定按钮
-      getName() {
-        this.loginForm.username = this.$route.query.user;
+      ...mapMutations({
+        attach_name: 'INPUT_NAME',
+        attach_ava: 'INPUT_AVA'
+      }),
+      switch_ava(n) {
+        this.loginForm.icon = n;
+        (n === 1) && ([this.isActive1, this.isActive2, this.isActive3] = [true, false, false]);
+        (n === 2) && ([this.isActive1, this.isActive2, this.isActive3] = [false, true, false]);
+        (n === 3) && ([this.isActive1, this.isActive2, this.isActive3] = [false, false, true]);
       },
       change() {
-        // ...code 还会发一个请求给后段，查询是否由其人，返回一个是或否
-        this.$router.push({
-          path: '/login/password',
-          query: {
-            user: this.loginForm.username
-          }
-        })
-      }
+        this.attach_name(this.loginForm);
+        this.attach_ava(this.loginForm);
+        this.$router.push({path: '/register/fourth'})
+      },
+      data_cook(info) {
+        (info.message === 'success') && this.change()
+      },
+      get_data(res) {
+        const info = res.data;
+        res.status === 200 && this.data_cook(info)
+      },
+      submit() {
+        const post_data = this.$qs.stringify({
+          username: this.loginForm.username,
+          password: this.loginForm.password,
+          email: this.loginForm.email,
+          icon: this.loginForm.icon
+        });
+        this.$axios
+          .post(this.url, post_data)
+          .then(this.get_data);
+      },
     }
   }
 </script>
 
 <style lang="stylus" scoped>
+  .ava_active
+    border-radius 100%
+    animation flash 1600ms infinite
+    -webkit-animation flash 1600ms infinite
+
+    @keyframes flash
+      from
+        box-shadow 0 0 0 2.6px rgb(255, 255, 255), 0 0 0 5.5px rgb(0, 159, 255)
+      50%
+        box-shadow 0 0 0 2.6px rgb(255, 255, 255), 0 0 0 5.5px rgb(255, 255, 255)
+      to
+        box-shadow 0 0 0 2.6px rgb(255, 255, 255), 0 0 0 5.5px rgb(0, 159, 255)
+
   .containers
     display flex
     display -webkit-flex
@@ -120,10 +152,14 @@
       font-size 23px
       letter-spacing 1.3px
 
-    .text-field
-      margin-top 35px
-      padding-right 48px
-      padding-left 48px
+  .ava
+    padding-left 23px
+    padding-right 23px
+
+    .ava-field
+      display flex
+      justify-content space-around
+      margin-top 66px
 
   .footer
     width 100%

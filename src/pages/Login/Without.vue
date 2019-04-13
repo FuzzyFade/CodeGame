@@ -1,15 +1,24 @@
 <template>
   <div>
     <div>
+      <bg></bg>
       <div class="containers">
         <div>
           <div class="AvatarBorder">
-            <v-avatar
-                    color="grey lighten-4"
-                    size="108px"
-            >
-              <img alt="avatar" class="avatar" src="https://vuetifyjs.com/apple-touch-icon-180x180.png">
-            </v-avatar>
+            <div>
+              <div class="AvatarBorder">
+                <v-avatar size="160px">
+                  <div>
+                    <lottie :height="200"
+                            :options="defaultOptions"
+                            :width="200"
+                            v-on:animCreated="handleAnimation"
+                    >
+                    </lottie>
+                  </div>
+                </v-avatar>
+              </div>
+            </div>
           </div>
           <div class="tile">
             <span>用户不存在，请注册一个新账户</span>
@@ -19,22 +28,50 @@
     </div>
     <div>
       <div class="footer">
-        <transition name="fade">
-          <v-btn flat>
-            <span class="footer_text">> 好的，这就去</span>
-          </v-btn>
-        </transition>
+        <v-btn @click="register" flat>
+          <span class="footer_text">> 好的，这就去</span>
+        </v-btn>
+        <v-btn @click="login" flat>
+          <span class="footer_text">> 返回登录</span>
+        </v-btn>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+  import Bg from "@/components/BackGround"
+  import * as animationData from "@/assets/Lottie/red_logo.json"
+  import {mapMutations,mapState} from "vuex"
+
   export default {
     name: "Without",
+    components: {
+      Bg
+    },
+    data: () => ({
+      defaultOptions: {animationData: animationData.default},
+      animationSpeed: 1,
+      anim: {}
+    }),
+    computed:{
+      ...mapState({
+        loginForm: state => state.login
+      })
+    },
     methods: {
+      ...mapMutations({
+        clean_name:'INPUT_NAME'
+      }),
+      handleAnimation(anim) {
+        this.anim = anim;
+      },
       register() {
         this.$router.push({path: '/register/first'})
+      },
+      login() {
+        this.clean_name('');
+        this.$router.push({path: '/login'})
       },
     }
   }
@@ -54,7 +91,7 @@
 
     .AvatarBorder
       margin-top 114px
-      margin-bottom 100px
+      margin-bottom 74px
 
       .avatar
         width 108px

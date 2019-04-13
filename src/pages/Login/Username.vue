@@ -1,17 +1,16 @@
 <template>
   <div>
     <div>
+      <bg></bg>
       <div class="containers">
         <div>
           <div class="AvatarBorder">
-            <v-avatar
-                    size="160px"
-            >
+            <v-avatar size="160px">
               <div>
                 <lottie :height="200"
                         :options="defaultOptions"
                         :width="200"
-                        v-on:animCreated="handleAnimation"
+                        @animCreated="handleAnimation"
                 >
                 </lottie>
               </div>
@@ -63,38 +62,69 @@
 </template>
 
 <script>
+  import Bg from "@/components/BackGround"
   import * as animationData from "@/assets/Lottie/logo.json"
+  import {mapMutations, mapState} from "vuex"
 
   export default {
     name: "Username",
+    components: {
+      Bg
+    },
+    computed: {
+      ...mapState({
+        loginForm: state => state.login
+      })
+    },
     data: () => ({
+      url: '/api/auth/login',
       docmHeight: document.documentElement.clientHeight,
-      loginForm: {
-        username: ''
-      },
       rules: {
         empty: value => !!value || '用户名不可以为空'
       },
       defaultOptions: {animationData: animationData.default},
       animationSpeed: 1,
-      anim: {}
+      anim: {},
     }),
     methods: {
+      ...mapMutations({
+        input_name: 'INPUT_NAME',
+        input_ava: 'INPUT_AVA'
+      }),
       handleAnimation(anim) {
         this.anim = anim;
       },
       register() {
         this.$router.push({path: '/register/first'})
-      }
-      ,
+      },
+      without_username() {
+        this.$router.push({path: '/login/without'})
+      },
+      enter_password(){
+        this.$router.push({path: '/login/password'})
+      },
+      success(){
+        // input
+        this.input_ava(this.loginForm);
+        this.enter_password()
+      },
+      data_cook(info) {
+        (info.message === 'unknown user') && this.without_username();
+        (info.message === 'success') && this.success();
+      },
+      get_data(res) {
+        const info = res.data;
+        res.status === 200 && this.data_cook(info);
+      },
       change() {
-        //code 还会发一个请求给后段，查询是否由其人，返回一个是或否
-        this.$router.push({
-          path: '/login/password',
-          query: {
-            user: this.loginForm.username
-          }
-        })
+        const post_data = this.$qs.stringify({
+          username: this.loginForm.username,
+          password: this.loginForm.password
+        });
+        this.$axios
+          .post(this.url, post_data)
+          .then(this.get_data);
+        this.input_name(this.loginForm);
       }
     }
   }

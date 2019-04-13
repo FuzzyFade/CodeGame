@@ -1,6 +1,7 @@
 <template>
   <div>
     <div>
+      <bg></bg>
       <div class="containers">
         <div>
           <div class="AvatarBorder">
@@ -9,8 +10,8 @@
             >
               <div>
                 <lottie :height="200"
-                        :width="200"
                         :options="defaultOptions"
+                        :width="200"
                         @animCreated="handleAnimation"
                 >
                 </lottie>
@@ -42,9 +43,10 @@
         <div style="height:auto;"></div>
       </div>
       <div>
-        <div class="footer">
+        <div :style="{top:(docmHeight-98)+'px'}" class="footer">
           <transition name="fade">
-            <v-btn flat
+            <v-btn @click="change()"
+                   flat
                    style="font-size: 16px"
                    v-show="show_button()"
             >> 确认信息
@@ -57,16 +59,24 @@
 </template>
 
 <script>
+  import Bg from "@/components/BackGround"
   import * as animationData from "@/assets/Lottie/logo.json"
+  import {mapMutations, mapState} from "vuex"
 
   export default {
     name: "Username",
+    components: {
+      Bg
+    },
+    computed: {
+      ...mapState({
+        loginForm: state => state.register
+      })
+    },
     data: () => ({
-      loginForm: {
-        email: '',
-        username: '',
-        password: ''
-      },
+      alert: false,
+      url: '/api/auth/is_exist',
+      docmHeight: document.documentElement.clientHeight,
       rules: {
         empty_email: value => !!value || '邮箱不可以为空',
         empty_pwd: value => !!value || '密码不可以为空',
@@ -80,30 +90,36 @@
       animationSpeed: 1,
       anim: {}
     }),
-    created() {
-      this.getName()
-    },
     methods: {
+      ...mapMutations({
+        add_meg: 'ADD_MEG'
+      }),
       show_button() {
         const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         return pattern.test(this.loginForm.email) && this.loginForm.password.length >= 8
       },
       handleAnimation(anim) {
-        this.anim = anim;
-        console.log(anim); //这里可以看到 lottie 对象的全部属性
+        this.anim = anim
       },
-      getName() {
-        this.loginForm.username = this.$route.query.user;
+      next_step() {
+        this.add_meg(this.loginForm);
+        this.$router.push({path: '/register/third'})
+      },
+      data_cook(info) {
+        info.message === 'exist' && (this.alert = true);
+        info.message === 'ok' && this.next_step()
+      },
+      get_data(res) {
+        const info = res.data;
+        res.status === 200 && this.data_cook(info)
       },
       change() {
-        this.$router.push({
-          path: '/register/third',
-          params: {
-            email: this.loginForm.email,
-            user: this.loginForm.username,
-            pwd: this.loginForm.password,
-          }
-        })
+        const post_data = this.$qs.stringify({
+          email: this.loginForm.email,
+        });
+        this.$axios
+          .post(this.url, post_data)
+          .then(this.get_data);
       }
     }
   }
@@ -145,7 +161,6 @@
     width 100%
     height 90px
     position fixed
-    bottom 0
     z-index 1
 
     .register
@@ -168,7 +183,7 @@
       float right
       margin-right 30px
 
-      .text2
+      .text2-
         display flex
         display -webkit-flex
         flex-direction column

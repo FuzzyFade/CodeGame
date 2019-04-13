@@ -9,6 +9,9 @@
         <div style="line-height: 25px;font-size: 23px;letter-spacing: 1.3px">
           <span>{{loginForm.username}}</span>
         </div>
+        <div style="line-height: 25px;font-size: 12px;letter-spacing: 1.3px">
+          <span>请输入你的邮箱</span>
+        </div>
         <div class="text-field">
           <v-text-field :messages="[]"
                         :rules="[rules.empty,error_message(alert)]"
@@ -18,11 +21,6 @@
                         maxlength="16"
                         v-model="loginForm.password"
           ></v-text-field>
-        </div>
-        <div class="forget">
-          <v-btn @click="to_forget" flat>
-            <span class="forget_text">忘记密码？</span>
-          </v-btn>
         </div>
       </div>
       <div>
@@ -49,7 +47,7 @@
   import {mapMutations, mapState} from 'vuex'
 
   export default {
-    name: "Password",
+    name: "Email",
     components: {
       Bg,
       Avatar
@@ -77,14 +75,7 @@
       },
       error_message: alert => alert && '密码错误',
       to_forget() {
-        const post_data = this.$qs.stringify({
-          username: this.loginForm.username,
-          password: this.loginForm.password
-        });
-        this.$axios
-          .post(this.url_, post_data)
-          .then(this.get_data);
-        this.$router.push({path: '/login/email'})
+        this.$router.push({path: '/login/forget'})
       },
       next_step() {
         this.$router.push({path: '/login/start'})
