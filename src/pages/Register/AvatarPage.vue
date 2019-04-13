@@ -34,7 +34,7 @@
       <div>
         <div :style="{top:(docmHeight-98)+'px'}" class="footer">
           <transition name="fade">
-            <v-btn @click="change" flat style="font-size: 16px">> 选它了</v-btn>
+            <v-btn @click="submit" flat style="font-size: 16px">> 选它了</v-btn>
           </transition>
         </div>
       </div>
@@ -54,6 +54,7 @@
       Bg
     },
     data: () => ({
+      url: '/api/auth/register',
       isActive1: false,
       isActive2: true,
       isActive3: false,
@@ -75,7 +76,8 @@
     },
     methods: {
       ...mapMutations({
-        add_ava: 'ADD_AVA'
+        attach_name: 'INPUT_NAME',
+        attach_ava: 'INPUT_AVA'
       }),
       switch_ava(n) {
         this.loginForm.icon = n;
@@ -84,11 +86,28 @@
         (n === 3) && ([this.isActive1, this.isActive2, this.isActive3] = [false, false, true]);
       },
       change() {
-        this.add_ava(this.loginForm);
-        this.$router.push({
-          path: '/register/fourth',
-        })
-      }
+        this.attach_name(this.loginForm);
+        this.attach_ava(this.loginForm);
+        this.$router.push({path: '/register/fourth'})
+      },
+      data_cook(info) {
+        (info.message === 'success') && this.change()
+      },
+      get_data(res) {
+        const info = res.data;
+        res.status === 200 && this.data_cook(info)
+      },
+      submit() {
+        const post_data = this.$qs.stringify({
+          username: this.loginForm.username,
+          password: this.loginForm.password,
+          email: this.loginForm.email,
+          icon: this.loginForm.icon
+        });
+        this.$axios
+          .post(this.url, post_data)
+          .then(this.get_data);
+      },
     }
   }
 </script>

@@ -22,6 +22,7 @@
           <div class="text-field">
             <v-text-field
                     :rules="[rules.empty,error_message(alert)]"
+                    @input="clean_error"
                     hint="最多输入 9 个字符"
                     label="用户名"
                     maxlength="9"
@@ -83,17 +84,18 @@
       handleAnimation(anim) {
         this.anim = anim
       },
-      error_message:alert=>(
-        alert && '用户名已存在'
-      ),
-      data_cook(info){
+      clean_error() {
+        this.alert = false
+      },
+      error_message: alert => alert && '用户名已存在',
+      data_cook(info) {
         info.message === 'unknown user' ? this.next_step() : (this.alert = true);
       },
       get_data(res) {
         const info = res.data;
         res.status === 200 && this.data_cook(info)
       },
-      next_step(){
+      next_step() {
         this.addName(this.loginForm);
         this.$router.push({path: '/register/second'})
       },

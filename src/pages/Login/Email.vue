@@ -7,22 +7,20 @@
           <avatar :state="loginForm.icon" size="108px"></avatar>
         </div>
         <div style="line-height: 25px;font-size: 23px;letter-spacing: 1.3px">
-          <div style="margin-bottom: 15px">
-            <span>{{loginForm.username}}</span>
-          </div>
-          <span>{{"请输入你登记的邮箱"}}</span>
+          <span>{{loginForm.username}}</span>
+        </div>
+        <div style="line-height: 25px;font-size: 12px;letter-spacing: 1.3px">
+          <span>请输入你的邮箱</span>
         </div>
         <div class="text-field">
           <v-text-field :messages="[]"
-                        :rules="[rules.empty,rules.email]"
-                        label="输入你的邮箱"
-                        v-model="loginForm.email"
+                        :rules="[rules.empty,error_message(alert)]"
+                        :type="'password'"
+                        @input="clean_error"
+                        label="密码"
+                        maxlength="16"
+                        v-model="loginForm.password"
           ></v-text-field>
-        </div>
-        <div class="forget">
-          <v-btn @click="forget" flat>
-            <span class="forget_text">忘记密码？</span>
-          </v-btn>
         </div>
       </div>
       <div>
@@ -55,16 +53,12 @@
       Avatar
     },
     data: () => ({
-      password_state: true,
-      url: '/', // 邮箱检查
+      alert: false,
+      url: '/api/auth/login',
       docmHeight: document.documentElement.clientHeight,
       userToken: '',
       rules: {
-        empty: value => !!value || '邮箱不可以为空',
-        email: value => {
-          const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-          return pattern.test(value) || '请输入正确的邮箱地址'
-        },
+        empty: value => !!value || '密码不可以为空',
       },
     }),
     computed: {
@@ -76,22 +70,36 @@
       ...mapMutations({
         add_count: 'ADD_COUNT'
       }),
+      clean_error() {
+        this.alert = false
+      },
+      error_message: alert => alert && '密码错误',
+      to_forget() {
+        this.$router.push({path: '/login/forget'})
+      },
+      next_step() {
+        this.$router.push({path: '/login/start'})
+      },
       show_button() {
-        const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-        return pattern.test(this.loginForm.email) && this.loginForm.password.length > 0
+        return this.loginForm.password >= 8 && this.loginForm.password <= 16
       },
-      forget() {
-        // 跳转email
+      data_cook(info) {
+        info.message === 'wrong password' && (this.alert = true);
+        info.status === 1 && this.next_step()
       },
-      getData(res) {
-        res.message === 'wrong password' && this.add_count(res.data) && this.$router.push({path: '/login/email'});
-        res.message === 'wrong password' || (this.password_state = true);
+      get_data(res) {
+        const info = res.data;
+        res.status === 200 && this.data_cook(info)
       },
       login() {
+        const post_data = this.$qs.stringify({
+          username: this.loginForm.username,
+          password: this.loginForm.password
+        });
         this.$axios
-          .post(this.url, {username: this.loginForm.username, password: this.loginForm.password})
-          .then(this.getData);
-      },
+          .post(this.url, post_data)
+          .then(this.get_data);
+      }
     }
   }
 </script>

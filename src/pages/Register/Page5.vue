@@ -11,27 +11,14 @@
             <span>{{loginForm.username}}</span>
           </div>
           <div class="text">
-            <span>我们给你发送了一个确认邮件</span>
-          </div>
-          <div class="text-field">
-            <security-code @input="clean_error"
-                           v-model="authCode"
-            ></security-code>
-          </div>
-          <div style="color: #4b4b4b">
-            <span>{{message}}</span>
+            <span>“那么，就要开始了。”</span>
           </div>
         </div>
       </div>
       <div>
         <div :style="{top:(docmHeight-98)+'px'}" class="footer">
           <transition name="fade">
-            <v-btn @click="submit"
-                   flat
-                   style="font-size: 16px"
-                   v-show="authCode.length === 4"
-            >> 填完了
-            </v-btn>
+            <v-btn @click="submit" flat style="font-size: 26px">确认</v-btn>
           </transition>
         </div>
       </div>
@@ -42,20 +29,16 @@
 <script>
   import Avatar from "@/components/Avatar";
   import Bg from "@/components/BackGround";
-  import {mapMutations, mapState} from "vuex"
-  import SecurityCode from '@/components/SecurityCode'
+  import {mapState} from "vuex"
 
   export default {
-    name: "Page4",
+    name: "Page5",
     components: {
       Avatar,
       Bg,
-      SecurityCode
     },
     data: () => ({
-      message: '',
-      authCode: '',
-      url: '/api/auth/con',
+      url: '/api/auth/register',
       docmHeight: document.documentElement.clientHeight,
     }),
     computed: {
@@ -64,34 +47,8 @@
       })
     },
     methods: {
-      ...mapMutations({attach_name: 'INPUT_NAME', attach_ava: 'INPUT_AVA'}),
-      timed_out() {
-        this.message = "验证码超时"
-      },
-      wrong_code() {
-        this.message = "验证码错误"
-      },
-      next_step() {
-        this.message = "";
-        this.$router.push({path: '/register/fifth'})
-      },
-      clean_error() {
-        this.message = ""
-      },
-      data_cook(info) {
-        (info.message === 'success') && this.next_step();
-        (info.message === 'wrong code') && this.wrong_code();
-        (info.message === 'Timed out') && this.timed_out()
-      },
-      get_data(res) {
-        const info = res.data;
-        res.status === 200 && this.data_cook(info)
-      },
       submit() {
-        const post_data = this.$qs.stringify({email:this.loginForm.email,code:this.authCode});
-        this.$axios
-          .post(this.url,post_data)
-          .then(this.get_data);
+        this.$router.push({path: '/login/password',})
       }
     }
   }
@@ -126,7 +83,6 @@
 
     .text
       margin-top 26px
-      margin-bottom 36px
       line-height 25px
       font-size 19px
       letter-spacing 1.06px

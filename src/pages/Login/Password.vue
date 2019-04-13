@@ -11,15 +11,16 @@
         </div>
         <div class="text-field">
           <v-text-field :messages="[]"
-                        :rules="[rules.empty]"
+                        :rules="[rules.empty,error_message(alert)]"
                         :type="'password'"
+                        @input="clean_error"
                         label="密码"
                         maxlength="16"
                         v-model="loginForm.password"
           ></v-text-field>
         </div>
         <div class="forget">
-          <v-btn @click="forget" flat>
+          <v-btn @click="to_forget" flat>
             <span class="forget_text">忘记密码？</span>
           </v-btn>
         </div>
@@ -54,7 +55,7 @@
       Avatar
     },
     data: () => ({
-      alert: true,
+      alert: false,
       url: '/api/auth/login',
       docmHeight: document.documentElement.clientHeight,
       userToken: '',
@@ -71,17 +72,29 @@
       ...mapMutations({
         add_count: 'ADD_COUNT'
       }),
-      error_message: alert => (
-        alert && '密码错误'
-      ),
-      forget() {
+      clean_error() {
+        this.alert = false
+      },
+      error_message: alert => alert && '密码错误',
+      to_forget() {
+        const post_data = this.$qs.stringify({
+          username: this.loginForm.username,
+          password: this.loginForm.password
+        });
+        this.$axios
+          .post(this.url_, post_data)
+          .then(this.get_data);
         this.$router.push({path: '/login/email'})
       },
+      next_step() {
+        this.$router.push({path: '/login/start'})
+      },
       show_button() {
-        return this.loginForm.password >= 8 && this.loginForm.password >= 18
+        return this.loginForm.password >= 8 && this.loginForm.password <= 16
       },
       data_cook(info) {
-        (info.message === 'wrong password') && this.error_message();
+        info.message === 'wrong password' && (this.alert = true);
+        info.status === 1 && this.next_step()
       },
       get_data(res) {
         const info = res.data;

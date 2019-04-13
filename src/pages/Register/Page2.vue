@@ -74,7 +74,8 @@
       })
     },
     data: () => ({
-      url: '/api/auth/register',
+      alert: false,
+      url: '/api/auth/is_exist',
       docmHeight: document.documentElement.clientHeight,
       rules: {
         empty_email: value => !!value || '邮箱不可以为空',
@@ -100,9 +101,25 @@
       handleAnimation(anim) {
         this.anim = anim
       },
-      change() {
+      next_step() {
         this.add_meg(this.loginForm);
         this.$router.push({path: '/register/third'})
+      },
+      data_cook(info) {
+        info.message === 'exist' && (this.alert = true);
+        info.message === 'ok' && this.next_step()
+      },
+      get_data(res) {
+        const info = res.data;
+        res.status === 200 && this.data_cook(info)
+      },
+      change() {
+        const post_data = this.$qs.stringify({
+          email: this.loginForm.email,
+        });
+        this.$axios
+          .post(this.url, post_data)
+          .then(this.get_data);
       }
     }
   }
@@ -166,7 +183,7 @@
       float right
       margin-right 30px
 
-      .text2
+      .text2-
         display flex
         display -webkit-flex
         flex-direction column

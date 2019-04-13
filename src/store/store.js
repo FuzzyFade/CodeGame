@@ -5,7 +5,6 @@ import {
   ADD_COUNT,
   ADD_MEG,
   ADD_NAME,
-  ATTACH_NAME,
   CLEAN_COUNT,
   INPUT_AVA,
   INPUT_EMAIL,
