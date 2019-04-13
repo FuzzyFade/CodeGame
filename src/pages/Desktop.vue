@@ -55,14 +55,14 @@
         </div>
       </div>
       <div class="w-body" id="chapter-1" v-if="course.chapterOne">
-        <div class="page" id="c1-p1" v-if="course.nowPage == '1'" @click="nextPage(course)">
+        <div class="page" id="c1-p1" v-if="course.nowPage === '1'" @click="nextPage(course)">
           <div class="titile-wrapper" id="tw1">
             <div class="title">第一章 起点</div>
             <div class="subt">回顾旧日向往</div>
           </div>
           <div class="tap-tip"><span>点击屏幕以继续</span></div>
         </div>
-        <div class="page" id="c1-p2" v-if="course.nowPage == '2'" @click="nextPage(course)">
+        <div class="page" id="c1-p2" v-if="course.nowPage === '2'" @click="nextPage(course)">
           <div class="titile-wrapper" id="tw2">
             <div class="titile" id="t2">print()</div>
             <div class="subt-wrapper">
@@ -73,7 +73,7 @@
           </div>
           <div class="tap-tip">[Y]好，我懂了</div>
         </div>
-        <div class="page" id="c1-p3" v-if="course.nowPage == '3'" @click="nextPage(course)">
+        <div class="page" id="c1-p3" v-if="course.nowPage === '3'" @click="nextPage(course)">
           <div class="title">Python的五个标准的数据类型</div>
           <div class="list">
             <span>Numbers (数字)</span>
@@ -85,7 +85,7 @@
           <div class="tip">数字和字符串是最基础的数据类型，而剩下的则会在以后的学习中接触到。</div>
           <div class="tap-tip">[Y]好好好，下一步</div>
         </div>
-        <div class="page" id="c1-p4" v-if="course.nowPage == '4'">
+        <div class="page" id="c1-p4" v-if="course.nowPage === '4'">
           <div class="code-block">
             <div class="code">
               <span class="keyw">print</span><span class="qh">(</span><span class="string">"HELLO WORLD"</span><span class="qh">)</span>
@@ -94,7 +94,7 @@
           <div class="tip">//点击 RUN 运行上面的代码</div>
           <div class="run-btn" @click="nextPage(course)"><div class="run">[R]RUN</div></div>
         </div>
-        <div class="page" id="c1-p5" v-if="course.nowPage == '5'">
+        <div class="page" id="c1-p5" v-if="course.nowPage === '5'">
           <div class="title" id="c1-result">
             <div id="HELLO">HELLO</div>
             <div id="WORLD">WORLD</div>
@@ -367,6 +367,9 @@
       userName: "Tony",
       userEmail: "23333@ncuos.com",
     }),
+    computed:{
+
+    },
     methods: {
       switchSlide() {
         this.slideShow = !this.slideShow;
@@ -427,7 +430,7 @@
         course.size.top = '0';
         course.size.left = '0';
         course.size.width = '100vw';
-        course.size.height = mh + 'px'
+        course.size.height = mh + 'px';
         course.size.borderRadius = '0'
       },
       close(course) {
@@ -438,18 +441,18 @@
         course.size.height = initSize.height;
         course.size.top = initSize.top;
         course.size.left = initSize.left;
-        course.size.borderRadius = initSize.borderRadius
+        course.size.borderRadius = initSize.borderRadius;
         if (course.name === '此电脑') {
           course.computerPage = false
         } else if (course.name === '文档') {
           course.folderPage = false
         }
         else if (course.name === '第一章') {
-          course.chapterOne = false
+          course.chapterOne = false;
           course.nowPage = course.initPage
         }
         else if (course.name === '第二章') {
-          course.chapterTwo = false
+          course.chapterTwo = false;
           course.nowPage = course.initPage
         }
         if (course.name === '2219-4-1') {
@@ -499,16 +502,14 @@
       },
       getMiniTasksWidth: {
         bind: function(el) {
-          let maxWidthNumber = window.innerWidth -199
-          let maxWdith = String(maxWidthNumber) + 'px'
-          el.style.width = maxWdith
+          let maxWidthNumber = window.innerWidth -199;
+          el.style.width = String(maxWidthNumber) + 'px'
         }
       },
       getMaxHeight: {
         bind: function(el) {
-          let maxHeightNumber = window.innerHeight - 55
-          let maxHeight = String(maxHeightNumber) + 'px'
-          el.style.maxHeight = maxHeight
+          let maxHeightNumber = window.innerHeight - 55;
+          el.style.maxHeight = String(maxHeightNumber) + 'px'
         }
       }
     }
@@ -602,7 +603,7 @@
           .portrait {
             width: 41px;
             height: 41px;
-            background: url("../assets/avatars/2_00000.png");
+            background: url("../assets/avatars/2.png");
             background-size: 100%;
             border-radius: 50%;
             margin-right: 10px;
@@ -676,8 +677,7 @@
     }
   }
   .window {
-    box-shadow: 0px 2px 10px 0px
-    rgba(0, 0, 0, 0.26);
+    box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.26);
     border-radius: 9px;
     overflow: hidden;
     width: 300px;
@@ -688,6 +688,7 @@
     top: 0;
     left: 0;
     background-color: #373c44;
+
     .w-bar {
       max-height: 41px;
       height: 6.1vh;
@@ -696,10 +697,12 @@
       align-items: center;
       justify-content: space-between;
       background: linear-gradient(280deg, rgba(54, 55, 58, 0.8), #373c44, #262a32, black, black);
+
       .pro {
         display: flex;
         align-items: center;
         width: 120px;
+
         .pro-icon-wrapper {
           width: 20px;
           height: 20px;
@@ -710,406 +713,477 @@
           display: flex;
           justify-content: center;
           align-items: center;
+
           .pro-icon {
             display: block;
             width: 11px;
             height: 12px;
             background-repeat: no-repeat;
           }
+
           #fwpi-0 {
             background: url("../assets/icons/2_00000.svg");
             background-size: 100%;
           }
+
           #fwpi-1 {
             background: url("../assets/icons/system.svg");
             background-size: 100%;
           }
+
           #wpi-0 {
             background: url("../assets/icons/Desktop/computer.svg");
             background-size: 100%;
           }
+
           #wpi-1 {
             background: url("../assets/icons/Desktop/folder.svg");
             background-size: 100%;
           }
-          #wpi-2 {
-            background: url("");
-            background-size: 100%;
+
+          .pro-name {
+            font-size: 13px;
+            letter-spacing: 0.7px;
+            color: rgba(236, 236, 236, 0.95);
           }
         }
-        .pro-name {
-          font-size: 13px;
-          letter-spacing: 0.7px;
-          color: rgba(236, 236, 236, 0.95);
-        }
-      }
-      .mmc-wrapper {
-        width: 95px;
-        display: flex;
-        align-items: center;
-        .minimize-button {
-          width: 18px;
-          height: 2px;
-          background: #ffffff;
-        }
-        .maximize-button {
-          margin-left: 15px;
-          width: 12px;
-          height: 13px;
-          border: 2px solid #ffffff;
-        }
-        .close-button {
-          margin-left: 15px;
-          width: 20px;
-          height: 20px;
-          background-size: 180%;
-          background: url("../assets/icons/windows/X.svg") -8.5px -6.5px;
-        }
-      }
-    }
-    .w-body {
-      overflow: auto;
-      flex-grow: 1;
-      .passage-wrapper {
-        margin: 32px 19px 27px 19px;
-        .passage {
-          color: #ffffff;
-          font-size: 12px;
-        }
-        #passage-0 {
-          margin-bottom: 45px;
-        }
-        #passage-1 {
-          margin-bottom: 45px;
-        }
-        #passage-2 {
-          margin-bottom: 29px;
-        }
-        #passage-3 {
-          margin-bottom: 44px;
-        }
-        #passage-4 {
-          margin-bottom: 17px;
-        }
-        #passage-5 {
-          margin-bottom: 45 px;
-        }
-        #passage-6 {
-          margin-bottom: 18px;
-        }
-        #passage-7 {
-          margin-bottom: 45px;
-        }
-        #passage-8 {
 
+        .mmc-wrapper {
+          width: 95px;
+          display: flex;
+          align-items: center;
+
+          .minimize-button {
+            width: 18px;
+            height: 2px;
+            background: #ffffff;
+          }
+
+          .maximize-button {
+            margin-left: 15px;
+            width: 12px;
+            height: 13px;
+            border: 2px solid #ffffff;
+          }
+
+          .close-button {
+            margin-left: 15px;
+            width: 20px;
+            height: 20px;
+            background-size: 180%;
+            background: url("../assets/icons/windows/X.svg") -8.5px -6.5px;
+          }
         }
       }
 
-    }
-    #computer {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      .os-logo {
-        width: 189px;
-        height: 189px;
-        background: url("../assets/icons/logo.svg");
-        background-size: 100%;
+      .w-body {
+        overflow: auto;
+        flex-grow: 1;
+
+        .passage-wrapper {
+          margin: 32px 19px 27px 19px;
+
+          .passage {
+            color: #ffffff;
+            font-size: 12px;
+          }
+
+          #passage-0 {
+            margin-bottom: 45px;
+          }
+
+          #passage-1 {
+            margin-bottom: 45px;
+          }
+
+          #passage-2 {
+            margin-bottom: 29px;
+          }
+
+          #passage-3 {
+            margin-bottom: 44px;
+          }
+
+          #passage-4 {
+            margin-bottom: 17px;
+          }
+
+          #passage-5 {
+            margin-bottom: 45px;
+          }
+
+          #passage-6 {
+            margin-bottom: 18px;
+          }
+
+          #passage-7 {
+            margin-bottom: 45px;
+          }
+
+          #passage-8 {
+
+          }
+        }
+
       }
-      .os-name {
-        margin-top: 5px;
-        font-size: 20px;
-        letter-spacing: 0.9px;
-        color: rgba(255, 255, 255, 0.95);
-      }
-      .version {
-        margin-top: 8px;
-        font-size: 10px;
-        letter-spacing: 0.6px;
-        color: rgba(255, 255, 255, 0.95)
-      }
-      .os-info {
-        margin-top: 40px;
+
+      #computer {
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        div {
-          margin-bottom: 9px;
+
+        .os-logo {
+          width: 189px;
+          height: 189px;
+          background: url("../assets/icons/logo.svg");
+          background-size: 100%;
         }
-        .activeDate {
-          font-size: 12px;
-          letter-spacing: 0.7px;
-          color: rgba(234, 234, 234, 0.95);
+
+        .os-name {
+          margin-top: 5px;
+          font-size: 20px;
+          letter-spacing: 0.9px;
+          color: rgba(255, 255, 255, 0.95);
         }
-        .cpu {
-          .activeDate()
+
+        .version {
+          margin-top: 8px;
+          font-size: 10px;
+          letter-spacing: 0.6px;
+          color: rgba(255, 255, 255, 0.95)
         }
-        .stora {
-          .activeDate()
+
+        .os-info {
+          margin-top: 40px;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+
+          div {
+            margin-bottom: 9px;
+          }
+
+          .activeDate {
+            font-size: 12px;
+            letter-spacing: 0.7px;
+            color: rgba(234, 234, 234, 0.95);
+          }
+
+          .cpu {
+            .activeDate()
+          }
+
+          .stora {
+            .activeDate()
+          }
+
+          .gpu {
+            .activeDate()
+          }
         }
-        .gpu {
-          .activeDate()
+
+        .advancedOp {
+          margin-top: 30px;
+          margin-bottom: 25px;
+          font-size: 15px;
+          letter-spacing: 0.8px;
+          color: rgba(255, 255, 255, 0.95);
         }
       }
-      .advancedOp {
-        margin-top: 30px;
-        margin-bottom: 25px;
-        font-size: 15px;
-        letter-spacing: 0.8px;
-        color: rgba(255, 255, 255, 0.95);
+
+      #folder {
+        .folds {
+          display: flex;
+          margin-top: 27px;
+
+          .fold {
+            margin-left: 25px;
+
+            .fold-icon {
+              width: 56px;
+              height: 72px;
+              margin-bottom: 15px;
+            }
+
+            .fold-name {
+              font-size: 11px;
+              letter-spacing: 0.6px;
+              color: rgba(236, 236, 236, 0.95);
+            }
+
+            #fold-icon-0 {
+              margin-left: 0;
+              background: url("../assets/icons/2_00000.svg") no-repeat 0 2px;
+            }
+
+            #fold-icon-1 {
+              background: url("../assets/icons/system.svg") no-repeat 0 3px;
+            }
+          }
+        }
       }
-    }
-    #folder {
-      .folds {
-        display: flex;
-        margin-top: 27px;
-        .fold {
-          margin-left: 25px;
-          .fold-icon {
-            width: 56px;
-            height: 72px;
-            margin-bottom: 15px;
+
+      #chapter-1 {
+        background: #ffffff;
+
+        .page {
+          width: 100%;
+          display: flex;
+          align-items: center;
+          flex-direction: column;
+        }
+
+        #c1-p1 {
+          .titile {
+            font-size: 23px;
+            letter-spacing: 1.6px;
+            color: rgba(0, 0, 0, 0.95);
           }
-          .fold-name {
-            font-size: 11px;
-            letter-spacing: 0.6px;
-            color: rgba(236, 236, 236, 0.95);
+
+          .subt {
+            letter-spacing: 1px;
+            font-size: 14px;
+            color: rgba(0, 0, 0, 0.95);
           }
-          #fold-icon-0 {
-            margin-left: 0;
-            background: url("../assets/icons/2_00000.svg") no-repeat 0 2px;
+
+          .tap-tip {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+
+            & span {
+              font-size: 14px;
+              letter-spacing: 1px;
+              color: rgba(71, 71, 71, 0.95);
+            }
           }
-          #fold-icon-1 {
-            background: url("../assets/icons/system.svg") no-repeat 0 3px;
+        }
+
+        #c1-p2 {
+          #tw2 {
+            #t2 {
+              font-size: 23px;
+              letter-spacing: 1px;
+              color: rgba(71, 71, 71, 0.95);
+            }
+
+            .subt-wrapper {
+              .subt {
+                font-size: 14px;
+                letter-spacing: 1px;
+                color: rgba(71, 71, 71, 0.95);
+              }
+
+              #s2-1 {
+              }
+
+              #s2-2 {
+                margin-top: 24px;
+              }
+
+              #s2-3 {
+                #s2-2()
+              }
+            }
+          }
+
+          .tap-tip {
+            font-size: 14px;
+            letter-spacing: 1px;
+            color: rgba(71, 71, 71, 0.95);
+          }
+        }
+
+        #c1-p3 {
+          .title {
+            font-size: 17px;
+            color: rgba(71, 71, 71, 0.95);
+            letter-spacing: 1px;
+          }
+
+          .list {
+            font-size: 14px;
+            color: rgba(71, 71, 71, 0.95);
+            letter-spacing: 1px;
+            display: flex;
+            flex-direction: column;
+          }
+
+          .tip {
+            font-size: 14px;
+            color: rgba(71, 71, 71, 0.95);
+            letter-spacing: 1px;
+          }
+
+          .tap-tip {
+            font-size: 14px;
+            letter-spacing: 1px;
+            color: rgba(71, 71, 71, 0.95);
+          }
+        }
+
+        #c1-p4 {
+          .code-block {
+            background: #333333;
+            border-radius: 7px;
+            width: 336px;
+            height: 193px;
+
+            .code {
+              width: 234px;
+              height: 26px;
+              font-size: 14px;
+              letter-spacing: 1px;
+
+              .keyw {
+                color: rgba(10, 205, 255, 0.95);
+              }
+
+              .qh {
+                color: rgba(255, 255, 255, 0.95);
+              }
+
+              .string {
+                color: #5ddca4;
+              }
+            }
+          }
+
+          .tip {
+            margin-top: 30px;
+            width: 195px;
+            height: 20px;
+            font-size: 14px;
+            letter-spacing: 1px;
+            color: rgba(65, 65, 65, 0.95);
+          }
+
+          .run-btn {
+            margin-top: 40px;
+            width: 331px;
+            height: 46px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: solid 1px #3a3a3a;
+
+            .run {
+              font-size: 14px;
+              letter-spacing: 1px;
+              color: rgba(33, 33, 33, 0.95);
+            }
+          }
+        }
+
+        #c1-p5 {
+          #c1-result {
+            width: 316px;
+            height: 216px;
+            font-size: 77px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+          }
+
+          #c1-over {
+            & span {
+              width: 39px;
+              height: 24px;
+              font-size: 17px;
+              letter-spacing: 1.2px;
+              color: rgba(0, 0, 0, 0.95);
+            }
           }
         }
       }
     }
 
-    #chapter-1 {
-      background: #ffffff;
-      .page {
-        width: 100%;
-        display: flex;
-        align-items: center;
-        flex-direction: column;
-      }
-      #c1-p1 {
-        .titile {
-          font-size: 23px;
-          letter-spacing: 1.6px;
-          color: rgba(0, 0, 0, 0.95);
-        }
-        .subt {
-          letter-spacing: 1px;
-          font-size: 14px;
-          color: rgba(0, 0, 0, 0.95);
-        }
-        .tap-tip {
-          width: 100%;
-          display: flex;
-          justify-content: center;
-          & span {
-            font-size: 14px;
-            letter-spacing: 1px;
-            color: rgba(71, 71, 71, 0.95);
-          }
-        }
-      }
-      #c1-p2 {
-        #tw2 {
-          #t2 {
-            font-size: 23px;
-            letter-spacing: 1px;
-            color: rgba(71, 71, 71, 0.95);
-          }
-          .subt-wrapper {
-            .subt {
-              font-size: 14px;
-              letter-spacing: 1px;
-              color: rgba(71, 71, 71, 0.95);
-            }
-            #s2-1 {
-            }
-            #s2-2 {
-              margin-top: 24px;
-            }
-            #s2-3 {
-              #s2-2()
-            }
-          }
-        }
-        .tap-tip {
-          font-size: 14px;
-          letter-spacing: 1px;
-          color: rgba(71, 71, 71, 0.95);
-        }
-      }
-      #c1-p3 {
-        .title {
-          font-size: 17px;
-          color: rgba(71,71,71,0.95);
-          letter-spacing: 1px;
-        }
-        .list {
-          font-size: 14px;
-          color: rgba(71,71,71,0.95);
-          letter-spacing: 1px;
-          display: flex;
-          flex-direction: column;
-        }
-        .tip {
-          font-size: 14px;
-          color: rgba(71,71,71,0.95);
-          letter-spacing: 1px;
-        }
-        .tap-tip {
-          font-size: 14px;
-          letter-spacing: 1px;
-          color: rgba(71, 71, 71, 0.95);
-        }
-      }
-      #c1-p4 {
-        .code-block {
-          background: #333333;
-          border-radius: 7px;
-          width: 336px;
-          height: 193px;
-          .code {
-            width: 234px;
-            height: 26px;
-            font-size: 14px;
-            letter-spacing: 1px;
-            .keyw {
-              color: rgba(10,205,255,0.95);
-            }
-            .qh {
-              color: rgba(255,255,255,0.95);
-            }
-            .string {
-              color: #5ddca4;
-            }
-          }
-        }
-        .tip {
-          margin-top: 30px;
-          width: 195px;
-          height: 20px;
-          font-size: 14px;
-          letter-spacing: 1px;
-          color: rgba(65, 65, 65, 0.95);
-        }
-        .run-btn {
-          margin-top: 40px;
-          width: 331px;
-          height: 46px;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          border: solid 1px #3a3a3a;
-          .run {
-            font-size: 14px;
-            letter-spacing: 1px;
-            color: rgba(33, 33, 33, 0.95);
-          }
-        }
-      }
-      #c1-p5 {
-        #c1-result {
-          width: 316px;
-          height: 216px;
-          font-size: 77px;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-        }
-        #c1-over {
-          & span {
-            width: 39px;
-            height: 24px;
-            font-size: 17px;
-            letter-spacing: 1.2px;
-            color: rgba(0, 0, 0, 0.95);
-          }
-        }
-      }
-    }
-  }
-  .footer-wrapper {
-    border-top: solid 1px #595959;
-    z-index: 99;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    background: linear-gradient(280deg, rgba(54, 55, 58, 0.8), #373c44, #262a32, black, black);
-    .footer {
-      height: 54px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      .os-button {
-        margin-left: 14px;
-        width: 42px;
-        height: 42px;
-        background-image: url("../assets/icons/logo.svg");
-        background-size: 140%;
-        background-position: -8px -8px;
-        background-repeat: no-repeat;
-      }
-      .local-time {
-        margin-right: 10px;
-        width: 99px;
-        font-size: 12.9px;
-        color: rgba(255, 255, 255, 0.95);
-        letter-spacing: 0.7px;
-      }
-    }
-    .mini-tasks {
-      overflow: hidden;
-      display: flex;
-      flex-wrap: nowrap;
-      position: absolute;
+    .footer-wrapper {
+      border-top: solid 1px #595959;
+      z-index: 99;
+      position: fixed;
       bottom: 0;
-      left: 80px;
-      height: 55px;
-      align-items: center;
-      .mini-task {
-        padding-right: 10px;
-        flex-shrink: 1;
+      width: 100%;
+      background: linear-gradient(280deg, rgba(54, 55, 58, 0.8), #373c44, #262a32, black, black);
+
+      .footer {
+        height: 54px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .os-button {
+          margin-left: 14px;
+          width: 42px;
+          height: 42px;
+          background-image: url("../assets/icons/logo.svg");
+          background-size: 140%;
+          background-position: -8px -8px;
+          background-repeat: no-repeat;
+        }
+
+        .local-time {
+          margin-right: 10px;
+          width: 99px;
+          font-size: 12.9px;
+          color: rgba(255, 255, 255, 0.95);
+          letter-spacing: 0.7px;
+        }
       }
-      .icon-wrapper {
-        .task-icon {
-          background-color: #f5f5f5;
-          border-radius: 6px;
-          width: 9.3vw;
-          height: 9.3vw;
-          max-height: 35px;
-          max-width: 35px;
+
+      .mini-tasks {
+        overflow: hidden;
+        display: flex;
+        flex-wrap: nowrap;
+        position: absolute;
+        bottom: 0;
+        left: 80px;
+        height: 55px;
+        align-items: center;
+
+        .mini-task {
+          padding-right: 10px;
+          flex-shrink: 1;
         }
-        #task-0 {
-          background-size: 100%;
-          background-repeat: no-repeat;
-          background-image: url("../assets/icons/Desktop/computer.svg");
-        }
-        #task-1 {
-          background-size: 100%;
-          background-repeat: no-repeat;
-          background-image: url("../assets/icons/Desktop/folder.svg");
-        }
-        #ftask-0 {
-          background-size: 75%;
-          background-position: 3.5px 0.5px;
-          background-repeat: no-repeat;
-          background-image: url("../assets/icons/2_00000.svg");
-        }
-        #ftask-1 {
-          background-size: 75%;
-          background-position: 3px 0.5px;
-          background-repeat: no-repeat;
-          background-image: url("../assets/icons/system.svg");
+
+        .icon-wrapper {
+          .task-icon {
+            background-color: #f5f5f5;
+            border-radius: 6px;
+            width: 9.3vw;
+            height: 9.3vw;
+            max-height: 35px;
+            max-width: 35px;
+          }
+
+          #task-0 {
+            background-size: 100%;
+            background-repeat: no-repeat;
+            background-image: url("../assets/icons/Desktop/computer.svg");
+          }
+
+          #task-1 {
+            background-size: 100%;
+            background-repeat: no-repeat;
+            background-image: url("../assets/icons/Desktop/folder.svg");
+          }
+
+          #ftask-0 {
+            background-size: 75%;
+            background-position: 3.5px 0.5px;
+            background-repeat: no-repeat;
+            background-image: url("../assets/icons/2_00000.svg");
+          }
+
+          #ftask-1 {
+            background-size: 75%;
+            background-position: 3px 0.5px;
+            background-repeat: no-repeat;
+            background-image: url("../assets/icons/system.svg");
+          }
         }
       }
     }
