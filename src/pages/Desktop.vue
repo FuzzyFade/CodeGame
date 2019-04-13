@@ -55,37 +55,54 @@
         </div>
       </div>
       <div class="w-body" id="chapter-1" v-if="course.chapterOne">
-        <div class="page" id="c1-p1" v-if="course.nowPage === '1'" @click="nextPage(course)">
+        <div class="page" id="c1-p1" v-if="course.nowPage == '1'" @click="nextPage(course)">
           <div class="titile-wrapper" id="tw1">
             <div class="title">第一章 起点</div>
             <div class="subt">回顾旧日向往</div>
           </div>
           <div class="tap-tip"><span>点击屏幕以继续</span></div>
+          <div class="blank" @click="nextPage(course)"></div>
         </div>
-        <div class="page" id="c1-p2" v-if="course.nowPage === '2'" @click="nextPage(course)">
+        <div class="page" id="c1-p6" v-if="course.nowPage == '2'" @click="nextPage(course)">
+          <div class="c1-passages-wrapper">
+            <div class="c1-passage" id="c1-pa-1">
+              “在你学习一门新的 编程语言 时，有一项传统，
+            </div>
+            <div class="c1-passage">
+              你所编写并运行的 <strong>第一个程序</strong> 应该是‘hello world’程序，
+            </div>
+            <div class="c1-passage">
+              -- 它所做的全部工作便是宣言你所运行的‘hello world’这句话。”
+            </div>
+          </div>
+          <div class="c1-tap-tip">[Y]是的我知道了</div>
+        </div>
+        <div class="page" id="c1-p2" v-if="course.nowPage == '3'" @click="nextPage(course)">
           <div class="titile-wrapper" id="tw2">
             <div class="titile" id="t2">print()</div>
             <div class="subt-wrapper">
               <div class="subt" id="s2-1">print() 方法用于打印输出，时python中最常见的一个【函数】。</div>
               <div class="subt" id="s2-2">它可以输出多种类型的变量。</div>
-              <div class="subt" id="s2-3">变量就是储存在【内存】中的值，它可以指定不同的【数据类型】。</div>
+              <div class="subt" id="s2-3">变量就是储存在【内存】中的值，它可以指定不同的【数据类型】。</div>  
             </div>
           </div>
           <div class="tap-tip">[Y]好，我懂了</div>
-        </div>
-        <div class="page" id="c1-p3" v-if="course.nowPage === '3'" @click="nextPage(course)">
-          <div class="title">Python的五个标准的数据类型</div>
-          <div class="list">
-            <span>Numbers (数字)</span>
-            <span>String (字符串，往往使用引号('或")来创建字符串)</span>
-            <span>List (列表)</span>
-            <span>Tuple (元组)</span>
-            <span>Dictionary (字典)</span>
+        </div>  
+        <div class="page" id="c1-p3" v-if="course.nowPage == '4'" @click="nextPage(course)">
+          <div id="content-wrapper">  
+            <div class="title">Python的五个标准的数据类型</div>
+            <div class="list">
+              <span>Numbers (数字)</span>
+              <span>String (字符串，往往使用引号('或")来创建字符串)</span>
+              <span>List (列表)</span>
+              <span>Tuple (元组)</span>
+              <span>Dictionary (字典)</span>
+            </div>
+            <div class="tip">数字和字符串是最基础的数据类型，而剩下的则会在以后的学习中接触到。</div>
           </div>
-          <div class="tip">数字和字符串是最基础的数据类型，而剩下的则会在以后的学习中接触到。</div>
           <div class="tap-tip">[Y]好好好，下一步</div>
         </div>
-        <div class="page" id="c1-p4" v-if="course.nowPage === '4'">
+        <div class="page" id="c1-p4" v-if="course.nowPage == '5'">
           <div class="code-block">
             <div class="code">
               <span class="keyw">print</span><span class="qh">(</span><span class="string">"HELLO WORLD"</span><span class="qh">)</span>
@@ -94,7 +111,7 @@
           <div class="tip">//点击 RUN 运行上面的代码</div>
           <div class="run-btn" @click="nextPage(course)"><div class="run">[R]RUN</div></div>
         </div>
-        <div class="page" id="c1-p5" v-if="course.nowPage === '5'">
+        <div class="page" id="c1-p5" v-if="course.nowPage == '6'">
           <div class="title" id="c1-result">
             <div id="HELLO">HELLO</div>
             <div id="WORLD">WORLD</div>
@@ -102,16 +119,40 @@
           <div class="tap-tip" id="c1-over"><span>over</span></div>
         </div>
       </div>
+      <div class="w-body" id="chapter-2" v-if="course.chapterTwo">
+        <div class="page" id="c2-p2" v-if="course.nowPage == '1'" @click="nextPage(course)">
+          <div id="c2-w2">  
+            <div id="c2-ww">
+              <div id="c2-t">第二章 游戏</div>
+              <div id="subt">数与编程之舞</div>
+            </div>
+          </div>
+          <div class="c2-tip">
+            — — — — —  点击屏幕以继续  — — — — — 
+          </div>
+        </div>
+        <div class="page" id="c2-p3" v-if="course.nowPage == '2'" @click="nextPage(course)">
+          <div class="passages-wrapper">
+            <div>“现在你所使用的编程语言叫做Python，</div>
+            <div>人们用“简洁优雅”来形容它的语言风格</div>
+            <div>它可以用于系统编程、数值计算......甚至成为了百年后世界的基石。</div>
+            <div>在一切开始之前，我们现在玩个游戏吧。”</div>
+          </div>
+          <div id="c2-p3-tap">
+            — — — — —  点击屏幕以继续  — — — — —
+          </div>
+        </div>
+      </div>
     </div>
-    <div
-            :id="'fwin-'+index"
-            :key="index"
-            :style="fold.size"
-            class="window"
-            v-drag
-            v-getMaxHeight
-            v-for="(fold,index) in folds"
-            v-if="fold.show">
+    <div 
+      :id="'fwin-'+index"
+      :key="index"
+      :style="fold.size"
+      class="window"
+      v-drag
+      v-getMaxHeight
+      v-for="(fold,index) in folds"
+      v-if="fold.show">
       <div class="w-bar">
         <div class="pro">
           <div class="pro-icon-wrapper">
@@ -260,14 +301,14 @@
             top: '',
             left: '',
             width: '375px',
-            height: '',
+            height: '612px',
             borderRadius: '',
           },
           initSize: {
             top: '',
             left: '',
             width: '375px',
-            height: '',
+            height: '612px',
             borderRadius: '',
           },
           initPage: '1',
@@ -276,6 +317,7 @@
           folderPage: false,
           chapterOne: true,
           chapterTwo: false,
+          chapterThree: false,
           lock: true,
           show: false,
           run: false,
@@ -286,21 +328,52 @@
           size: {
             top: '',
             left: '',
-            width: '',
-            height: '',
+            width: '375px',
+            height: '612px',
             borderRadius: '',
           },
           initSize: {
             top: '',
             left: '',
-            width: '',
-            height: '',
+            width: '375px',
+            height: '612px',
             borderRadius: '',
           },
+          initPage: '1',
+          nowPage: '1',
           computerPage: false,
           folderPage: false,
           chapterOne: false,
           chapterTwo: true,
+          chapterThree: false,
+          lock: true,
+          show: false,
+          run: false,
+        },
+        {
+          name: "第三章",
+          img: "",
+          size: {
+            top: '',
+            left: '',
+            width: '375px',
+            height: '612px',
+            borderRadius: '',
+          },
+          initSize: {
+            top: '',
+            left: '',
+            width: '375px',
+            height: '612px',
+            borderRadius: '',
+          },
+          initPage: '1',
+          nowPage: '1',
+          computerPage: false,
+          folderPage: false,
+          chapterOne: false,
+          chapterTwo: false,
+          chapterThree: true,
           lock: true,
           show: false,
           run: false,
@@ -360,6 +433,7 @@
           foldOnePage: false,
           foldTwoPage: false,
         },
+
       ],
       nowTime: "",
       slideShow: false,
@@ -367,9 +441,6 @@
       userName: "Tony",
       userEmail: "23333@ncuos.com",
     }),
-    computed:{
-
-    },
     methods: {
       switchSlide() {
         this.slideShow = !this.slideShow;
@@ -400,17 +471,20 @@
         //清除登陆数据
       },
       aboutUs() {
+
       },
       changePass() {
+
       },
       changeWall() {
+
       },
       runEx(course) {
         course.run = true;
         course.show = true;
         if (course.name === '此电脑') {
           course.computerPage = true
-        }
+        } 
         else if (course.name === '文档') {
           course.folderPage = true
         }
@@ -419,6 +493,9 @@
         }
         else if (course.name === '第二章') {
           course.chapterTwo = true
+        }
+        else if(course.name === '第三章') {
+          course.chapterThree = true
         }
       },
       minimize(course) {
@@ -430,7 +507,7 @@
         course.size.top = '0';
         course.size.left = '0';
         course.size.width = '100vw';
-        course.size.height = mh + 'px';
+        course.size.height = mh + 'px'
         course.size.borderRadius = '0'
       },
       close(course) {
@@ -441,18 +518,22 @@
         course.size.height = initSize.height;
         course.size.top = initSize.top;
         course.size.left = initSize.left;
-        course.size.borderRadius = initSize.borderRadius;
+        course.size.borderRadius = initSize.borderRadius
         if (course.name === '此电脑') {
           course.computerPage = false
         } else if (course.name === '文档') {
           course.folderPage = false
         }
         else if (course.name === '第一章') {
-          course.chapterOne = false;
+          course.chapterOne = false
           course.nowPage = course.initPage
         }
         else if (course.name === '第二章') {
-          course.chapterTwo = false;
+          course.chapterTwo = false
+          course.nowPage = course.initPage
+        }
+        else if (course.name === '第三章') {
+          course.chapterThree = false
           course.nowPage = course.initPage
         }
         if (course.name === '2219-4-1') {
@@ -475,6 +556,7 @@
       },
       nextPage(course) {
         course.nowPage ++
+
       }
     },
     created() {
@@ -502,14 +584,16 @@
       },
       getMiniTasksWidth: {
         bind: function(el) {
-          let maxWidthNumber = window.innerWidth -199;
-          el.style.width = String(maxWidthNumber) + 'px'
+          let maxWidthNumber = window.innerWidth -199
+          let maxWdith = String(maxWidthNumber) + 'px'
+          el.style.width = maxWdith
         }
       },
       getMaxHeight: {
         bind: function(el) {
-          let maxHeightNumber = window.innerHeight - 55;
-          el.style.maxHeight = String(maxHeightNumber) + 'px'
+          let maxHeightNumber = window.innerHeight - 55
+          let maxHeight = String(maxHeightNumber) + 'px'
+          el.style.maxHeight = maxHeight
         }
       }
     }
@@ -523,21 +607,27 @@
     margin: 0;
     padding: 0;
   }
+
   .slide-fade-enter-active {
     transition: all .3s ease;
   }
+
   .slide-fade-leave-active {
     transition: all .3s ease;
     opacity: 0;
   }
+
   .slide-fade-enter, .slide-fade-leave-to {
     transform: translateY(10px);
   }
+
   #app {
     overflow: hidden;
   }
+
   .courses {
     height: 100vh;
+
     .courses-wrapper {
       display: flex;
       flex-direction: column;
@@ -546,6 +636,7 @@
       flex-wrap: wrap;
       padding-left: 39px;
       padding-top: 40px;
+
       .locked, .unlocked {
         display: flex;
         height: 86px;
@@ -556,17 +647,27 @@
           width: 54px;
           height: 54px;
         }
+
         #image-0 {
           background-image: url("../assets/icons/Desktop/computer.svg");
         }
+
         #image-1 {
           background-image: url("../assets/icons/Desktop/folder.svg");
           background-repeat: no-repeat;
           background-position: 5px 0;
         }
+        #image-2 {
+          background: url("../assets/icons/Desktop/第一关_00000.png");
+          background-size: 100%;
+        }
         #image-3 {
+          background: url("../assets/icons/Desktop/第二关_00000.png");
+          background-size: 100%;
         }
         #image-4 {
+          background: url("../assets/icons/Desktop/第三关_00000.png");
+          background-size: 100%;
         }
         .course-name {
           font-size: 16px;
@@ -578,20 +679,25 @@
         }
       }
       .locked {
+
       }
       .unlocked {
+
       }
     }
   }
+
   .slide {
     position: fixed;
     bottom: 55px;
     width: 188px;
     box-shadow: 0 0 14px 0 rgba(0, 0, 0, 0.12);
     border-radius: 12px 12px 0 0;
+
     .item-wrapper {
       display: flex;
       flex-direction: column;
+
       #self-info {
         .info-wrapper {
           border-radius: 12px 12px 0 0;
@@ -600,23 +706,27 @@
           justify-content: center;
           display: flex;
           background-color: @darkColor;
+
           .portrait {
             width: 41px;
             height: 41px;
-            background: url("../assets/avatars/2.png");
+            background: url("../assets/avatars/2_00000.png");
             background-size: 100%;
             border-radius: 50%;
             margin-right: 10px;
           }
+
           .name-email {
             display: flex;
             flex-direction: column;
+
             .user-name {
               width: 63px;
               height: 36px;
               font-size: 25px;
               color: rgba(255, 255, 255, 0.95);
             }
+
             .user-email {
               width: 78px;
               height: 11px;
@@ -628,15 +738,18 @@
           }
         }
       }
+
       #blank {
         height: 14px;
         background-color: @darkColor;
       }
+
       .slide-item {
         height: 40px;
         display: flex;
         align-items: center;
         background-color: #2b3034;
+
         i {
           margin-left: 9px;
           margin-right: 7px;
@@ -645,21 +758,27 @@
           background-color: #b9b9b9;
           border-radius: 5px;
         }
+
         #cPortrait {
           background: url("../assets/icons/toolbar/修改头像.svg");
         }
+
         #cPassword {
           background: url("../assets/icons/toolbar/修改密码.svg");
         }
+
         #aboutUs {
           background: url("../assets/icons/toolbar/关于.svg");
         }
+
         #logOut {
           background: url("../assets/icons/toolbar/注销.svg");
         }
+
         #shutDown {
           background: url("../assets/icons/toolbar/关机.svg");
         }
+
         p {
           height: 39px;
           width: 166px;
@@ -671,13 +790,16 @@
           align-items: center;
         }
       }
+
       #blank-up p, #last p {
         border: none;
       }
     }
   }
+
   .window {
-    box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.26);
+    box-shadow: 0px 2px 10px 0px 
+		rgba(0, 0, 0, 0.26);
     border-radius: 9px;
     overflow: hidden;
     width: 300px;
@@ -688,7 +810,6 @@
     top: 0;
     left: 0;
     background-color: #373c44;
-
     .w-bar {
       max-height: 41px;
       height: 6.1vh;
@@ -713,477 +834,575 @@
           display: flex;
           justify-content: center;
           align-items: center;
-
           .pro-icon {
             display: block;
             width: 11px;
             height: 12px;
             background-repeat: no-repeat;
           }
-
           #fwpi-0 {
             background: url("../assets/icons/2_00000.svg");
             background-size: 100%;
           }
-
           #fwpi-1 {
             background: url("../assets/icons/system.svg");
             background-size: 100%;
           }
-
           #wpi-0 {
             background: url("../assets/icons/Desktop/computer.svg");
             background-size: 100%;
           }
-
           #wpi-1 {
             background: url("../assets/icons/Desktop/folder.svg");
             background-size: 100%;
           }
-
-          .pro-name {
-            font-size: 13px;
-            letter-spacing: 0.7px;
-            color: rgba(236, 236, 236, 0.95);
+          #wpi-2 {
+            background: url("../assets/icons/Desktop/第一关_00000.png");
+            background-size: 100%;
+          }
+          #wpi-3 {
+            background: url("../assets/icons/Desktop/第二关_00000.png");
+            background-size: 100%;
+          }
+          #wpi-4 {
+            background: url("../assets/icons/Desktop/第三关_00000.png");
+            background-size: 100%;
           }
         }
 
-        .mmc-wrapper {
-          width: 95px;
-          display: flex;
-          align-items: center;
-
-          .minimize-button {
-            width: 18px;
-            height: 2px;
-            background: #ffffff;
-          }
-
-          .maximize-button {
-            margin-left: 15px;
-            width: 12px;
-            height: 13px;
-            border: 2px solid #ffffff;
-          }
-
-          .close-button {
-            margin-left: 15px;
-            width: 20px;
-            height: 20px;
-            background-size: 180%;
-            background: url("../assets/icons/windows/X.svg") -8.5px -6.5px;
-          }
+        .pro-name {
+          font-size: 13px;
+          letter-spacing: 0.7px;
+          color: rgba(236, 236, 236, 0.95);
         }
       }
 
-      .w-body {
-        overflow: auto;
-        flex-grow: 1;
+      .mmc-wrapper {
+        width: 95px;
+        display: flex;
+        align-items: center;
 
-        .passage-wrapper {
-          margin: 32px 19px 27px 19px;
-
-          .passage {
-            color: #ffffff;
-            font-size: 12px;
-          }
-
-          #passage-0 {
-            margin-bottom: 45px;
-          }
-
-          #passage-1 {
-            margin-bottom: 45px;
-          }
-
-          #passage-2 {
-            margin-bottom: 29px;
-          }
-
-          #passage-3 {
-            margin-bottom: 44px;
-          }
-
-          #passage-4 {
-            margin-bottom: 17px;
-          }
-
-          #passage-5 {
-            margin-bottom: 45px;
-          }
-
-          #passage-6 {
-            margin-bottom: 18px;
-          }
-
-          #passage-7 {
-            margin-bottom: 45px;
-          }
-
-          #passage-8 {
-
-          }
+        .minimize-button {
+          width: 18px;
+          height: 2px;
+          background: #ffffff;
         }
 
+        .maximize-button {
+          margin-left: 15px;
+          width: 12px;
+          height: 13px;
+          border: 2px solid #ffffff;
+        }
+
+        .close-button {
+          margin-left: 15px;
+          width: 20px;
+          height: 20px;
+          background-size: 180%;
+          background: url("../assets/icons/windows/X.svg") -8.5px -6.5px;
+        }
       }
 
-      #computer {
+    }
+
+    .w-body {
+      overflow: auto;
+      flex-grow: 1;
+      .passage-wrapper {
+        margin: 32px 19px 27px 19px;
+        .passage {
+          color: #ffffff;
+          font-size: 12px;
+        }
+        #passage-0 {
+          margin-bottom: 45px;
+        }
+        #passage-1 {
+          margin-bottom: 45px;
+        }
+        #passage-2 {
+          margin-bottom: 29px;
+        }
+        #passage-3 {
+          margin-bottom: 44px;
+        }
+        #passage-4 {
+          margin-bottom: 17px;
+        }
+        #passage-5 {
+          margin-bottom: 45 px;
+        }
+        #passage-6 {
+          margin-bottom: 18px;
+        }
+        #passage-7 {
+          margin-bottom: 45px;
+        }
+        #passage-8 {
+          
+        }
+      }
+      
+    }
+
+    #computer {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      .os-logo {
+        width: 189px;
+        height: 189px;
+        background: url("../assets/icons/logo.svg");
+        background-size: 100%;
+      }
+
+      .os-name {
+        margin-top: 5px;
+        font-size: 20px;
+        letter-spacing: 0.9px;
+        color: rgba(255, 255, 255, 0.95);
+      }
+
+      .version {
+        margin-top: 8px;
+        font-size: 10px;
+        letter-spacing: 0.6px;
+        color: rgba(255, 255, 255, 0.95)
+      }
+
+      .os-info {
+        margin-top: 40px;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
 
-        .os-logo {
-          width: 189px;
-          height: 189px;
-          background: url("../assets/icons/logo.svg");
-          background-size: 100%;
+        div {
+          margin-bottom: 9px;
         }
 
-        .os-name {
-          margin-top: 5px;
-          font-size: 20px;
-          letter-spacing: 0.9px;
-          color: rgba(255, 255, 255, 0.95);
+        .activeDate {
+          font-size: 12px;
+          letter-spacing: 0.7px;
+          color: rgba(234, 234, 234, 0.95);
         }
 
-        .version {
-          margin-top: 8px;
-          font-size: 10px;
-          letter-spacing: 0.6px;
-          color: rgba(255, 255, 255, 0.95)
+        .cpu {
+          .activeDate()
         }
 
-        .os-info {
-          margin-top: 40px;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-
-          div {
-            margin-bottom: 9px;
-          }
-
-          .activeDate {
-            font-size: 12px;
-            letter-spacing: 0.7px;
-            color: rgba(234, 234, 234, 0.95);
-          }
-
-          .cpu {
-            .activeDate()
-          }
-
-          .stora {
-            .activeDate()
-          }
-
-          .gpu {
-            .activeDate()
-          }
+        .stora {
+          .activeDate()
         }
 
-        .advancedOp {
-          margin-top: 30px;
-          margin-bottom: 25px;
-          font-size: 15px;
-          letter-spacing: 0.8px;
-          color: rgba(255, 255, 255, 0.95);
+        .gpu {
+          .activeDate()
         }
       }
 
-      #folder {
-        .folds {
-          display: flex;
-          margin-top: 27px;
+      .advancedOp {
+        margin-top: 30px;
+        margin-bottom: 25px;
+        font-size: 15px;
+        letter-spacing: 0.8px;
+        color: rgba(255, 255, 255, 0.95);
 
-          .fold {
-            margin-left: 25px;
-
-            .fold-icon {
-              width: 56px;
-              height: 72px;
-              margin-bottom: 15px;
-            }
-
-            .fold-name {
-              font-size: 11px;
-              letter-spacing: 0.6px;
-              color: rgba(236, 236, 236, 0.95);
-            }
-
-            #fold-icon-0 {
-              margin-left: 0;
-              background: url("../assets/icons/2_00000.svg") no-repeat 0 2px;
-            }
-
-            #fold-icon-1 {
-              background: url("../assets/icons/system.svg") no-repeat 0 3px;
-            }
-          }
-        }
       }
+    }
 
-      #chapter-1 {
-        background: #ffffff;
-
-        .page {
-          width: 100%;
-          display: flex;
-          align-items: center;
-          flex-direction: column;
-        }
-
-        #c1-p1 {
-          .titile {
-            font-size: 23px;
-            letter-spacing: 1.6px;
-            color: rgba(0, 0, 0, 0.95);
+    #folder {
+      .folds {
+        display: flex;
+        margin-top: 27px;
+        .fold {
+          margin-left: 25px;
+          .fold-icon {
+            width: 56px;
+            height: 72px;
+            margin-bottom: 15px;
           }
-
-          .subt {
-            letter-spacing: 1px;
-            font-size: 14px;
-            color: rgba(0, 0, 0, 0.95);
+          .fold-name {
+            font-size: 11px;
+            letter-spacing: 0.6px;
+            color: rgba(236, 236, 236, 0.95);
           }
-
-          .tap-tip {
-            width: 100%;
-            display: flex;
-            justify-content: center;
-
-            & span {
-              font-size: 14px;
-              letter-spacing: 1px;
-              color: rgba(71, 71, 71, 0.95);
-            }
+          #fold-icon-0 {
+            margin-left: 0;
+            background: url("../assets/icons/2_00000.svg") no-repeat 0 2px;
           }
-        }
-
-        #c1-p2 {
-          #tw2 {
-            #t2 {
-              font-size: 23px;
-              letter-spacing: 1px;
-              color: rgba(71, 71, 71, 0.95);
-            }
-
-            .subt-wrapper {
-              .subt {
-                font-size: 14px;
-                letter-spacing: 1px;
-                color: rgba(71, 71, 71, 0.95);
-              }
-
-              #s2-1 {
-              }
-
-              #s2-2 {
-                margin-top: 24px;
-              }
-
-              #s2-3 {
-                #s2-2()
-              }
-            }
-          }
-
-          .tap-tip {
-            font-size: 14px;
-            letter-spacing: 1px;
-            color: rgba(71, 71, 71, 0.95);
-          }
-        }
-
-        #c1-p3 {
-          .title {
-            font-size: 17px;
-            color: rgba(71, 71, 71, 0.95);
-            letter-spacing: 1px;
-          }
-
-          .list {
-            font-size: 14px;
-            color: rgba(71, 71, 71, 0.95);
-            letter-spacing: 1px;
-            display: flex;
-            flex-direction: column;
-          }
-
-          .tip {
-            font-size: 14px;
-            color: rgba(71, 71, 71, 0.95);
-            letter-spacing: 1px;
-          }
-
-          .tap-tip {
-            font-size: 14px;
-            letter-spacing: 1px;
-            color: rgba(71, 71, 71, 0.95);
-          }
-        }
-
-        #c1-p4 {
-          .code-block {
-            background: #333333;
-            border-radius: 7px;
-            width: 336px;
-            height: 193px;
-
-            .code {
-              width: 234px;
-              height: 26px;
-              font-size: 14px;
-              letter-spacing: 1px;
-
-              .keyw {
-                color: rgba(10, 205, 255, 0.95);
-              }
-
-              .qh {
-                color: rgba(255, 255, 255, 0.95);
-              }
-
-              .string {
-                color: #5ddca4;
-              }
-            }
-          }
-
-          .tip {
-            margin-top: 30px;
-            width: 195px;
-            height: 20px;
-            font-size: 14px;
-            letter-spacing: 1px;
-            color: rgba(65, 65, 65, 0.95);
-          }
-
-          .run-btn {
-            margin-top: 40px;
-            width: 331px;
-            height: 46px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border: solid 1px #3a3a3a;
-
-            .run {
-              font-size: 14px;
-              letter-spacing: 1px;
-              color: rgba(33, 33, 33, 0.95);
-            }
-          }
-        }
-
-        #c1-p5 {
-          #c1-result {
-            width: 316px;
-            height: 216px;
-            font-size: 77px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-          }
-
-          #c1-over {
-            & span {
-              width: 39px;
-              height: 24px;
-              font-size: 17px;
-              letter-spacing: 1.2px;
-              color: rgba(0, 0, 0, 0.95);
-            }
+          #fold-icon-1 {
+            background: url("../assets/icons/system.svg") no-repeat 0 3px;
           }
         }
       }
     }
-
-    .footer-wrapper {
-      border-top: solid 1px #595959;
-      z-index: 99;
-      position: fixed;
-      bottom: 0;
-      width: 100%;
-      background: linear-gradient(280deg, rgba(54, 55, 58, 0.8), #373c44, #262a32, black, black);
-
-      .footer {
-        height: 54px;
+    
+    #chapter-1 {
+      background: #ffffff;
+      .page {
+        width: 100%;
         display: flex;
-        justify-content: space-between;
         align-items: center;
+        flex-direction: column;
+      }
+      #c1-p1 {
+        #tw1 {
+          margin-top: 200px;
+          margin-bottom: 200px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
 
-        .os-button {
-          margin-left: 14px;
-          width: 42px;
-          height: 42px;
-          background-image: url("../assets/icons/logo.svg");
-          background-size: 140%;
-          background-position: -8px -8px;
-          background-repeat: no-repeat;
         }
-
-        .local-time {
-          margin-right: 10px;
-          width: 99px;
-          font-size: 12.9px;
-          color: rgba(255, 255, 255, 0.95);
-          letter-spacing: 0.7px;
+        .titile {
+	        font-size: 23px;
+	        letter-spacing: 1.6px;
+	        color: rgba(0, 0, 0, 0.95);
+        }
+        .subt {
+          margin-top: 20px;
+          letter-spacing: 1px;
+          font-size: 14px;
+          color: rgba(0, 0, 0, 0.95);
+        }
+        .tap-tip {
+          width: 100%;
+          display: flex;
+          justify-content: center;
+           & span {
+            font-size: 14px;
+            letter-spacing: 1px;
+	          color: rgba(71, 71, 71, 0.95);
+          }
+        }
+        .blank {
+          width: 100%;
+          height: 200px;
         }
       }
+      #c1-p2 {
+        #tw2 {
+          width: 270px;
+          margin-bottom: 100px;
+          margin-top: 150px;
+          #t2 {
+            height: 55px;
+            font-size: 23px;
+	          letter-spacing: 1px;
+	          color: rgba(71, 71, 71, 0.95);
+          }
+          .subt-wrapper {
+            .subt {
+              font-size: 14px;
+              letter-spacing: 1px;
+              color: rgba(71, 71, 71, 0.95);
+            }
+            #s2-1 {
+              margin-top: 10px;
+            }
+            #s2-2 {
+              margin-top: 24px;
+            }
+            #s2-3 {
+              #s2-2();
+              margin-bottom: 18px;
+            }
+          }
+        }
+        .tap-tip {
+          	font-size: 14px;
+            letter-spacing: 1px;
+            color: rgba(71, 71, 71, 0.95);
+        }
+      }
+      #c1-p3 {
+        #content-wrapper {
+          width: 275px;
+          height: 365px;
+          margin-bottom: 20px;
+          margin-top: 90px;
+        }
+        .title {
+          font-size: 17px;
+          color: rgba(71,71,71,0.95);
+          letter-spacing: 1px;
 
-      .mini-tasks {
-        overflow: hidden;
+        }
+        .list {
+          font-size: 14px;
+          color: rgba(71,71,71,0.95);
+          letter-spacing: 1px;
+          display: flex;
+          flex-direction: column;
+          margin-top: 44px;
+          margin-bottom: 37px;
+        }
+        .tip {
+          margin-top: 25px;
+          margin-bottom: 28px;
+          font-size: 14px;
+          color: rgba(71,71,71,0.95);
+          letter-spacing: 1px;   
+        }
+        .tap-tip {
+          	font-size: 14px;
+            letter-spacing: 1px;
+            color: rgba(71, 71, 71, 0.95);          
+        }
+      }
+      #c1-p4 {
+        .code-block {
+          margin-top: 135px;
+          background: #333333;
+          border-radius: 7px;
+          width: 336px;
+          height: 193px;
+          .code {
+            margin-top: 2px;
+            margin-left: 17px;
+            width: 234px;
+	          height: 26px;
+            font-size: 14px;
+            letter-spacing: 1px;
+            .keyw {
+              color: rgba(10,205,255,0.95);
+            }
+            .qh {
+              color: rgba(255,255,255,0.95);
+            }
+            .string {
+              color: #5ddca4;
+            }
+          }
+        }
+        .tip {
+          margin-top: 30px;
+          width: 195px;
+          height: 20px;
+          font-size: 14px;
+          letter-spacing: 1px;
+          color: rgba(65, 65, 65, 0.95);
+        }
+        .run-btn {
+          margin-top: 40px;
+          width: 331px;
+	        height: 46px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          border: solid 1px #3a3a3a;
+          .run {
+            font-size: 14px;
+            letter-spacing: 1px;
+            color: rgba(33, 33, 33, 0.95);
+          }
+        }
+      }
+      #c1-p5 {
+        #c1-result {
+          margin-top: 160px;
+          margin-bottom: 167px;
+          width: 316px;
+          height: 160px;
+          font-size: 77px;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+        }
+        #c1-over {
+          & span {
+            width: 39px;
+            height: 24px;
+            font-size: 17px;
+            letter-spacing: 1.2px;
+	          color: rgba(0, 0, 0, 0.95);
+          }
+        }
+      }
+      #c1-p6 {
         display: flex;
-        flex-wrap: nowrap;
-        position: absolute;
-        bottom: 0;
-        left: 80px;
-        height: 55px;
+        flex-direction: column;
         align-items: center;
 
-        .mini-task {
-          padding-right: 10px;
-          flex-shrink: 1;
+      }
+      .c1-passages-wrapper {
+        margin-top: 150px;
+        margin-bottom: 110px;
+        width: 276px;
+        #c1-pa-1 {
+          margin-top: 25px;
+          margin-bottom: 25px;
         }
-
-        .icon-wrapper {
-          .task-icon {
-            background-color: #f5f5f5;
-            border-radius: 6px;
-            width: 9.3vw;
-            height: 9.3vw;
-            max-height: 35px;
-            max-width: 35px;
+        .c1-passage {
+          font-size: 14px;
+          color: rgba(71,71,71,0.95);
+          letter-spacing: 1px;
+          margin-bottom: 25px;
+        }
+      }
+      .c1-tap-tip {
+        font-size: 14px;
+        letter-spacing: 1px;
+        color: rgba(71, 71, 71, 0.95);
+      }
+    }
+    #chapter-2 {
+      background: #ffffff;
+      #c2-p2 {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      #c2-w2 {
+        margin-top: 188px;
+        margin-bottom: 179px;
+        #c2-ww {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          margin: 20px;
+          width: 215px;
+          #c2-t {
+            font-size: 23px;
+            letter-spacing: 1.6px;
+            color: rgba(0, 0, 0, 0.95);
+            margin-top: 22px;
+            margin-bottom: 29px;
+          }
+          #subt {
+            font-size: 14px;
+            letter-spacing: 1px;
+	          color: rgba(0, 0, 0, 0.95);
+          }
+        }
+      }
+      .c2-tip {
+        font-size: 14px;
+	      letter-spacing: 1px;
+	      color: rgba(71, 71, 71, 0.95);
+      }
+      #c2-p3 {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        .passages-wrapper {
+          margin-top: 165px;
+          margin-bottom: 102px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          width: 294px;
+          & div {
+            margin-bottom: 25px;
+            font-size: 15px;
+            letter-spacing: 1.1px;
           }
 
-          #task-0 {
-            background-size: 100%;
-            background-repeat: no-repeat;
-            background-image: url("../assets/icons/Desktop/computer.svg");
-          }
+        }
+        #c2-p3-tap {
+          .c2-tip();
+        }
+      }
+    }
+  }
 
-          #task-1 {
-            background-size: 100%;
-            background-repeat: no-repeat;
-            background-image: url("../assets/icons/Desktop/folder.svg");
-          }
+  .footer-wrapper {
+    border-top: solid 1px #595959;
+    z-index: 99;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background: linear-gradient(280deg, rgba(54, 55, 58, 0.8), #373c44, #262a32, black, black);
 
-          #ftask-0 {
-            background-size: 75%;
-            background-position: 3.5px 0.5px;
-            background-repeat: no-repeat;
-            background-image: url("../assets/icons/2_00000.svg");
-          }
+    .footer {
+      height: 54px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
 
-          #ftask-1 {
-            background-size: 75%;
-            background-position: 3px 0.5px;
-            background-repeat: no-repeat;
-            background-image: url("../assets/icons/system.svg");
-          }
+      .os-button {
+        margin-left: 14px;
+        width: 42px;
+        height: 42px;
+        background-image: url("./assets/icons/logo.svg");
+        background-size: 140%;
+        background-position: -8px -8px;
+        background-repeat: no-repeat;
+      }
+
+      .local-time {
+        margin-right: 10px;
+        width: 99px;
+        font-size: 12.9px;
+        color: rgba(255, 255, 255, 0.95);
+        letter-spacing: 0.7px;
+      }
+    }
+
+    .mini-tasks {
+      overflow: hidden;
+      display: flex;
+      flex-wrap: nowrap;
+      position: absolute;
+      bottom: 0;
+      left: 80px;
+      height: 55px;
+      align-items: center;
+      .mini-task {
+        padding-right: 10px;
+        flex-shrink: 1;
+      }
+
+      .icon-wrapper {
+        .task-icon {
+          background-color: #f5f5f5;
+          border-radius: 6px;
+          width: 9.3vw;
+          height: 9.3vw;
+          max-height: 35px;
+          max-width: 35px;
+        }
+        #task-0 {
+          background-size: 100%;
+          background-repeat: no-repeat;
+          background-image: url("./assets/icons/Desktop/computer.svg");
+        }
+        #task-1 {
+          background-size: 100%;
+          background-repeat: no-repeat;
+          background-image: url("./assets/icons/Desktop/folder.svg");
+        }
+        #task-2 {
+          background-size: 100%;
+          background-repeat: no-repeat;
+          background-image: url("./assets/icons/Desktop/第一关_00000.png");
+        }
+        #task-3 {
+          background-size: 100%;
+          background-repeat: no-repeat;
+          background-image: url("./assets/icons/Desktop/第二关_00000.png");
+        }
+        #task-4 {
+          background-size: 100%;
+          background-repeat: no-repeat;
+          background-image: url("./assets/icons/Desktop/第三关_00000.png");
+        }
+        #ftask-0 {
+          background-size: 75%;
+          background-position: 3.5px 0.5px;
+          background-repeat: no-repeat;
+          background-image: url("./assets/icons/2_00000.svg");
+        }
+        #ftask-1 {
+          background-size: 75%;
+          background-position: 3px 0.5px;
+          background-repeat: no-repeat;
+          background-image: url("./assets/icons/system.svg");
         }
       }
     }
