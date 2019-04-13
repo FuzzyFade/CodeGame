@@ -3,9 +3,6 @@
     <div>
       <bg></bg>
       <div class="containers">
-        <v-alert outline dismissible :value="!password_state" type="error">
-          密码错误
-        </v-alert>
         <div class="AvatarBorder">
           <avatar :state="loginForm.icon" size="108px"></avatar>
         </div>
@@ -57,7 +54,7 @@
       Avatar
     },
     data: () => ({
-      password_state: true,
+      alert: true,
       url: '/api/auth/login',
       docmHeight: document.documentElement.clientHeight,
       userToken: '',
@@ -74,21 +71,31 @@
       ...mapMutations({
         add_count: 'ADD_COUNT'
       }),
+      error_message: alert => (
+        alert && '密码错误'
+      ),
       forget() {
-        this.$router.push({path:'/login/email'})
+        this.$router.push({path: '/login/email'})
       },
       show_button() {
-        return this.password_state && this.loginForm.password.length > 0
+        return this.loginForm.password >= 8 && this.loginForm.password >= 18
       },
-      getData(res) {
-        res.message === 'wrong password' && this.add_count(res.data) && this.$router.push({path: '/login/email'});
-        res.message === 'wrong password' || (this.password_state = false);
+      data_cook(info) {
+        (info.message === 'wrong password') && this.error_message();
+      },
+      get_data(res) {
+        const info = res.data;
+        res.status === 200 && this.data_cook(info)
       },
       login() {
+        const post_data = this.$qs.stringify({
+          username: this.loginForm.username,
+          password: this.loginForm.password
+        });
         this.$axios
-          .post(this.url, {username: this.loginForm.username, password: this.loginForm.password})
-          .then(this.getData);
-      },
+          .post(this.url, post_data)
+          .then(this.get_data);
+      }
     }
   }
 </script>

@@ -10,7 +10,7 @@
                 <lottie :height="200"
                         :options="defaultOptions"
                         :width="200"
-                        v-on:animCreated="handleAnimation"
+                        @animCreated="handleAnimation"
                 >
                 </lottie>
               </div>
@@ -97,22 +97,34 @@
       register() {
         this.$router.push({path: '/register/first'})
       },
-      get_data(res) {
-        (res.message === 'unknown user') && (this.$router.push({path: '/login/without'}));
+      without_username() {
+        this.$router.push({path: '/login/without'})
       },
-      change() {
-        const post_data = this.$qs.stringify({username: this.loginForm.username, password: this.loginForm.password});
-        const post_headers = {headers:{'Content-type': 'application/x-www-form-urlencoded'}};
-        this.$axios
-          .post(this.url, post_data, post_headers)
-          .then(this.get_data);
-        this.input_name(this.loginForm);
-
+      enter_password(){
+        this.$router.push({path: '/login/password'})
+      },
+      success(){
         // input
         this.input_ava(this.loginForm);
-        this.$router.push({
-          path: '/login/password',
-        })
+        this.enter_password()
+      },
+      data_cook(info) {
+        (info.message === 'unknown user') && this.without_username();
+        (info.message === 'success') && this.success();
+      },
+      get_data(res) {
+        const info = res.data;
+        res.status === 200 && this.data_cook(info);
+      },
+      change() {
+        const post_data = this.$qs.stringify({
+          username: this.loginForm.username,
+          password: this.loginForm.password
+        });
+        this.$axios
+          .post(this.url, post_data)
+          .then(this.get_data);
+        this.input_name(this.loginForm);
       }
     }
   }

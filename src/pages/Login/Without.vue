@@ -28,11 +28,12 @@
     </div>
     <div>
       <div class="footer">
-        <transition name="fade">
-          <v-btn @click="register" flat>
-            <span class="footer_text">> 好的，这就去</span>
-          </v-btn>
-        </transition>
+        <v-btn @click="register" flat>
+          <span class="footer_text">> 好的，这就去</span>
+        </v-btn>
+        <v-btn @click="login" flat>
+          <span class="footer_text">> 返回登录</span>
+        </v-btn>
       </div>
     </div>
   </div>
@@ -41,6 +42,7 @@
 <script>
   import Bg from "@/components/BackGround"
   import * as animationData from "@/assets/Lottie/red_logo.json"
+  import {mapMutations,mapState} from "vuex"
 
   export default {
     name: "Without",
@@ -52,12 +54,24 @@
       animationSpeed: 1,
       anim: {}
     }),
+    computed:{
+      ...mapState({
+        loginForm: state => state.login
+      })
+    },
     methods: {
+      ...mapMutations({
+        clean_name:'INPUT_NAME'
+      }),
       handleAnimation(anim) {
         this.anim = anim;
       },
       register() {
         this.$router.push({path: '/register/first'})
+      },
+      login() {
+        this.clean_name('');
+        this.$router.push({path: '/login'})
       },
     }
   }

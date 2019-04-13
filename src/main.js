@@ -10,6 +10,7 @@ import lottie from 'vue-lottie';
 import axios from 'axios'
 import qs from 'qs';
 
+axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 Vue.prototype.$axios = axios;
 Vue.prototype.$qs = qs;
 

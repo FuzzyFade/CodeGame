@@ -7,7 +7,7 @@
           <avatar :state="loginForm.icon" size="108px"></avatar>
         </div>
         <div style="line-height: 25px;font-size: 23px;letter-spacing: 1.3px">
-          <div style="height: 10px">
+          <div style="margin-bottom: 15px">
             <span>{{loginForm.username}}</span>
           </div>
           <span>{{"请输入你登记的邮箱"}}</span>

@@ -74,6 +74,7 @@
       })
     },
     data: () => ({
+      url: '/api/auth/register',
       docmHeight: document.documentElement.clientHeight,
       rules: {
         empty_email: value => !!value || '邮箱不可以为空',

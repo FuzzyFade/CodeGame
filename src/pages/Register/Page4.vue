@@ -5,7 +5,7 @@
       <div class="containers">
         <div>
           <div class="AvatarBorder">
-            <avatar :state="loginForm.ava" size="108px"></avatar>
+            <avatar :state="loginForm.icon" size="108px"></avatar>
           </div>
           <div class="tile">
             <span>{{loginForm.username}}</span>
@@ -30,7 +30,6 @@
   import Avatar from "@/components/Avatar";
   import Bg from "@/components/BackGround";
   import {mapMutations, mapState} from "vuex"
-  import axios from 'axios'
 
   export default {
     name: "Page4",
@@ -39,7 +38,7 @@
       Bg
     },
     data: () => ({
-      url: '/auth/register',
+      url: '/api/auth/register',
       docmHeight: document.documentElement.clientHeight,
     }),
     computed: {
@@ -47,20 +46,30 @@
         loginForm: state => state.register
       })
     },
-    get_data(res){
-      (res.message === 'success')
-      && (this.attach_name(this.loginForm))
-      && this.$router.push({path: '/login',});
-    },
     methods: {
-      ...mapMutations({attach_name: 'ATTACH_NAME'}),
+      ...mapMutations({attach_name: 'INPUT_NAME', attach_ava: 'INPUT_AVA'}),
+      to_login() {
+        this.attach_name(this.loginForm);
+        this.attach_ava(this.loginForm);
+        this.$router.push({path: '/login/password'})
+      },
+      data_cook(info) {
+        console.log(info);
+        (info.message === 'success') && this.to_login()
+      },
+      get_data(res) {
+        const info = res.data;
+        res.status === 200 && this.data_cook(info)
+      },
       submit() {
-        axios
-          .post(this.url, {
-            username: this.loginForm.username,
-            password: this.loginForm.password,
-            email: this.loginForm.email
-          })
+        const post_data = this.$qs.stringify({
+          username: this.loginForm.username,
+          password: this.loginForm.password,
+          email: this.loginForm.email,
+          icon: this.loginForm.icon
+        });
+        this.$axios
+          .post(this.url, post_data)
           .then(this.get_data);
       }
     }

@@ -4,16 +4,13 @@
       <bg></bg>
       <div class="containers">
         <div>
-          <v-alert :value="alert" dismissible outline type="error">
-            <span>用户名已存在</span>
-          </v-alert>
           <div class="AvatarBorder">
             <v-avatar size="160px">
               <div>
                 <lottie :height="200"
                         :options="defaultOptions"
                         :width="200"
-                        v-on:animCreated="handleAnimation"
+                        @animCreated="handleAnimation"
                 >
                 </lottie>
               </div>
@@ -24,7 +21,7 @@
           </div>
           <div class="text-field">
             <v-text-field
-                    :rules="[rules.empty]"
+                    :rules="[rules.empty,error_message(alert)]"
                     hint="最多输入 9 个字符"
                     label="用户名"
                     maxlength="9"
@@ -57,7 +54,6 @@
   import Bg from "@/components/BackGround"
   import * as animationData from "@/assets/Lottie/logo.json"
   import {mapMutations, mapState} from "vuex"
-  import axios from 'axios'
 
   export default {
     name: "Username",
@@ -71,7 +67,7 @@
     },
     data: () => ({
       alert: false,
-      url: '/api/auth/register',
+      url: '/api/auth/login',
       docmHeight: document.documentElement.clientHeight,
       rules: {
         empty: value => !!value || '用户名不可以为空'
@@ -87,20 +83,28 @@
       handleAnimation(anim) {
         this.anim = anim
       },
+      error_message:alert=>(
+        alert && '用户名已存在'
+      ),
+      data_cook(info){
+        info.message === 'unknown user' ? this.next_step() : (this.alert = true);
+      },
       get_data(res) {
-        (res.message === 'username failed') && (this.alert = true);
-        (res.message === 'username failed') || this.$router.push({path: '/register/second'});
+        const info = res.data;
+        res.status === 200 && this.data_cook(info)
+      },
+      next_step(){
+        this.addName(this.loginForm);
+        this.$router.push({path: '/register/second'})
       },
       change() {
-        const {username , password} = this.loginForm;
-        axios
-          .post(
-            this.url,
-            {username, password},
-            {headers:{'Content-Type':'application/x-www-form-urlencoded'}}
-            )
+        const post_data = this.$qs.stringify({
+          username: this.loginForm.username,
+          password: this.loginForm.password,
+        });
+        this.$axios
+          .post(this.url, post_data)
           .then(this.get_data);
-        //请求 并检查用户名是否重复，如果重复返回false，不重复返回true
       }
     }
   }

@@ -117,9 +117,6 @@ const store = new Vuex.Store({
     [ADD_AVA](state, loginFrom) {
       state.register.icon = loginFrom.icon;
     },
-    [ATTACH_NAME](state, loginFrom) {
-      state.login.username = loginFrom.username;
-    },
     [INPUT_AVA](state, loginFrom) {
       state.login.icon = loginFrom.icon;
     },
