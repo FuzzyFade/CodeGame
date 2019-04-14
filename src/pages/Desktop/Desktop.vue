@@ -286,7 +286,7 @@
               </div>
               <div class="name-email">
                 <div class="user-name">{{loginForm.username}}</div>
-                <div class="user-email">{{loginForm.email}}</div>
+                <div class="user-email">{{"这人一看就是"+loginForm.userName}}</div>
               </div>
             </div>
           </div>
