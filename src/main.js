@@ -10,7 +10,7 @@ import lottie from 'vue-lottie'
 import axios from 'axios'
 import qs from 'qs'
 
-/*
+/* 后期迭代用！！！
 // http request 拦截器
 axios.interceptors.request.use(
   config => {
