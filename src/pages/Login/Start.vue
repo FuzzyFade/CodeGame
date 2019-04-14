@@ -39,18 +39,32 @@
       animationSpeed: 1,
       anim: {}
     }),
+    created() {
+      this.gogogo()
+    },
     computed: {
       ...mapState({
         loginForm: state => state.login
       })
     },
     methods: {
+      gogogo() {
+        const TIME_COUNT = 5;
+        if (!this.timer) {
+          this.count = TIME_COUNT;
+          this.timer = setInterval(() => {
+            if (this.count > 0 && this.count <= TIME_COUNT) {
+              this.count--;
+            } else {
+              clearInterval(this.timer);
+              this.timer = null;
+              this.$router.push({path: '/desktop'})
+            }
+          }, 1000)
+        }
+      },
       handleAnimation(anim) {
         this.anim = anim;
-      },
-      await() {
-        //等待，然后心怀希望
-        this.$router.push({path: '/login/start'})
       },
     }
   }
