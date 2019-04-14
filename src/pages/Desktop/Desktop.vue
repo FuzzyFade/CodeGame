@@ -593,9 +593,6 @@
           this.nowTime = "2219" + "年" + (date.getMonth() + 1) + "月" + (date.getDay() + 7) + "日"
         }, 3600000)
       },
-      shutDown() {
-        window.close()
-      },
       logOut() {
 
       },

@@ -80,7 +80,7 @@
         this.inputEmail(this.loginForm);
         this.$router.push({path: '/login/forget'})
       },
-      show_button() {
+      showButton() {
         const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         return pattern.test(this.loginForm.email) && this.loginForm.email.length !== 0 && !this.alert
       },
