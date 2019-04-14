@@ -4,6 +4,8 @@
 
 > 项目名称：Python escape
 
+本项目地址：http://zhouyingsasa.com/
+
 本项目使用Vue.js编写，采用Webpack作为持续集成系统，使用yarn作为包管理工具。
 
 前端仓库: https://github.com/FuzzyFade/CodeGame
