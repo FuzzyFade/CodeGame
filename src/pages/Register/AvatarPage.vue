@@ -76,8 +76,8 @@
     },
     methods: {
       ...mapMutations({
-        attach_name: 'INPUT_NAME',
-        attach_ava: 'INPUT_AVA'
+        attachName: 'INPUT_NAME',
+        attachAva: 'INPUT_AVA'
       }),
       switch_ava(n) {
         this.loginForm.icon = n;
@@ -86,27 +86,27 @@
         (n === 3) && ([this.isActive1, this.isActive2, this.isActive3] = [false, false, true]);
       },
       change() {
-        this.attach_name(this.loginForm);
-        this.attach_ava(this.loginForm);
+        this.attachName(this.loginForm);
+        this.attachAva(this.loginForm);
         this.$router.push({path: '/register/fourth'})
       },
-      data_cook(info) {
+      dataCook(info) {
         (info.message === 'success') && this.change()
       },
-      get_data(res) {
+      getData(res) {
         const info = res.data;
-        res.status === 200 && this.data_cook(info)
+        res.status === 200 && this.dataCook(info)
       },
       submit() {
-        const post_data = this.$qs.stringify({
+        const postData = this.$qs.stringify({
           username: this.loginForm.username,
           password: this.loginForm.password,
           email: this.loginForm.email,
           icon: this.loginForm.icon
         });
         this.$axios
-          .post(this.url, post_data)
-          .then(this.get_data);
+          .post(this.url, postData)
+          .then(this.getData);
       },
     }
   }

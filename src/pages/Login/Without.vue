@@ -61,7 +61,7 @@
     },
     methods: {
       ...mapMutations({
-        clean_name:'INPUT_NAME'
+        cleanName:'INPUT_NAME'
       }),
       handleAnimation(anim) {
         this.anim = anim;
@@ -70,7 +70,7 @@
         this.$router.push({path: '/register/first'})
       },
       login() {
-        this.clean_name('');
+        this.cleanName('');
         this.$router.push({path: '/login'})
       },
     }

@@ -21,8 +21,8 @@
           </div>
           <div class="text-field">
             <v-text-field
-                    :rules="[rules.empty,error_message(alert)]"
-                    @input="clean_error"
+                    :rules="[rules.empty,errorMessage(alert)]"
+                    @input="cleanError"
                     hint="最多输入 9 个字符"
                     label="用户名"
                     maxlength="9"
@@ -84,29 +84,29 @@
       handleAnimation(anim) {
         this.anim = anim
       },
-      clean_error() {
+      cleanError() {
         this.alert = false
       },
-      error_message: alert => alert && '用户名已存在',
-      data_cook(info) {
-        info.message === 'unknown user' ? this.next_step() : (this.alert = true);
+      errorMessage: alert => alert && '用户名已存在',
+      dataCook(info) {
+        info.message === 'unknown user' ? this.nextStep() : (this.alert = true);
       },
-      get_data(res) {
+      getData(res) {
         const info = res.data;
-        res.status === 200 && this.data_cook(info)
+        res.status === 200 && this.dataCook(info)
       },
-      next_step() {
+      nextStep() {
         this.addName(this.loginForm);
         this.$router.push({path: '/register/second'})
       },
       change() {
-        const post_data = this.$qs.stringify({
+        const postData = this.$qs.stringify({
           username: this.loginForm.username,
           password: this.loginForm.password,
         });
         this.$axios
-          .post(this.url, post_data)
-          .then(this.get_data);
+          .post(this.url, postData)
+          .then(this.getData);
       }
     }
   }

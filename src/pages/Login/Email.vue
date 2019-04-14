@@ -13,8 +13,8 @@
           <span>请输入你的邮箱</span>
         </div>
         <div class="text-field">
-          <v-text-field :rules="[rules.empty_email,rules.email,error_message(alert)]"
-                        @input="clean_error"
+          <v-text-field :rules="[rules.emptyEmail,rules.email,errorMessage(alert)]"
+                        @input="cleanError"
                         label="输入您注册的邮箱"
                         v-model="loginForm.email"
           ></v-text-field>
@@ -23,7 +23,7 @@
       <div>
         <div :style="{top:(docmHeight-98)+'px'}" class="footer">
           <transition name="fade">
-            <div class="next_step" v-show="show_button()">
+            <div class="next_step" v-show="showButton()">
               <div class="text2">
                 <span style="font-size: 14px">下一步</span>
               </div>
@@ -55,7 +55,7 @@
       url_2:'/api/auth/forget',
       docmHeight: document.documentElement.clientHeight,
       rules: {
-        empty_email: value => !!value || '邮箱不可以为空',
+        emptyEmail: value => !!value || '邮箱不可以为空',
         email: value => {
           const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
           return pattern.test(value) || '请输入正确的邮箱地址'
@@ -69,45 +69,45 @@
     },
     methods: {
       ...mapMutations({
-        input_email:'INPUT_EMAIL'
+        inputEmail:'INPUT_EMAIL'
       }),
-      clean_error() {
+      cleanError() {
         this.alert = false
       },
-      error_message: alert => alert && '邮箱错误',
-      next_step() {
+      errorMessage: alert => alert && '邮箱错误',
+      nextStep() {
         this.send();
-        this.input_email(this.loginForm);
+        this.inputEmail(this.loginForm);
         this.$router.push({path: '/login/forget'})
       },
       show_button() {
         const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         return pattern.test(this.loginForm.email) && this.loginForm.email.length !== 0 && !this.alert
       },
-      data_cook(info) {
+      dataCook(info) {
         info.message === 'fail' && (this.alert = true);
-        info.status === 1 && this.next_step();
+        info.status === 1 && this.nextStep();
       },
-      get_data(res) {
+      getData(res) {
         const info = res.data;
-        res.status === 200 && this.data_cook(info)
+        res.status === 200 && this.dataCook(info)
       },
       send() {
-        const post_data = this.$qs.stringify({
+        const postData = this.$qs.stringify({
           username: this.loginForm.username,
           email: this.loginForm.email
         });
         this.$axios
-          .post(this.url_2, post_data)
+          .post(this.url_2, postData)
       },
       login() {
-        const post_data = this.$qs.stringify({
+        const postData = this.$qs.stringify({
           username: this.loginForm.username,
           email: this.loginForm.email
         });
         this.$axios
-          .post(this.url_1, post_data)
-          .then(this.get_data);
+          .post(this.url_1, postData)
+          .then(this.getData);
       }
     }
   }

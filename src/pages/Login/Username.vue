@@ -88,8 +88,8 @@
     }),
     methods: {
       ...mapMutations({
-        input_name: 'INPUT_NAME',
-        input_ava: 'INPUT_AVA'
+        inputName: 'INPUT_NAME',
+        inputAva: 'INPUT_AVA'
       }),
       handleAnimation(anim) {
         this.anim = anim;
@@ -97,33 +97,33 @@
       register() {
         this.$router.push({path: '/register/first'})
       },
-      without_username() {
+      withoutUsername() {
         this.$router.push({path: '/login/without'})
       },
-      enter_password(){
+      enterPassword() {
         this.$router.push({path: '/login/password'})
       },
-      success(info){
-        this.input_ava(info.data);
-        this.enter_password()
+      success(info) {
+        this.inputAva(info.data);
+        this.inputName(this.loginForm);
+        this.enterPassword()
       },
-      data_cook(info) {
-        (info.message === 'unknown user') && this.without_username();
+      dataCook(info) {
+        (info.message === 'unknown user') && this.withoutUsername();
         (info.message === 'success') && this.success(info);
       },
-      get_data(res) {
+      getData(res) {
         const info = res.data;
-        res.status === 200 && this.data_cook(info);
+        res.status === 200 && this.dataCook(info);
       },
       change() {
-        const post_data = this.$qs.stringify({
+        const postData = this.$qs.stringify({
           username: this.loginForm.username,
           password: this.loginForm.password
         });
         this.$axios
-          .post(this.url, post_data)
-          .then(this.get_data);
-        this.input_name(this.loginForm);
+          .post(this.url, postData)
+          .then(this.getData);
       }
     }
   }

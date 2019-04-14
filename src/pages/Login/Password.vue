@@ -11,7 +11,7 @@
         </div>
         <div class="text-field">
           <v-text-field :messages="[]"
-                        :rules="[rules.empty,error_message(alert)]"
+                        :rules="[rules.empty,errorMessage(alert)]"
                         :type="'password'"
                         @input="clean_error"
                         label="密码"
@@ -20,7 +20,7 @@
           ></v-text-field>
         </div>
         <div class="forget">
-          <v-btn @click="to_forget" flat>
+          <v-btn @click="toForget" flat>
             <span class="forget_text">忘记密码？</span>
           </v-btn>
         </div>
@@ -28,7 +28,7 @@
       <div>
         <div :style="{top:(docmHeight-98)+'px'}" class="footer">
           <transition name="fade">
-            <div class="next_step" v-show="show_button()">
+            <div class="next_step" v-show="showButton()">
               <div class="text2">
                 <span style="font-size: 14px">下一步</span>
               </div>
@@ -70,38 +70,38 @@
     },
     methods: {
       ...mapMutations({
-        add_count: 'ADD_COUNT'
+        addCount: 'ADD_COUNT'
       }),
-      clean_error() {
+      cleanError() {
         this.alert = false
       },
-      error_message: alert => alert && '密码错误',
-      to_forget() {
+      errorMessage: alert => alert && '密码错误',
+      toForget() {
         this.$router.push({path: '/login/email'})
       },
-      next_step(info) {
-        this.add_count(info.data);
+      nextStep(info) {
+        this.addCount(info.data);
         this.$router.push({path: '/login/start'})
       },
-      show_button() {
+      showButton() {
         return this.loginForm.password.length > 0
       },
-      data_cook(info) {
+      dataCook(info) {
         info.message === 'wrong password' && (this.alert = true);
-        info.status === 1 && this.next_step(info)
+        info.status === 1 && this.nextStep(info)
       },
-      get_data(res) {
+      getData(res) {
         const info = res.data;
-        res.status === 200 && this.data_cook(info)
+        res.status === 200 && this.dataCook(info)
       },
       login() {
-        const post_data = this.$qs.stringify({
+        const postData = this.$qs.stringify({
           username: this.loginForm.username,
           password: this.loginForm.password
         });
         this.$axios
-          .post(this.url, post_data)
-          .then(this.get_data);
+          .post(this.url, postData)
+          .then(this.getData);
       }
     }
   }

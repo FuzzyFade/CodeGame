@@ -14,7 +14,7 @@
             <span>我们给你发送了一个确认邮件</span>
           </div>
           <div class="text-field">
-            <security-code @input="clean_error"
+            <security-code @input="cleanError"
                            v-model="authCode"
             ></security-code>
           </div>
@@ -64,34 +64,40 @@
       })
     },
     methods: {
-      ...mapMutations({attach_name: 'INPUT_NAME', attach_ava: 'INPUT_AVA'}),
-      timed_out() {
+      ...mapMutations({
+        attachName: 'INPUT_NAME',
+        attachAva: 'INPUT_AVA'
+      }),
+      timedOut() {
         this.message = "验证码超时"
       },
-      wrong_code() {
+      wrongCode() {
         this.message = "验证码错误"
       },
-      next_step() {
+      nextStep() {
         this.message = "";
         this.$router.push({path: '/register/fifth'})
       },
-      clean_error() {
+      cleanError() {
         this.message = ""
       },
-      data_cook(info) {
-        (info.message === 'success') && this.next_step();
-        (info.message === 'wrong code') && this.wrong_code();
-        (info.message === 'Timed out') && this.timed_out()
+      dataCook(info) {
+        (info.message === 'success') && this.nextStep();
+        (info.message === 'wrong code') && this.wrongCode();
+        (info.message === 'Timed out') && this.timedOut()
       },
-      get_data(res) {
+      getData(res) {
         const info = res.data;
-        res.status === 200 && this.data_cook(info)
+        res.status === 200 && this.dataCook(info)
       },
       submit() {
-        const post_data = this.$qs.stringify({email:this.loginForm.email,code:this.authCode});
+        const postData = this.$qs.stringify({
+          email:this.loginForm.email,
+          code:this.authCode
+        });
         this.$axios
-          .post(this.url,post_data)
-          .then(this.get_data);
+          .post(this.url,postData)
+          .then(this.getData);
       }
     }
   }

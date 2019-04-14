@@ -15,7 +15,7 @@
       <lottie :height="60"
               :options="defaultOptions"
               :width="200"
-              v-on:animCreated="handleAnimation"
+              @animCreated="handleAnimation"
       >
       </lottie>
     </div>

@@ -24,7 +24,7 @@
           <div class="text-field">
             <div style="height:70px">
               <v-text-field
-                      :rules="[rules.empty_email,rules.email,error_message(alert)]"
+                      :rules="[rules.empty_email,rules.email,errorMessage(alert)]"
                       @input="clean_error"
                       label="邮箱"
                       maxlength="40"
@@ -93,7 +93,7 @@
     }),
     methods: {
       ...mapMutations({
-        add_meg: 'ADD_MEG'
+        addMeg: 'ADD_MEG'
       }),
       show_button() {
         const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -102,29 +102,29 @@
       handleAnimation(anim) {
         this.anim = anim
       },
-      clean_error() {
+      cleanError() {
         this.alert = false
       },
-      error_message: alert => alert && '邮箱已存在',
-      next_step() {
-        this.add_meg(this.loginForm);
+      errorMessage: alert => alert && '邮箱已存在',
+      nextStep() {
+        this.addMeg(this.loginForm);
         this.$router.push({path: '/register/third'})
       },
-      data_cook(info) {
+      dataCook(info) {
         info.message === 'exist' && (this.alert = true);
-        info.message === 'ok' && this.next_step()
+        info.message === 'ok' && this.nextStep()
       },
-      get_data(res) {
+      getData(res) {
         const info = res.data;
-        res.status === 200 && this.data_cook(info)
+        res.status === 200 && this.dataCook(info)
       },
       change() {
-        const post_data = this.$qs.stringify({
+        const postData = this.$qs.stringify({
           email: this.loginForm.email,
         });
         this.$axios
-          .post(this.url, post_data)
-          .then(this.get_data);
+          .post(this.url, postData)
+          .then(this.getData);
       }
     }
   }
