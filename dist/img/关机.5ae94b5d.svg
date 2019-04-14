@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="23px" height="23px" viewBox="0 0 23 23" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.4 (67378) - http://www.bohemiancoding.com/sketch -->
+    <title>关机</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="菜单栏详解" transform="translate(-9.000000, -580.000000)">
+            <g id="关机" transform="translate(9.000000, 580.000000)">
+                <rect id="Rectangle" fill="#D93D3D" x="0" y="0" width="23" height="23" rx="5"></rect>
+                <path d="M9.25279075,6 L6.74800978,7.55319495 C6.28516136,7.84016513 6.00001979,8.37055202 6,8.94455497 L6,13.9102951 C6.00020351,14.4841535 6.28531147,15.0143443 6.74800978,15.3013048 L10.7520718,17.7847003 C11.2148733,18.0717666 11.7851267,18.0717666 12.2479282,17.7847003 L16.2519902,15.3013048 C16.7148398,15.0142504 16.9999712,14.4838158 17,13.9097696 L17,8.94455497 C16.9999802,8.37055202 16.7148386,7.84016513 16.2519902,7.55319495 L13.8137425,6.04115932" id="Path" stroke="#FFFFFF" stroke-linecap="round"></path>
+                <path d="M11.5,4 L11.5,11" id="Path" stroke="#FFFFFF" stroke-linecap="round"></path>
+            </g>
+        </g>
+    </g>
+</svg>
