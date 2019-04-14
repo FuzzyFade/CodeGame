@@ -16,7 +16,7 @@ import AvatarPage from "@/pages/Register/AvatarPage"
 import Page4 from './pages/Register/Page4'
 import Page5 from './pages/Register/Page5'
 
-import Desktop from "@/pages/Desktop"
+import Desktop from "@/pages/Desktop/Desktop/"
 
 Vue.use(VueRouter);
 

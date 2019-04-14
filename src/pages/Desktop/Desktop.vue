@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <bg></bg>
     <div @click="slideFade()" class="courses">
       <div class="courses-wrapper">
         <div :class="course.lock ? 'locked' : 'unlocked'"
@@ -281,10 +282,10 @@
           <div id="self-info">
             <div class="info-wrapper">
               <div class="portrait">
-                <avatar size="41px" state="2"></avatar>
+                <avatar size="41px" :state="loginForm.icon"></avatar>
               </div>
               <div class="name-email">
-                <div class="user-name">{{"2333"}}</div>
+                <div class="user-name">{{loginForm.username}}</div>
                 <div class="user-email">{{loginForm.email}}</div>
               </div>
             </div>
@@ -343,12 +344,14 @@
 </template>
 
 <script>
+  import bg from '@/components/BackGround'
   import {mapState} from 'vuex'
   import Avatar from '@/components/Avatar'
   export default {
     name: "Desktop",
     components:{
-      Avatar
+      Avatar,
+      bg
     },
     data: () => ({
       courses: [{
@@ -564,7 +567,7 @@
     }),
     computed:{
       ...mapState({
-        loginForm: state => state.register
+        loginForm: state => state.login
       }),
     },
     methods: {
@@ -876,39 +879,37 @@
       height: 90vh;
       width: 160px;
       flex-wrap: wrap;
-      padding-left: 39px;
-      padding-top: 40px;
 
       .locked, .unlocked {
         display: flex;
         height: 86px;
         width: 54px;
         flex-direction: column;
-        margin-bottom: 28px;
+        margin: 21px 0 0 21px;
         .course-img {
           width: 54px;
           height: 54px;
         }
 
         #image-0 {
-          background-image: url("../assets/icons/Desktop/computer.svg");
+          background-image: url("../../assets/icons/Desktop/computer.svg");
         }
 
         #image-1 {
-          background-image: url("../assets/icons/Desktop/folder.svg");
+          background-image: url("../../assets/icons/Desktop/folder.svg");
           background-repeat: no-repeat;
           background-position: 5px 0;
         }
         #image-2 {
-          background: url("../assets/icons/Desktop/第一关_00000.png");
+          background: url("../../assets/icons/Desktop/第一关_00000.png");
           background-size: 100%;
         }
         #image-3 {
-          background: url("../assets/icons/Desktop/第二关_00000.png");
+          background: url("../../assets/icons/Desktop/第二关_00000.png");
           background-size: 100%;
         }
         #image-4 {
-          background: url("../assets/icons/Desktop/第三关_00000.png");
+          background: url("../../assets/icons/Desktop/第三关_00000.png");
           background-size: 100%;
         }
         .course-name {
@@ -1001,23 +1002,23 @@
         }
 
         #cPortrait {
-          background: url("../assets/icons/toolbar/修改头像.svg");
+          background: url("../../assets/icons/toolbar/修改头像.svg");
         }
 
         #cPassword {
-          background: url("../assets/icons/toolbar/修改密码.svg");
+          background: url("../../assets/icons/toolbar/修改密码.svg");
         }
 
         #aboutUs {
-          background: url("../assets/icons/toolbar/关于.svg");
+          background: url("../../assets/icons/toolbar/关于.svg");
         }
 
         #logOut {
-          background: url("../assets/icons/toolbar/注销.svg");
+          background: url("../../assets/icons/toolbar/注销.svg");
         }
 
         #shutDown {
-          background: url("../assets/icons/toolbar/关机.svg");
+          background: url("../../assets/icons/toolbar/关机.svg");
         }
 
         p {
@@ -1082,31 +1083,31 @@
             background-repeat: no-repeat;
           }
           #fwpi-0 {
-            background: url("../assets/icons/2_00000.svg");
+            background: url("../../assets/icons/2_00000.svg");
             background-size: 100%;
           }
           #fwpi-1 {
-            background: url("../assets/icons/system.svg");
+            background: url("../../assets/icons/system.svg");
             background-size: 100%;
           }
           #wpi-0 {
-            background: url("../assets/icons/Desktop/computer.svg");
+            background: url("../../assets/icons/Desktop/computer.svg");
             background-size: 100%;
           }
           #wpi-1 {
-            background: url("../assets/icons/Desktop/folder.svg");
+            background: url("../../assets/icons/Desktop/folder.svg");
             background-size: 100%;
           }
           #wpi-2 {
-            background: url("../assets/icons/Desktop/第一关_00000.png");
+            background: url("../../assets/icons/Desktop/第一关_00000.png");
             background-size: 100%;
           }
           #wpi-3 {
-            background: url("../assets/icons/Desktop/第二关_00000.png");
+            background: url("../../assets/icons/Desktop/第二关_00000.png");
             background-size: 100%;
           }
           #wpi-4 {
-            background: url("../assets/icons/Desktop/第三关_00000.png");
+            background: url("../../assets/icons/Desktop/第三关_00000.png");
             background-size: 100%;
           }
         }
@@ -1141,7 +1142,7 @@
           width: 20px;
           height: 20px;
           background-size: 180%;
-          background: url("../assets/icons/windows/X.svg") -8.5px -6.5px;
+          background: url("../../assets/icons/windows/X.svg") -8.5px -6.5px;
         }
       }
 
@@ -1196,7 +1197,7 @@
       .os-logo {
         width: 189px;
         height: 189px;
-        background: url("../assets/icons/logo.svg");
+        background: url("../../assets/icons/logo.svg");
         background-size: 100%;
       }
 
@@ -1272,10 +1273,10 @@
           }
           #fold-icon-0 {
             margin-left: 0;
-            background: url("../assets/icons/2_00000.svg") no-repeat 0 2px;
+            background: url("../../assets/icons/2_00000.svg") no-repeat 0 2px;
           }
           #fold-icon-1 {
-            background: url("../assets/icons/system.svg") no-repeat 0 3px;
+            background: url("../../assets/icons/system.svg") no-repeat 0 3px;
           }
         }
       }
@@ -1299,7 +1300,7 @@
           flex-direction: column;
           align-items: center;
           justify-content: center;
-          background: url("../assets/line/2.png");
+          background: url("../../assets/line/2.png");
         }
         .titile {
 	        font-size: 23px;
@@ -1328,7 +1329,7 @@
           width: 270px;
           margin-bottom: 100px;
           margin-top: 150px;
-          background: url("../assets/line/3.svg");
+          background: url("../../assets/line/3.svg");
           background-size: 100%;
           #t2 {
             height: 55px;
@@ -1366,7 +1367,7 @@
           height: 365px;
           margin-bottom: 20px;
           margin-top: 90px;
-          background: url("../assets/line/4.svg");
+          background: url("../../assets/line/4.svg");
           background-size: 130%;
           background-position: -10px -40px;
         }
@@ -1511,7 +1512,7 @@
           align-items: center;
           margin: 20px;
           width: 215px;
-          background: url("../assets/line/B/1.svg");
+          background: url("../../assets/line/B/1.svg");
           background-size: 100%;
           background-position: 0 -2px;
           #c2-t {
@@ -1535,7 +1536,7 @@
       }
       #c2-p3 {
         .passages-wrapper {
-          background: url("../assets/line/B/2.svg");
+          background: url("../../assets/line/B/2.svg");
           background-size: 110%;
           background-position: -30px -2px;
           margin-top: 165px;
@@ -1569,7 +1570,7 @@
           font-size: 14px;
           letter-spacing: 1px;
           color: rgba(0, 0, 0, 0.95);
-          background: url("../assets/line/B/3large.svg");
+          background: url("../../assets/line/B/3large.svg");
           background-size: 100%;
           background-position: 0 -5px;
           &-wrapper {
@@ -1638,7 +1639,7 @@
           .run-icon {
             width: 9px;
           	height: 17px;
-            background: url("../assets/line/B/continue.svg");
+            background: url("../../assets/line/B/continue.svg");
             background-size: 100%;
             background-repeat: no-repeat;
             margin-left: 7px;
@@ -1656,7 +1657,7 @@
           display: flex;
           justify-content: center;
           align-items: center;
-          background: url("../assets/line/B/3svg.svg");
+          background: url("../../assets/line/B/3svg.svg");
           background-size: 100%;
           background-position: -10px 10px;
           margin-top: 35px;
@@ -1757,7 +1758,7 @@
           .run-icon {
             width: 9px;
           	height: 17px;
-            background: url("../assets/line/B/continue.svg");
+            background: url("../../assets/line/B/continue.svg");
             background-size: 100%;
             background-repeat: no-repeat;
             margin-left: 7px;
@@ -1854,7 +1855,7 @@
           display: flex;
           align-items: center;
           justify-content: center;
-          background: url("../assets/line/B/3svg.svg");
+          background: url("../../assets/line/B/3svg.svg");
           background-size: 100%;
           background-position: 0 10px;
           margin-top: 34px;
@@ -1868,7 +1869,7 @@
           }
         }
         .p6li {
-          background: url("../assets/line/B/4.svg");
+          background: url("../../assets/line/B/4.svg");
           background-size: 100%;
           font-size: 11px;
           color: #000000;
@@ -1929,7 +1930,7 @@
         margin-left: 14px;
         width: 42px;
         height: 42px;
-        background-image: url("../assets/icons/logo.svg");
+        background-image: url("../../assets/icons/logo.svg");
         background-size: 140%;
         background-position: -8px -8px;
         background-repeat: no-repeat;
@@ -1970,39 +1971,39 @@
         #task-0 {
           background-size: 100%;
           background-repeat: no-repeat;
-          background-image: url("../assets/icons/Desktop/computer.svg");
+          background-image: url("../../assets/icons/Desktop/computer.svg");
         }
         #task-1 {
           background-size: 100%;
           background-repeat: no-repeat;
-          background-image: url("../assets/icons/Desktop/folder.svg");
+          background-image: url("../../assets/icons/Desktop/folder.svg");
         }
         #task-2 {
           background-size: 100%;
           background-repeat: no-repeat;
-          background-image: url("../assets/icons/Desktop/第一关_00000.png");
+          background-image: url("../../assets/icons/Desktop/第一关_00000.png");
         }
         #task-3 {
           background-size: 100%;
           background-repeat: no-repeat;
-          background-image: url("../assets/icons/Desktop/第二关_00000.png");
+          background-image: url("../../assets/icons/Desktop/第二关_00000.png");
         }
         #task-4 {
           background-size: 100%;
           background-repeat: no-repeat;
-          background-image: url("../assets/icons/Desktop/第三关_00000.png");
+          background-image: url("../../assets/icons/Desktop/第三关_00000.png");
         }
         #ftask-0 {
           background-size: 75%;
           background-position: 3.5px 0.5px;
           background-repeat: no-repeat;
-          background-image: url("../assets/icons/2_00000.svg");
+          background-image: url("../../assets/icons/2_00000.svg");
         }
         #ftask-1 {
           background-size: 75%;
           background-position: 3px 0.5px;
           background-repeat: no-repeat;
-          background-image: url("../assets/icons/system.svg");
+          background-image: url("../../assets/icons/system.svg");
         }
       }
     }
