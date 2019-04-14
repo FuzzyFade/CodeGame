@@ -55,14 +55,14 @@
         </div>
       </div>
       <div class="w-body" id="chapter-1" v-if="course.chapterOne">
-        <div class="page" id="c1-p1" v-if="course.nowPage == '1'" @click="nextPage(course)">
+        <div class="page" id="c1-p1" v-if="course.nowPage === '1'" @click="nextPage(course)">
           <div class="titile-wrapper" id="tw1">
             <div class="title">第一章 起点</div>
             <div class="subt">回顾旧日向往</div>
           </div>
           <div class="tap-tip"><span>点击屏幕以继续</span></div>
         </div>
-        <div class="page" id="c1-p6" v-if="course.nowPage == '2'" @click="nextPage(course)">
+        <div class="page" id="c1-p6" v-if="course.nowPage === '2'" @click="nextPage(course)">
           <div class="c1-passages-wrapper">
             <div class="c1-passage" id="c1-pa-1">
               “在你学习一门新的 编程语言 时，有一项传统，
@@ -76,19 +76,19 @@
           </div>
           <div class="c1-tap-tip">[Y]是的我知道了</div>
         </div>
-        <div class="page" id="c1-p2" v-if="course.nowPage == '3'" @click="nextPage(course)">
+        <div class="page" id="c1-p2" v-if="course.nowPage === '3'" @click="nextPage(course)">
           <div class="titile-wrapper" id="tw2">
             <div class="titile" id="t2">print()</div>
             <div class="subt-wrapper">
               <div class="subt" id="s2-1">print() 方法用于打印输出，时python中最常见的一个【函数】。</div>
               <div class="subt" id="s2-2">它可以输出多种类型的变量。</div>
-              <div class="subt" id="s2-3">变量就是储存在【内存】中的值，它可以指定不同的【数据类型】。</div>  
+              <div class="subt" id="s2-3">变量就是储存在【内存】中的值，它可以指定不同的【数据类型】。</div>
             </div>
           </div>
           <div class="tap-tip">[Y]好，我懂了</div>
-        </div>  
-        <div class="page" id="c1-p3" v-if="course.nowPage == '4'" @click="nextPage(course)">
-          <div id="content-wrapper">  
+        </div>
+        <div class="page" id="c1-p3" v-if="course.nowPage === '4'" @click="nextPage(course)">
+          <div id="content-wrapper">
             <div class="title">Python的五个标准的数据类型</div>
             <div class="list">
               <span>Numbers (数字)</span>
@@ -101,7 +101,7 @@
           </div>
           <div class="tap-tip">[Y]好好好，下一步</div>
         </div>
-        <div class="page" id="c1-p4" v-if="course.nowPage == '5'">
+        <div class="page" id="c1-p4" v-if="course.nowPage === '5'">
           <div class="code-block">
             <div class="code">
               <span class="keyw">print</span><span class="qh">(</span><span class="string">"HELLO WORLD"</span><span class="qh">)</span>
@@ -110,7 +110,7 @@
           <div class="tip">//点击 RUN 运行上面的代码</div>
           <div class="run-btn" @click="nextPage(course)"><div class="run">[R]RUN</div></div>
         </div>
-        <div class="page" id="c1-p5" v-if="course.nowPage == '6'">
+        <div class="page" id="c1-p5" v-if="course.nowPage === '6'">
           <div class="title" id="c1-result">
             <div id="HELLO">HELLO</div>
             <div id="WORLD">WORLD</div>
@@ -119,18 +119,18 @@
         </div>
       </div>
       <div class="w-body" id="chapter-2" v-if="course.chapterTwo">
-        <div class="page" id="c2-p2" v-if="course.nowPage == '1'" @click="nextPage(course)">
-          <div id="c2-w2">  
+        <div class="page" id="c2-p2" v-if="course.nowPage === '1'" @click="nextPage(course)">
+          <div id="c2-w2">
             <div id="c2-ww">
               <div id="c2-t">第二章 游戏</div>
               <div id="subt">数与编程之舞</div>
             </div>
           </div>
           <div class="c2-tip">
-            — — — — —  点击屏幕以继续  — — — — — 
+            — — — — —  点击屏幕以继续  — — — — —
           </div>
         </div>
-        <div class="page" id="c2-p3" v-if="course.nowPage == '2'" @click="nextPage(course)">
+        <div class="page" id="c2-p3" v-if="course.nowPage === '2'" @click="nextPage(course)">
           <div class="passages-wrapper">
             <div>“现在你所使用的编程语言叫做Python，</div>
             <div>人们用“简洁优雅”来形容它的语言风格</div>
@@ -141,7 +141,7 @@
             — — — — —  点击屏幕以继续  — — — — —
           </div>
         </div>
-        <div clas="page" id="c2-p4" v-if="course.nowPage == '3'">
+        <div class="page" id="c2-p4" v-if="course.nowPage === '3'">
           <div class="game-title" id="gt1">
             <div id="gt1-wrapper">
               a是0到100之间的某一个整数，请进行猜测。（#号后皆为注释）
@@ -161,7 +161,7 @@
             运行 <span class="run-icon"></span>
           </div>
         </div>
-        <div clas="page" id="c2-p5" v-if="course.nowPage == '4'">
+        <div clas="page" id="c2-p5" v-if="course.nowPage === '4'">
           <div id="gt2">
             <div class="gt2-wrapper">
               恭喜你成功猜出来a=36，那么接下来让我们用一些简单的运算符号来判断大小关系吧。
@@ -169,10 +169,10 @@
           </div>
           <div class="answer-area" id="aa2">
             <div class="answer-wrapper">
-              32 <input disabled="disabled" v-model="course.inputValue" class="answer-input"></input>
-              a <input disabled="disabled" v-model="course.secInputValue" class="answer-input"></input>
+              32 <input disabled="disabled" v-model="course.inputValue" class="answer-input"/>
+              a <input disabled="disabled" v-model="course.secInputValue" class="answer-input"/>
               36</br>
-              a!=32<span clas="warn-tip">#!=在Python表示不等于的意思</span>
+              a!=32<span class="warn-tip">#!=在Python表示不等于的意思</span>
             </div>
           </div>
           <div class="op-area">
@@ -181,7 +181,7 @@
           <div class="run-btn" id="grb2" @click="runSecGame(course)" v-if="(!course.errorTip)&&(!course.rigthTip)">
             运行 <span class="run-icon"></span>
           </div>
-          <div class="s-f-warn-area-wrong" v-if="course.errorTip == true">
+          <div class="s-f-warn-area-wrong" v-if="course.errorTip === true">
             <div class="error">ERROR</div>
             <div class="tttips-wrapper" id="wrong">
               <div class="dot-wrapper">
@@ -194,15 +194,15 @@
               </div>
             </div>
           </div>
-          <div class="s-f-warn-area-right" v-if="course.rigthTip == true">
+          <div class="s-f-warn-area-right" v-if="course.rigthTip === true">
             <div class="right">RIGHT</div>
             <div class="tttips-wrapper" id="right">
               <div class="right-tip">回答正确 √</div>
               <div class="gou"></div>
             </div>
-          </div>          
+          </div>
         </div>
-        <div clas="page" id="c2-p6" v-if="course.nowPage == '5'">
+        <div clas="page" id="c2-p6" v-if="course.nowPage === '5'">
           <div class="p6tw">
             <div class="p6t">
               Python中除了上述介绍的比较运算符，还包括运算符，还包括了赋值运算符，利用这些运算符我们可以进行一些算术计算。
@@ -244,7 +244,7 @@
         </div>
       </div>
     </div>
-    <div 
+    <div
       :id="'fwin-'+index"
       :key="index"
       :style="fold.size"
@@ -280,10 +280,12 @@
         <div class="item-wrapper">
           <div id="self-info">
             <div class="info-wrapper">
-              <div class="portrait"></div>
+              <div class="portrait">
+                <avatar size="41px" state="2"></avatar>
+              </div>
               <div class="name-email">
-                <div class="user-name">{{userName}}</div>
-                <div class="user-email">{{userEmail}}</div>
+                <div class="user-name">{{"2333"}}</div>
+                <div class="user-email">{{loginForm.email}}</div>
               </div>
             </div>
           </div>
@@ -341,8 +343,13 @@
 </template>
 
 <script>
+  import {mapState} from 'vuex'
+  import Avatar from '@/components/Avatar'
   export default {
     name: "Desktop",
+    components:{
+      Avatar
+    },
     data: () => ({
       courses: [{
         name: "此电脑",
@@ -555,6 +562,11 @@
       userName: "Tony",
       userEmail: "23333@ncuos.com",
     }),
+    computed:{
+      ...mapState({
+        loginForm: state => state.register
+      }),
+    },
     methods: {
       switchSlide() {
         this.slideShow = !this.slideShow;
@@ -582,7 +594,7 @@
         window.close()
       },
       logOut() {
-        //清除登陆数据
+
       },
       aboutUs() {
 
@@ -598,7 +610,7 @@
         course.show = true;
         if (course.name === '此电脑') {
           course.computerPage = true
-        } 
+        }
         else if (course.name === '文档') {
           course.folderPage = true
         }
@@ -621,7 +633,7 @@
         course.size.top = '0';
         course.size.left = '0';
         course.size.width = '100vw';
-        course.size.height = mh + 'px'
+        course.size.height = mh + 'px';
         course.size.borderRadius = '0'
       },
       close(course) {
@@ -632,28 +644,28 @@
         course.size.height = initSize.height;
         course.size.top = initSize.top;
         course.size.left = initSize.left;
-        course.size.borderRadius = initSize.borderRadius
+        course.size.borderRadius = initSize.borderRadius;
         if (course.name === '此电脑') {
           course.computerPage = false
         } else if (course.name === '文档') {
           course.folderPage = false
         }
         else if (course.name === '第一章') {
-          course.chapterOne = false
+          course.chapterOne = false;
           course.nowPage = course.initPage
         }
         else if (course.name === '第二章') {
-          course.chapterTwo = false
-          course.nowPage = course.initPage
-          course.inputValue = ''
-          course.results = []
-          course.secInputValue = ''
-          course.checkTime = '1'
-          course.errorTip = false
+          course.chapterTwo = false;
+          course.nowPage = course.initPage;
+          course.inputValue = '';
+          course.results = [];
+          course.secInputValue = '';
+          course.checkTime = '1';
+          course.errorTip = false;
           course.rigthTip = false
         }
         else if (course.name === '第三章') {
-          course.chapterThree = false
+          course.chapterThree = false;
           course.nowPage = course.initPage
         }
         if (course.name === '2219-4-1') {
@@ -679,111 +691,111 @@
       },
       chaTwoRun(course) {
         if(course.inputValue > '36') {
-          course.inputValue = ''
-          course.secInputValue = ''
+          course.inputValue = '';
+          course.secInputValue = '';
           course.results.push(course.runResultType.bigger)
         }
         else if (course.inputValue < '36') {
-          course.inputValue = ''
-          course.secInputValue = ''
+          course.inputValue = '';
+          course.secInputValue = '';
           course.results.push(course.runResultType.smaller)
         }
-        else if(course.inputValue == '36'){
-          course.inputValue = ''
-          course.secInputValue = ''
-          course.results.push(course.runResultType.success)
+        else if(course.inputValue === '36'){
+          course.inputValue = '';
+          course.secInputValue = '';
+          course.results.push(course.runResultType.success);
           let next = setTimeout(function(){
             if(course.nowPage<=3){course.nowPage ++}}, 2000)
         }
       },
       sigOper(course, index) {
-        if (index == 0) {
-          console.log(index)
-          console.log(course.checkTime)
-          if (course.checkTime == '1'){
-          course.inputValue = '>'
+        if (index === 0) {
+          console.log(index);
+          console.log(course.checkTime);
+          if (course.checkTime === '1'){
+          course.inputValue = '>';
           course.checkTime = '2'
           }else {
             course.secInputValue = '>'
           }
         }
-        else if (index == 1) {
-      
-         if (course.checkTime == '1'){
-          course.inputValue = '<'
+        else if (index === 1) {
+
+         if (course.checkTime === '1'){
+          course.inputValue = '<';
           course.checkTime = '2'
           }else {
             course.secInputValue = '<'
           }
         }
-        else if (index == 2) {
-          if (course.checkTime == '1'){
-          course.inputValue = '='
+        else if (index === 2) {
+          if (course.checkTime === '1'){
+          course.inputValue = '=';
           course.checkTime = '2'
           }else {
             course.secInputValue = '='
           }
         }
-        else if (index == 3) {
-          if (course.checkTime == '1'){
-          course.inputValue = '=='
+        else if (index === 3) {
+          if (course.checkTime === '1'){
+          course.inputValue = '==';
           course.checkTime = '2'
           }else {
             course.secInputValue = '=='
           }
         }
-        else if (index == 4) {
-          if (course.checkTime == '1'){
-          course.inputValue = '!='
+        else if (index === 4) {
+          if (course.checkTime === '1'){
+          course.inputValue = '!=';
           course.checkTime = '2'
           }else {
             course.secInputValue = '!='
           }
         }
-        else if (index == 5) {
-          if (course.checkTime == '1'){
-          course.inputValue = '<='
+        else if (index === 5) {
+          if (course.checkTime === '1'){
+          course.inputValue = '<=';
           course.checkTime = '2'
           }else {
             course.secInputValue = '<='
           }
         }
-        else if (index == 6) {
-          if (course.checkTime == '1'){
+        else if (index === 6) {
+          if (course.checkTime === '1'){
           course.inputValue = ''
           }else {
-            course.checkTime = '1'
+            course.checkTime = '1';
             course.secInputValue = ''
           }
         }
-        else if (index == 7) {
-          if (course.checkTime == '1'){
-          course.inputValue = '>='
+        else if (index === 7) {
+          if (course.checkTime === '1'){
+          course.inputValue = '>=';
           course.checkTime = '2'
           }else {
             course.secInputValue = '>='
           }
         }
-        else if (index == 8) {
-          course.checkTime = '1'
-          course.inputValue = ''
+        else if (index === 8) {
+          course.checkTime = '1';
+          course.inputValue = '';
           course.secInputValue = ''
         }
       },
       runSecGame(course) {
-        if (course.inputValue == '<' && course.secInputValue == '=') {
-          course.inputValue = ''
-          course.secInputValue = ''   
-          course.checkTime = '1'       
-          course.rigthTip = true
+        if (course.inputValue === '<' && course.secInputValue === '=') {
+          course.inputValue = '';
+          course.secInputValue = '';
+          course.checkTime = '1';
+          course.rigthTip = true;
           let next = setTimeout(function(){
             if(course.nowPage<=4){course.nowPage ++}}, 3000)
         }
         else {
-          course.inputValue = ''
-          course.secInputValue = ''
-          course.checkTime = '1'          
-          course.errorTip = true
+          course.inputValue = '';
+          course.secInputValue = '';
+          course.checkTime = '1';
+          course.errorTip = true;
           let next = setTimeout(function(){
             if(course.nowPage<=4){course.errorTip = false}}, 4000)
         }
@@ -814,15 +826,15 @@
       },
       getMiniTasksWidth: {
         bind: function(el) {
-          let maxWidthNumber = window.innerWidth -199
-          let maxWdith = String(maxWidthNumber) + 'px'
+          let maxWidthNumber = window.innerWidth -199;
+          let maxWdith = String(maxWidthNumber) + 'px';
           el.style.width = maxWdith
         }
       },
       getMaxHeight: {
         bind: function(el) {
-          let maxHeightNumber = window.innerHeight - 55
-          let maxHeight = String(maxHeightNumber) + 'px'
+          let maxHeightNumber = window.innerHeight - 55;
+          let maxHeight = String(maxHeightNumber) + 'px';
           el.style.maxHeight = maxHeight
         }
       }
@@ -940,7 +952,6 @@
           .portrait {
             width: 41px;
             height: 41px;
-            background: url("../assets/avatars/2_00000.png");
             background-size: 100%;
             border-radius: 50%;
             margin-right: 10px;
@@ -1028,7 +1039,7 @@
   }
 
   .window {
-    box-shadow: 0px 2px 10px 0px 
+    box-shadow: 0px 2px 10px 0px
 		rgba(0, 0, 0, 0.26);
     border-radius: 9px;
     overflow: hidden;
@@ -1170,10 +1181,10 @@
           margin-bottom: 45px;
         }
         #passage-8 {
-          
+
         }
       }
-      
+
     }
 
     #computer {
@@ -1269,7 +1280,7 @@
         }
       }
     }
-    
+
     #chapter-1 {
       background: #ffffff;
       .page {
@@ -1379,12 +1390,12 @@
           margin-bottom: 28px;
           font-size: 14px;
           color: rgba(71,71,71,0.95);
-          letter-spacing: 1px;   
+          letter-spacing: 1px;
         }
         .tap-tip {
           	font-size: 14px;
             letter-spacing: 1px;
-            color: rgba(71, 71, 71, 0.95);          
+            color: rgba(71, 71, 71, 0.95);
         }
       }
       #c1-p4 {
@@ -1567,7 +1578,7 @@
         }
         .answer-area {
           margin-top: 33px;
-          box-shadow: 0px 2px 8px 0px 
+          box-shadow: 0px 2px 8px 0px
 		        rgba(0, 0, 0, 0.16);
           border-radius: 7px;
           width: 329px;
@@ -1649,7 +1660,7 @@
           background-size: 100%;
           background-position: -10px 10px;
           margin-top: 35px;
-          
+
           .gt2-wrapper {
             font-size: 14px;
             letter-spacing: 1px;
@@ -1658,7 +1669,7 @@
         }
         #aa2 {
           margin-top: 30px;
-          box-shadow: 0px 2px 8px 0px 
+          box-shadow: 0px 2px 8px 0px
 		        rgba(0, 0, 0, 0.16);
           border-radius: 7px;
           width: 329px;
@@ -1695,7 +1706,7 @@
             width: 69px;
             height: 35px;
             background-color: #686868;
-            box-shadow: 0px 2px 9px 0px 
+            box-shadow: 0px 2px 9px 0px
               rgba(0, 0, 0, 0.27);
             border-radius: 8px;
             font-size: 14px;
@@ -1846,7 +1857,7 @@
           background: url("../assets/line/B/3svg.svg");
           background-size: 100%;
           background-position: 0 10px;
-          margin-top: 34px; 
+          margin-top: 34px;
           margin-bottom: 68px;
           .p6t {
             width: 270px;
