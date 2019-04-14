@@ -56,14 +56,14 @@
         </div>
       </div>
       <div class="w-body" id="chapter-1" v-if="course.chapterOne">
-        <div class="page" id="c1-p1" v-if="course.nowPage === '1'" @click="nextPage(course)">
+        <div class="page" id="c1-p1" v-if="course.nowPage == '1'" @click="nextPage(course)">
           <div class="titile-wrapper" id="tw1">
             <div class="title">第一章 起点</div>
             <div class="subt">回顾旧日向往</div>
           </div>
           <div class="tap-tip"><span>点击屏幕以继续</span></div>
         </div>
-        <div class="page" id="c1-p6" v-if="course.nowPage === '2'" @click="nextPage(course)">
+        <div class="page" id="c1-p6" v-if="course.nowPage == '2'" @click="nextPage(course)">
           <div class="c1-passages-wrapper">
             <div class="c1-passage" id="c1-pa-1">
               “在你学习一门新的 编程语言 时，有一项传统，
@@ -77,7 +77,7 @@
           </div>
           <div class="c1-tap-tip">[Y]是的我知道了</div>
         </div>
-        <div class="page" id="c1-p2" v-if="course.nowPage === '3'" @click="nextPage(course)">
+        <div class="page" id="c1-p2" v-if="course.nowPage == '3'" @click="nextPage(course)">
           <div class="titile-wrapper" id="tw2">
             <div class="titile" id="t2">print()</div>
             <div class="subt-wrapper">
@@ -88,7 +88,7 @@
           </div>
           <div class="tap-tip">[Y]好，我懂了</div>
         </div>
-        <div class="page" id="c1-p3" v-if="course.nowPage === '4'" @click="nextPage(course)">
+        <div class="page" id="c1-p3" v-if="course.nowPage == '4'" @click="nextPage(course)">
           <div id="content-wrapper">
             <div class="title">Python的五个标准的数据类型</div>
             <div class="list">
@@ -102,7 +102,7 @@
           </div>
           <div class="tap-tip">[Y]好好好，下一步</div>
         </div>
-        <div class="page" id="c1-p4" v-if="course.nowPage === '5'">
+        <div class="page" id="c1-p4" v-if="course.nowPage == '5'">
           <div class="code-block">
             <div class="code">
               <span class="keyw">print</span><span class="qh">(</span><span class="string">"HELLO WORLD"</span><span class="qh">)</span>
@@ -111,7 +111,7 @@
           <div class="tip">//点击 RUN 运行上面的代码</div>
           <div class="run-btn" @click="nextPage(course)"><div class="run">[R]RUN</div></div>
         </div>
-        <div class="page" id="c1-p5" v-if="course.nowPage === '6'">
+        <div class="page" id="c1-p5" v-if="course.nowPage == '6'">
           <div class="title" id="c1-result">
             <div id="HELLO">HELLO</div>
             <div id="WORLD">WORLD</div>
@@ -120,7 +120,7 @@
         </div>
       </div>
       <div class="w-body" id="chapter-2" v-if="course.chapterTwo">
-        <div class="page" id="c2-p2" v-if="course.nowPage === '1'" @click="nextPage(course)">
+        <div class="page" id="c2-p2" v-if="course.nowPage == '1'" @click="nextPage(course)">
           <div id="c2-w2">
             <div id="c2-ww">
               <div id="c2-t">第二章 游戏</div>
@@ -131,7 +131,7 @@
             — — — — —  点击屏幕以继续  — — — — —
           </div>
         </div>
-        <div class="page" id="c2-p3" v-if="course.nowPage === '2'" @click="nextPage(course)">
+        <div class="page" id="c2-p3" v-if="course.nowPage == '2'" @click="nextPage(course)">
           <div class="passages-wrapper">
             <div>“现在你所使用的编程语言叫做Python，</div>
             <div>人们用“简洁优雅”来形容它的语言风格</div>
@@ -142,7 +142,7 @@
             — — — — —  点击屏幕以继续  — — — — —
           </div>
         </div>
-        <div class="page" id="c2-p4" v-if="course.nowPage === '3'">
+        <div class="page" id="c2-p4" v-if="course.nowPage == '3'">
           <div class="game-title" id="gt1">
             <div id="gt1-wrapper">
               a是0到100之间的某一个整数，请进行猜测。（#号后皆为注释）
@@ -162,7 +162,7 @@
             运行 <span class="run-icon"></span>
           </div>
         </div>
-        <div clas="page" id="c2-p5" v-if="course.nowPage === '4'">
+        <div clas="page" id="c2-p5" v-if="course.nowPage == '4'">
           <div id="gt2">
             <div class="gt2-wrapper">
               恭喜你成功猜出来a=36，那么接下来让我们用一些简单的运算符号来判断大小关系吧。
@@ -182,7 +182,7 @@
           <div class="run-btn" id="grb2" @click="runSecGame(course)" v-if="(!course.errorTip)&&(!course.rigthTip)">
             运行 <span class="run-icon"></span>
           </div>
-          <div class="s-f-warn-area-wrong" v-if="course.errorTip === true">
+          <div class="s-f-warn-area-wrong" v-if="course.errorTip == true">
             <div class="error">ERROR</div>
             <div class="tttips-wrapper" id="wrong">
               <div class="dot-wrapper">
@@ -195,7 +195,7 @@
               </div>
             </div>
           </div>
-          <div class="s-f-warn-area-right" v-if="course.rigthTip === true">
+          <div class="s-f-warn-area-right" v-if="course.rigthTip == true">
             <div class="right">RIGHT</div>
             <div class="tttips-wrapper" id="right">
               <div class="right-tip">回答正确 √</div>
@@ -203,7 +203,7 @@
             </div>
           </div>
         </div>
-        <div clas="page" id="c2-p6" v-if="course.nowPage === '5'">
+        <div clas="page" id="c2-p6" v-if="course.nowPage == '5'">
           <div class="p6tw">
             <div class="p6t">
               Python中除了上述介绍的比较运算符，还包括运算符，还包括了赋值运算符，利用这些运算符我们可以进行一些算术计算。
@@ -608,19 +608,19 @@
       runEx(course) {
         course.run = true;
         course.show = true;
-        if (course.name === '此电脑') {
+        if (course.name == '此电脑') {
           course.computerPage = true
         }
-        else if (course.name === '文档') {
+        else if (course.name == '文档') {
           course.folderPage = true
         }
-        else if (course.name === '第一章') {
+        else if (course.name == '第一章') {
           course.chapterOne = true
         }
-        else if (course.name === '第二章') {
+        else if (course.name == '第二章') {
           course.chapterTwo = true
         }
-        else if(course.name === '第三章') {
+        else if(course.name == '第三章') {
           course.chapterThree = true
         }
       },
@@ -645,16 +645,16 @@
         course.size.top = initSize.top;
         course.size.left = initSize.left;
         course.size.borderRadius = initSize.borderRadius;
-        if (course.name === '此电脑') {
+        if (course.name == '此电脑') {
           course.computerPage = false
-        } else if (course.name === '文档') {
+        } else if (course.name == '文档') {
           course.folderPage = false
         }
-        else if (course.name === '第一章') {
+        else if (course.name == '第一章') {
           course.chapterOne = false;
           course.nowPage = course.initPage
         }
-        else if (course.name === '第二章') {
+        else if (course.name == '第二章') {
           course.chapterTwo = false;
           course.nowPage = course.initPage;
           course.inputValue = '';
@@ -664,13 +664,13 @@
           course.errorTip = false;
           course.rigthTip = false
         }
-        else if (course.name === '第三章') {
+        else if (course.name == '第三章') {
           course.chapterThree = false;
           course.nowPage = course.initPage
         }
-        if (course.name === '2219-4-1') {
+        if (course.name == '2219-4-1') {
           course.foldOnePage = false
-        } else if (course.name === '折返吧') {
+        } else if (course.name == '折返吧') {
           course.foldTwoPage = false
         }
       },
@@ -680,9 +680,9 @@
       openFold(fold) {
         fold.run = true;
         fold.show = true;
-        if (fold.name === '2219-4-1') {
+        if (fold.name == '2219-4-1') {
           fold.foldOnePage = true
-        } else if (fold.name === '折返吧') {
+        } else if (fold.name == '折返吧') {
           fold.foldTwoPage = true
         }
       },
@@ -700,7 +700,7 @@
           course.secInputValue = '';
           course.results.push(course.runResultType.smaller)
         }
-        else if(course.inputValue === '36'){
+        else if(course.inputValue == '36'){
           course.inputValue = '';
           course.secInputValue = '';
           course.results.push(course.runResultType.success);
@@ -709,81 +709,81 @@
         }
       },
       sigOper(course, index) {
-        if (index === 0) {
+        if (index == 0) {
           console.log(index);
           console.log(course.checkTime);
-          if (course.checkTime === '1'){
+          if (course.checkTime == '1'){
           course.inputValue = '>';
           course.checkTime = '2'
           }else {
             course.secInputValue = '>'
           }
         }
-        else if (index === 1) {
+        else if (index == 1) {
 
-         if (course.checkTime === '1'){
+         if (course.checkTime == '1'){
           course.inputValue = '<';
           course.checkTime = '2'
           }else {
             course.secInputValue = '<'
           }
         }
-        else if (index === 2) {
-          if (course.checkTime === '1'){
+        else if (index == 2) {
+          if (course.checkTime == '1'){
           course.inputValue = '=';
           course.checkTime = '2'
           }else {
             course.secInputValue = '='
           }
         }
-        else if (index === 3) {
-          if (course.checkTime === '1'){
+        else if (index == 3) {
+          if (course.checkTime == '1'){
           course.inputValue = '==';
           course.checkTime = '2'
           }else {
             course.secInputValue = '=='
           }
         }
-        else if (index === 4) {
-          if (course.checkTime === '1'){
+        else if (index == 4) {
+          if (course.checkTime == '1'){
           course.inputValue = '!=';
           course.checkTime = '2'
           }else {
             course.secInputValue = '!='
           }
         }
-        else if (index === 5) {
-          if (course.checkTime === '1'){
+        else if (index == 5) {
+          if (course.checkTime == '1'){
           course.inputValue = '<=';
           course.checkTime = '2'
           }else {
             course.secInputValue = '<='
           }
         }
-        else if (index === 6) {
-          if (course.checkTime === '1'){
+        else if (index == 6) {
+          if (course.checkTime == '1'){
           course.inputValue = ''
           }else {
             course.checkTime = '1';
             course.secInputValue = ''
           }
         }
-        else if (index === 7) {
-          if (course.checkTime === '1'){
+        else if (index == 7) {
+          if (course.checkTime == '1'){
           course.inputValue = '>=';
           course.checkTime = '2'
           }else {
             course.secInputValue = '>='
           }
         }
-        else if (index === 8) {
+        else if (index == 8) {
           course.checkTime = '1';
           course.inputValue = '';
           course.secInputValue = ''
         }
       },
       runSecGame(course) {
-        if (course.inputValue === '<' && course.secInputValue === '=') {
+        if (course.inputValue == '<' && course.secInputValue == '=') {
           course.inputValue = '';
           course.secInputValue = '';
           course.checkTime = '1';
