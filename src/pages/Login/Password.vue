@@ -28,7 +28,7 @@
       <div>
         <div :style="{top:(docmHeight-98)+'px'}" class="footer">
           <transition name="fade">
-            <div class="next_step" v-show="show_button">
+            <div class="next_step" v-show="show_button()">
               <div class="text2">
                 <span style="font-size: 14px">下一步</span>
               </div>
@@ -77,24 +77,18 @@
       },
       error_message: alert => alert && '密码错误',
       to_forget() {
-        const post_data = this.$qs.stringify({
-          username: this.loginForm.username,
-          password: this.loginForm.password
-        });
-        this.$axios
-          .post(this.url_, post_data)
-          .then(this.get_data);
         this.$router.push({path: '/login/email'})
       },
-      next_step() {
+      next_step(info) {
+        this.add_count(info.data);
         this.$router.push({path: '/login/start'})
       },
       show_button() {
-        return this.loginForm.password >= 8 && this.loginForm.password <= 16
+        return this.loginForm.password.length > 0
       },
       data_cook(info) {
         info.message === 'wrong password' && (this.alert = true);
-        info.status === 1 && this.next_step()
+        info.status === 1 && this.next_step(info)
       },
       get_data(res) {
         const info = res.data;
@@ -119,7 +113,7 @@
     display -webkit-flex
     flex-direction column
     justify-content start
-    position: absolute
+    position absolute
     bottom 0
     top 0
     left 0

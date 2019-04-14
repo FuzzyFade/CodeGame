@@ -9,24 +9,21 @@
         <div style="line-height: 25px;font-size: 23px;letter-spacing: 1.3px">
           <span>{{loginForm.username}}</span>
         </div>
-        <div style="line-height: 25px;font-size: 12px;letter-spacing: 1.3px">
+        <div style="line-height: 25px;margin-top:10px;font-size: 16px;letter-spacing: 1.3px">
           <span>请输入你的邮箱</span>
         </div>
         <div class="text-field">
-          <v-text-field :messages="[]"
-                        :rules="[rules.empty,error_message(alert)]"
-                        :type="'password'"
+          <v-text-field :rules="[rules.empty_email,rules.email,error_message(alert)]"
                         @input="clean_error"
-                        label="密码"
-                        maxlength="16"
-                        v-model="loginForm.password"
+                        label="输入您注册的邮箱"
+                        v-model="loginForm.email"
           ></v-text-field>
         </div>
       </div>
       <div>
         <div :style="{top:(docmHeight-98)+'px'}" class="footer">
           <transition name="fade">
-            <div class="next_step" v-show="show_button">
+            <div class="next_step" v-show="show_button()">
               <div class="text2">
                 <span style="font-size: 14px">下一步</span>
               </div>
@@ -54,11 +51,15 @@
     },
     data: () => ({
       alert: false,
-      url: '/api/auth/login',
+      url_1: '/api/auth/email',
+      url_2:'/api/auth/forget',
       docmHeight: document.documentElement.clientHeight,
-      userToken: '',
       rules: {
-        empty: value => !!value || '密码不可以为空',
+        empty_email: value => !!value || '邮箱不可以为空',
+        email: value => {
+          const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+          return pattern.test(value) || '请输入正确的邮箱地址'
+        },
       },
     }),
     computed: {
@@ -68,36 +69,44 @@
     },
     methods: {
       ...mapMutations({
-        add_count: 'ADD_COUNT'
+        input_email:'INPUT_EMAIL'
       }),
       clean_error() {
         this.alert = false
       },
-      error_message: alert => alert && '密码错误',
-      to_forget() {
+      error_message: alert => alert && '邮箱错误',
+      next_step() {
+        this.send();
+        this.input_email(this.loginForm);
         this.$router.push({path: '/login/forget'})
       },
-      next_step() {
-        this.$router.push({path: '/login/start'})
-      },
       show_button() {
-        return this.loginForm.password >= 8 && this.loginForm.password <= 16
+        const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return pattern.test(this.loginForm.email) && this.loginForm.email.length !== 0 && !this.alert
       },
       data_cook(info) {
-        info.message === 'wrong password' && (this.alert = true);
-        info.status === 1 && this.next_step()
+        info.message === 'fail' && (this.alert = true);
+        info.status === 1 && this.next_step();
       },
       get_data(res) {
         const info = res.data;
         res.status === 200 && this.data_cook(info)
       },
+      send() {
+        const post_data = this.$qs.stringify({
+          username: this.loginForm.username,
+          email: this.loginForm.email
+        });
+        this.$axios
+          .post(this.url_2, post_data)
+      },
       login() {
         const post_data = this.$qs.stringify({
           username: this.loginForm.username,
-          password: this.loginForm.password
+          email: this.loginForm.email
         });
         this.$axios
-          .post(this.url, post_data)
+          .post(this.url_1, post_data)
           .then(this.get_data);
       }
     }
@@ -110,7 +119,7 @@
     display -webkit-flex
     flex-direction column
     justify-content start
-    position: absolute
+    position absolute
     bottom 0
     top 0
     left 0

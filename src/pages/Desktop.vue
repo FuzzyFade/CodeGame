@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div>
     <div @click="slideFade()" class="courses">
       <div class="courses-wrapper">
         <div :class="course.lock ? 'locked' : 'unlocked'"
@@ -18,13 +18,13 @@
          :style="course.size"
          class="window"
          v-drag
-         v-getMaxHeight
          v-for="(course,index) in courses"
+         v-getMaxHeight
          v-if="course.show">
       <div class="w-bar">
         <div class="pro">
           <div class="pro-icon-wrapper">
-            <i class="pro-icon" :id="'wpi-'+index"></i>
+            <i :id="'wpi-'+index" class="pro-icon"></i>
           </div>
           <span class="pro-name">{{course.name}}</span>
         </div>
@@ -55,14 +55,14 @@
         </div>
       </div>
       <div class="w-body" id="chapter-1" v-if="course.chapterOne">
-        <div class="page" id="c1-p1" v-if="course.nowPage === '1'" @click="nextPage(course)">
+        <div @click="nextPage(course)" class="page" id="c1-p1" v-if="course.nowPage === '1'">
           <div class="titile-wrapper" id="tw1">
             <div class="title">第一章 起点</div>
             <div class="subt">回顾旧日向往</div>
           </div>
           <div class="tap-tip"><span>点击屏幕以继续</span></div>
         </div>
-        <div class="page" id="c1-p2" v-if="course.nowPage === '2'" @click="nextPage(course)">
+        <div @click="nextPage(course)" class="page" id="c1-p2" v-if="course.nowPage === '2'">
           <div class="titile-wrapper" id="tw2">
             <div class="titile" id="t2">print()</div>
             <div class="subt-wrapper">
@@ -73,7 +73,7 @@
           </div>
           <div class="tap-tip">[Y]好，我懂了</div>
         </div>
-        <div class="page" id="c1-p3" v-if="course.nowPage === '3'" @click="nextPage(course)">
+        <div @click="nextPage(course)" class="page" id="c1-p3" v-if="course.nowPage === '3'">
           <div class="title">Python的五个标准的数据类型</div>
           <div class="list">
             <span>Numbers (数字)</span>
@@ -88,11 +88,14 @@
         <div class="page" id="c1-p4" v-if="course.nowPage === '4'">
           <div class="code-block">
             <div class="code">
-              <span class="keyw">print</span><span class="qh">(</span><span class="string">"HELLO WORLD"</span><span class="qh">)</span>
+              <span class="keyw">print</span><span class="qh">(</span><span class="string">"HELLO WORLD"</span><span
+                    class="qh">)</span>
             </div>
           </div>
           <div class="tip">//点击 RUN 运行上面的代码</div>
-          <div class="run-btn" @click="nextPage(course)"><div class="run">[R]RUN</div></div>
+          <div @click="nextPage(course)" class="run-btn">
+            <div class="run">[R]RUN</div>
+          </div>
         </div>
         <div class="page" id="c1-p5" v-if="course.nowPage === '5'">
           <div class="title" id="c1-result">
@@ -103,19 +106,18 @@
         </div>
       </div>
     </div>
-    <div
-            :id="'fwin-'+index"
-            :key="index"
-            :style="fold.size"
-            class="window"
-            v-drag
-            v-getMaxHeight
-            v-for="(fold,index) in folds"
-            v-if="fold.show">
+    <div :id="'fwin-'+index"
+         :key="index"
+         :style="fold.size"
+         class="window"
+         v-drag
+         v-for="(fold,index) in folds"
+         v-getMaxHeight
+         v-if="fold.show">
       <div class="w-bar">
         <div class="pro">
           <div class="pro-icon-wrapper">
-            <i class="pro-icon" :id="'fwpi-'+ index"></i>
+            <i :id="'fwpi-'+ index" class="pro-icon"></i>
           </div>
           <span class="pro-name">{{fold.name}}</span>
         </div>
@@ -127,7 +129,7 @@
       </div>
       <div class="w-body" id="fold-0" v-if="fold.foldOnePage">
         <div class="passage-wrapper">
-          <div class="passage" v-for="(passage,index) in fold.content" :id="'passage-'+index">{{passage}}</div>
+          <div :id="'passage-'+index" class="passage" v-for="(passage,index) in fold.content">{{passage}}</div>
         </div>
       </div>
       <div class="w-body" id="fold-1" v-if="fold.foldTwoPage">
@@ -177,7 +179,7 @@
           {{nowTime}}
         </div>
       </div>
-      <div v-getMiniTasksWidth class="mini-tasks" id="mini-tasks">
+      <div class="mini-tasks" id="mini-tasks" v-getMiniTasksWidth>
         <div @click="toSwitch(course)"
              class="mini-task"
              v-for="(course,index) in courses"
@@ -200,6 +202,8 @@
 </template>
 
 <script>
+  import {mapState} from 'vuex'
+
   export default {
     name: "Desktop",
     data: () => ({
@@ -367,8 +371,10 @@
       userName: "Tony",
       userEmail: "23333@ncuos.com",
     }),
-    computed:{
-
+    computed: {
+      ...mapState({
+        loginForm: state => state.login
+      })
     },
     methods: {
       switchSlide() {
@@ -410,14 +416,11 @@
         course.show = true;
         if (course.name === '此电脑') {
           course.computerPage = true
-        }
-        else if (course.name === '文档') {
+        } else if (course.name === '文档') {
           course.folderPage = true
-        }
-        else if (course.name === '第一章') {
+        } else if (course.name === '第一章') {
           course.chapterOne = true
-        }
-        else if (course.name === '第二章') {
+        } else if (course.name === '第二章') {
           course.chapterTwo = true
         }
       },
@@ -446,12 +449,10 @@
           course.computerPage = false
         } else if (course.name === '文档') {
           course.folderPage = false
-        }
-        else if (course.name === '第一章') {
+        } else if (course.name === '第一章') {
           course.chapterOne = false;
           course.nowPage = course.initPage
-        }
-        else if (course.name === '第二章') {
+        } else if (course.name === '第二章') {
           course.chapterTwo = false;
           course.nowPage = course.initPage
         }
@@ -474,7 +475,7 @@
         }
       },
       nextPage(course) {
-        course.nowPage ++
+        course.nowPage++
       }
     },
     created() {
@@ -501,13 +502,13 @@
         }
       },
       getMiniTasksWidth: {
-        bind: function(el) {
-          let maxWidthNumber = window.innerWidth -199;
+        bind: function (el) {
+          let maxWidthNumber = window.innerWidth - 199;
           el.style.width = String(maxWidthNumber) + 'px'
         }
       },
       getMaxHeight: {
-        bind: function(el) {
+        bind: function (el) {
           let maxHeightNumber = window.innerHeight - 55;
           el.style.maxHeight = String(maxHeightNumber) + 'px'
         }
@@ -523,21 +524,27 @@
     margin: 0;
     padding: 0;
   }
+
   .slide-fade-enter-active {
     transition: all .3s ease;
   }
+
   .slide-fade-leave-active {
     transition: all .3s ease;
     opacity: 0;
   }
+
   .slide-fade-enter, .slide-fade-leave-to {
     transform: translateY(10px);
   }
+
   #app {
     overflow: hidden;
   }
+
   .courses {
     height: 100vh;
+
     .courses-wrapper {
       display: flex;
       flex-direction: column;
@@ -546,28 +553,35 @@
       flex-wrap: wrap;
       padding-left: 39px;
       padding-top: 40px;
+
       .locked, .unlocked {
         display: flex;
         height: 86px;
         width: 54px;
         flex-direction: column;
         margin-bottom: 28px;
+
         .course-img {
           width: 54px;
           height: 54px;
         }
+
         #image-0 {
           background-image: url("../assets/icons/Desktop/computer.svg");
         }
+
         #image-1 {
           background-image: url("../assets/icons/Desktop/folder.svg");
           background-repeat: no-repeat;
           background-position: 5px 0;
         }
+
         #image-3 {
         }
+
         #image-4 {
         }
+
         .course-name {
           font-size: 16px;
           letter-spacing: 0.9px;
@@ -577,21 +591,26 @@
           justify-content: center;
         }
       }
+
       .locked {
       }
+
       .unlocked {
       }
     }
   }
+
   .slide {
     position: fixed;
     bottom: 55px;
     width: 188px;
     box-shadow: 0 0 14px 0 rgba(0, 0, 0, 0.12);
     border-radius: 12px 12px 0 0;
+
     .item-wrapper {
       display: flex;
       flex-direction: column;
+
       #self-info {
         .info-wrapper {
           border-radius: 12px 12px 0 0;
@@ -600,6 +619,7 @@
           justify-content: center;
           display: flex;
           background-color: @darkColor;
+
           .portrait {
             width: 41px;
             height: 41px;
@@ -608,15 +628,18 @@
             border-radius: 50%;
             margin-right: 10px;
           }
+
           .name-email {
             display: flex;
             flex-direction: column;
+
             .user-name {
               width: 63px;
               height: 36px;
               font-size: 25px;
               color: rgba(255, 255, 255, 0.95);
             }
+
             .user-email {
               width: 78px;
               height: 11px;
@@ -628,15 +651,18 @@
           }
         }
       }
+
       #blank {
         height: 14px;
         background-color: @darkColor;
       }
+
       .slide-item {
         height: 40px;
         display: flex;
         align-items: center;
         background-color: #2b3034;
+
         i {
           margin-left: 9px;
           margin-right: 7px;
@@ -645,21 +671,27 @@
           background-color: #b9b9b9;
           border-radius: 5px;
         }
+
         #cPortrait {
           background: url("../assets/icons/toolbar/修改头像.svg");
         }
+
         #cPassword {
           background: url("../assets/icons/toolbar/修改密码.svg");
         }
+
         #aboutUs {
           background: url("../assets/icons/toolbar/关于.svg");
         }
+
         #logOut {
           background: url("../assets/icons/toolbar/注销.svg");
         }
+
         #shutDown {
           background: url("../assets/icons/toolbar/关机.svg");
         }
+
         p {
           height: 39px;
           width: 166px;
@@ -671,11 +703,13 @@
           align-items: center;
         }
       }
+
       #blank-up p, #last p {
         border: none;
       }
     }
   }
+
   .window {
     box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.26);
     border-radius: 9px;

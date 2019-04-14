@@ -15,16 +15,29 @@
           </div>
         </div>
         <div class="text-field">
-          <security-code v-model="authCode"></security-code>
+          <security-code @input="cleanError" v-model="authCode"></security-code>
         </div>
         <div class="forget">
+          <span>{{message}}</span>
+        </div>
+        <div>
+          <v-btn @click="reSendMessage" flat v-show="showReSend">
+            <span>{{"重新发送验证码"}}</span>
+          </v-btn>
+          <v-btn disabled flat v-show="!showReSend">
+            <span>{{count + "秒后获取验证码"}}</span>
+          </v-btn>
         </div>
       </div>
       <div>
         <div class="footer">
           <transition name="fade">
-            <v-btn flat>
-              <span>重新发送验证码</span>
+            <v-btn @click="submit"
+                   flat
+                   style="font-size: 16px"
+                   v-show="authCode.length === 4"
+            >
+              <span>> 填完了</span>
             </v-btn>
           </transition>
         </div>
@@ -37,7 +50,7 @@
   import Avatar from "@/components/Avatar"
   import Bg from "@/components/BackGround"
   import SecurityCode from '@/components/SecurityCode'
-  import {mapState} from 'vuex'
+  import {mapMutations, mapState} from 'vuex'
 
   export default {
     name: "Forget",
@@ -52,12 +65,63 @@
       })
     },
     data: () => ({
-      url: '/auth/login',
+      showReSend: true,
+      count: '',
+      timer: null,
+      message: '',
+      url: '/api/auth/code',
       authCode: '',
-      rules: {
-        empty: value => !!value || '密码不可以为空'
-      }
     }),
+    methods: {
+      ...mapMutations({
+        addCount: 'ADD_COUNT'
+      }),
+      reSendMessage() {
+        // function
+        const TIME_COUNT = 60;
+        if (!this.timer) {
+          this.count = TIME_COUNT;
+          this.showReSend = false;
+          this.timer = setInterval(() => {
+            if (this.count > 0 && this.count <= TIME_COUNT) {
+              this.count--;
+            } else {
+              this.showReSend = true;
+              clearInterval(this.timer);
+              this.timer = null;
+            }
+          }, 1000)
+        }
+      },
+      cleanError() {
+        this.message = ""
+      },
+      timedOut() {
+        this.message = "验证码错误"
+      },
+      nextStep(info) {
+        this.message = "";
+        this.addCount(info.data);
+        this.$router.push({path: '/login/start'})
+      },
+      dataCook(info) {
+        info.message === 'success' ? this.nextStep(info) : this.timedOut()
+      },
+      getData(res) {
+        const info = res.data;
+        res.status === 200 && this.dataCook(info)
+      },
+      submit() {
+        const postData = this.$qs.stringify({
+          username: this.loginForm.username,
+          email: this.loginForm.email,
+          code: this.authCode
+        });
+        this.$axios
+          .post(this.url, postData)
+          .then(this.getData)
+      }
+    }
   }
 </script>
 
@@ -67,7 +131,7 @@
     display -webkit-flex
     flex-direction column
     justify-content start
-    position: absolute
+    position absolute
     bottom 0
     top 0
     left 0

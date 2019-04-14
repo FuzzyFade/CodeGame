@@ -100,30 +100,30 @@ const store = new Vuex.Store({
   mutations: {
     [ADD_COUNT](state, token) { // 第一个参数为 state 用于变更状态 登录
       sessionStorage.setItem("token", token);
-      state.login.token = token;
+      state.login.token = token
     },
     [CLEAN_COUNT](state, token) { // 退出登录
       sessionStorage.removeItem("token");
-      state.login.token = token;
+      state.login.token = token
     },
     [ADD_NAME](state, loginFrom) {
       state.register.username = loginFrom.username
     },
     [ADD_MEG](state, loginFrom) {
       state.register.email = loginFrom.email;
-      state.register.password = loginFrom.password;
+      state.register.password = loginFrom.password
     },
     [ADD_AVA](state, loginFrom) {
-      state.register.icon = loginFrom.icon;
+      state.register.icon = loginFrom.icon
     },
     [INPUT_AVA](state, loginFrom) {
-      state.login.icon = loginFrom.icon;
+      state.login.icon = loginFrom.icon
     },
     [INPUT_NAME](state, loginFrom) {
-      state.login.username = loginFrom.username;
+      state.login.username = loginFrom.username
     },
     [INPUT_EMAIL](state, loginFrom) {
-      state.login.email = loginFrom.email;
+      state.login.email = loginFrom.email
     }
   },
 });

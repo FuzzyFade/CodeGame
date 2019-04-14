@@ -103,14 +103,13 @@
       enter_password(){
         this.$router.push({path: '/login/password'})
       },
-      success(){
-        // input
-        this.input_ava(this.loginForm);
+      success(info){
+        this.input_ava(info.data);
         this.enter_password()
       },
       data_cook(info) {
         (info.message === 'unknown user') && this.without_username();
-        (info.message === 'success') && this.success();
+        (info.message === 'success') && this.success(info);
       },
       get_data(res) {
         const info = res.data;

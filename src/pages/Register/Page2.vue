@@ -24,7 +24,8 @@
           <div class="text-field">
             <div style="height:70px">
               <v-text-field
-                      :rules="[rules.empty_email,rules.email]"
+                      :rules="[rules.empty_email,rules.email,error_message(alert)]"
+                      @input="clean_error"
                       label="邮箱"
                       maxlength="40"
                       v-model="loginForm.email"
@@ -101,6 +102,10 @@
       handleAnimation(anim) {
         this.anim = anim
       },
+      clean_error() {
+        this.alert = false
+      },
+      error_message: alert => alert && '邮箱已存在',
       next_step() {
         this.add_meg(this.loginForm);
         this.$router.push({path: '/register/third'})
@@ -131,7 +136,7 @@
     display -webkit-flex
     flex-direction column
     justify-content start
-    position: absolute
+    position absolute
     bottom 0
     top 0
     left 0

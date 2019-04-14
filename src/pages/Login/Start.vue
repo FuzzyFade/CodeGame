@@ -48,12 +48,6 @@
       handleAnimation(anim) {
         this.anim = anim;
       },
-      getName() {
-        this.loginForm.username = this.$route.query.user;
-      },
-      forget() {
-        this.$router.push({path: '/login/forget'})
-      },
       await() {
         //等待，然后心怀希望
         this.$router.push({path: '/login/start'})
@@ -68,7 +62,7 @@
     display -webkit-flex
     flex-direction column
     justify-content center
-    position: absolute
+    position absolute
     bottom 0
     top 0
     left 0

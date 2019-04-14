@@ -79,7 +79,7 @@
     }),
     methods: {
       ...mapMutations({
-        addName: 'ADD_NAME'
+        addName: 'ADD_NAME',
       }),
       handleAnimation(anim) {
         this.anim = anim
