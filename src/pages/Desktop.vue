@@ -55,15 +55,14 @@
         </div>
       </div>
       <div class="w-body" id="chapter-1" v-if="course.chapterOne">
-        <div class="page" id="c1-p1" v-if="course.nowPage === '1'" @click="nextPage(course)">
+        <div class="page" id="c1-p1" v-if="course.nowPage == '1'" @click="nextPage(course)">
           <div class="titile-wrapper" id="tw1">
             <div class="title">第一章 起点</div>
             <div class="subt">回顾旧日向往</div>
           </div>
           <div class="tap-tip"><span>点击屏幕以继续</span></div>
-          <div class="blank" @click="nextPage(course)"></div>
         </div>
-        <div class="page" id="c1-p6" v-if="course.nowPage === '2'" @click="nextPage(course)">
+        <div class="page" id="c1-p6" v-if="course.nowPage == '2'" @click="nextPage(course)">
           <div class="c1-passages-wrapper">
             <div class="c1-passage" id="c1-pa-1">
               “在你学习一门新的 编程语言 时，有一项传统，
@@ -77,19 +76,19 @@
           </div>
           <div class="c1-tap-tip">[Y]是的我知道了</div>
         </div>
-        <div class="page" id="c1-p2" v-if="course.nowPage === '3'" @click="nextPage(course)">
+        <div class="page" id="c1-p2" v-if="course.nowPage == '3'" @click="nextPage(course)">
           <div class="titile-wrapper" id="tw2">
             <div class="titile" id="t2">print()</div>
             <div class="subt-wrapper">
               <div class="subt" id="s2-1">print() 方法用于打印输出，时python中最常见的一个【函数】。</div>
               <div class="subt" id="s2-2">它可以输出多种类型的变量。</div>
-              <div class="subt" id="s2-3">变量就是储存在【内存】中的值，它可以指定不同的【数据类型】。</div>
+              <div class="subt" id="s2-3">变量就是储存在【内存】中的值，它可以指定不同的【数据类型】。</div>  
             </div>
           </div>
           <div class="tap-tip">[Y]好，我懂了</div>
-        </div>
-        <div class="page" id="c1-p3" v-if="course.nowPage === '4'" @click="nextPage(course)">
-          <div id="content-wrapper">
+        </div>  
+        <div class="page" id="c1-p3" v-if="course.nowPage == '4'" @click="nextPage(course)">
+          <div id="content-wrapper">  
             <div class="title">Python的五个标准的数据类型</div>
             <div class="list">
               <span>Numbers (数字)</span>
@@ -102,7 +101,7 @@
           </div>
           <div class="tap-tip">[Y]好好好，下一步</div>
         </div>
-        <div class="page" id="c1-p4" v-if="course.nowPage === '5'">
+        <div class="page" id="c1-p4" v-if="course.nowPage == '5'">
           <div class="code-block">
             <div class="code">
               <span class="keyw">print</span><span class="qh">(</span><span class="string">"HELLO WORLD"</span><span class="qh">)</span>
@@ -111,7 +110,7 @@
           <div class="tip">//点击 RUN 运行上面的代码</div>
           <div class="run-btn" @click="nextPage(course)"><div class="run">[R]RUN</div></div>
         </div>
-        <div class="page" id="c1-p5" v-if="course.nowPage === '6'">
+        <div class="page" id="c1-p5" v-if="course.nowPage == '6'">
           <div class="title" id="c1-result">
             <div id="HELLO">HELLO</div>
             <div id="WORLD">WORLD</div>
@@ -120,18 +119,18 @@
         </div>
       </div>
       <div class="w-body" id="chapter-2" v-if="course.chapterTwo">
-        <div class="page" id="c2-p2" v-if="course.nowPage === '1'" @click="nextPage(course)">
-          <div id="c2-w2">
+        <div class="page" id="c2-p2" v-if="course.nowPage == '1'" @click="nextPage(course)">
+          <div id="c2-w2">  
             <div id="c2-ww">
               <div id="c2-t">第二章 游戏</div>
               <div id="subt">数与编程之舞</div>
             </div>
           </div>
           <div class="c2-tip">
-            — — — — —  点击屏幕以继续  — — — — —
+            — — — — —  点击屏幕以继续  — — — — — 
           </div>
         </div>
-        <div class="page" id="c2-p3" v-if="course.nowPage === '2'" @click="nextPage(course)">
+        <div class="page" id="c2-p3" v-if="course.nowPage == '2'" @click="nextPage(course)">
           <div class="passages-wrapper">
             <div>“现在你所使用的编程语言叫做Python，</div>
             <div>人们用“简洁优雅”来形容它的语言风格</div>
@@ -142,17 +141,118 @@
             — — — — —  点击屏幕以继续  — — — — —
           </div>
         </div>
+        <div clas="page" id="c2-p4" v-if="course.nowPage == '3'">
+          <div class="game-title" id="gt1">
+            <div id="gt1-wrapper">
+              a是0到100之间的某一个整数，请进行猜测。（#号后皆为注释）
+            </div>
+          </div>
+          <div class="answer-area" id="aa1">
+            <div class="answer-wrapper">
+              a= <input v-model="course.inputValue" class="answer-input"></input> #a为变量，利用=对a进行赋值print(result)
+            </div>
+          </div>
+          <div class="run-area" id="ra1">
+            <div class="run-asw">
+              <span class="run-as" v-for="result in course.results">{{result}}</span>
+            </div>
+          </div>
+          <div class="run-btn" id="grb1" @click="chaTwoRun(course)">
+            运行 <span class="run-icon"></span>
+          </div>
+        </div>
+        <div clas="page" id="c2-p5" v-if="course.nowPage == '4'">
+          <div id="gt2">
+            <div class="gt2-wrapper">
+              恭喜你成功猜出来a=36，那么接下来让我们用一些简单的运算符号来判断大小关系吧。
+            </div>
+          </div>
+          <div class="answer-area" id="aa2">
+            <div class="answer-wrapper">
+              32 <input disabled="disabled" v-model="course.inputValue" class="answer-input"></input>
+              a <input disabled="disabled" v-model="course.secInputValue" class="answer-input"></input>
+              36</br>
+              a!=32<span clas="warn-tip">#!=在Python表示不等于的意思</span>
+            </div>
+          </div>
+          <div class="op-area">
+            <div class="op-btn" v-for="(oper,index) in course.operations" :id="'oper-'+index" @click="sigOper(course, index)">{{oper}}</div>
+          </div>
+          <div class="run-btn" id="grb2" @click="runSecGame(course)" v-if="(!course.errorTip)&&(!course.rigthTip)">
+            运行 <span class="run-icon"></span>
+          </div>
+          <div class="s-f-warn-area-wrong" v-if="course.errorTip == true">
+            <div class="error">ERROR</div>
+            <div class="tttips-wrapper" id="wrong">
+              <div class="dot-wrapper">
+                <span class="dot">.</span>
+                <span class="dot">.</span>
+              </div>
+              <div class="tttips">
+                <div class="tttip">Python中&gt;和&lt;分别表示大于和小于，&ge;和&le;则表现大于等于和小于等于</div>
+                <div class="tttip">==在Python中表示两端对象相等，而=仅表示赋值</div>
+              </div>
+            </div>
+          </div>
+          <div class="s-f-warn-area-right" v-if="course.rigthTip == true">
+            <div class="right">RIGHT</div>
+            <div class="tttips-wrapper" id="right">
+              <div class="right-tip">回答正确 √</div>
+              <div class="gou"></div>
+            </div>
+          </div>          
+        </div>
+        <div clas="page" id="c2-p6" v-if="course.nowPage == '5'">
+          <div class="p6tw">
+            <div class="p6t">
+              Python中除了上述介绍的比较运算符，还包括运算符，还包括了赋值运算符，利用这些运算符我们可以进行一些算术计算。
+            </div>
+          </div>
+          <div class="p6li">
+            <div class="col-1 col">
+              <div class="row">运算符</div>
+              <div class="row">+</div>
+              <div class="row">—</div>
+              <div class="row">*</div>
+              <div class="row">/</div>
+              <div class="row">%</div>
+              <div class="row">**</div>
+              <div class="row">//</div>
+            </div>
+            <div class="col-2 col">
+              <div class="row">描述</div>
+              <div class="row">加法赋值运算符</div>
+              <div class="row">减法赋值运算符</div>
+              <div class="row">乘法赋值运算符</div>
+              <div class="row">除法赋值运算符</div>
+              <div class="row">取余赋值运算符</div>
+              <div class="row">幂赋值运算符</div>
+              <div class="row">取整除赋值运算符</div>
+            </div>
+            <div class="col-3 col">
+              <div class="row">实例</div>
+              <div class="row">print(2+3),则结果是5</div>
+              <div class="row">print(3-2),则结果是1</div>
+              <div class="row">print(2*3),则结果是6</div>
+              <div class="row">print(6/3),则结果是2</div>
+              <div class="row">print(5/3),则结果是2</div>
+              <div class="row">print(3**2),则结果是9</div>
+              <div class="row">print(5//2),则结果是2</div>
+            </div>
+          </div>
+          <div class="next-step">[Y]下一步(over..)</div>
+        </div>
       </div>
     </div>
-    <div
-            :id="'fwin-'+index"
-            :key="index"
-            :style="fold.size"
-            class="window"
-            v-drag
-            v-getMaxHeight
-            v-for="(fold,index) in folds"
-            v-if="fold.show">
+    <div 
+      :id="'fwin-'+index"
+      :key="index"
+      :style="fold.size"
+      class="window"
+      v-drag
+      v-getMaxHeight
+      v-for="(fold,index) in folds"
+      v-if="fold.show">
       <div class="w-bar">
         <div class="pro">
           <div class="pro-icon-wrapper">
@@ -349,6 +449,19 @@
           lock: true,
           show: false,
           run: false,
+          inputValue: '',
+          runResultType: {
+            success: 'a = 36 回答正确',
+            bigger: '大了大了',
+            smaller: '小了小了',
+          },
+          results: [],
+          checkTime: '1',
+          secInputValue: '',
+          operations: [">","<","=","==","!=","<=","删除",">=","清空"],
+          rigthTip: false,
+          errorTip: false,
+          errorTimes: '0',
         },
         {
           name: "第三章",
@@ -377,6 +490,7 @@
           lock: true,
           show: false,
           run: false,
+
         },
       ],
       folds: [
@@ -433,6 +547,7 @@
           foldOnePage: false,
           foldTwoPage: false,
         },
+
       ],
       nowTime: "",
       slideShow: false,
@@ -470,17 +585,20 @@
         //清除登陆数据
       },
       aboutUs() {
+
       },
       changePass() {
+
       },
       changeWall() {
+
       },
       runEx(course) {
         course.run = true;
         course.show = true;
         if (course.name === '此电脑') {
           course.computerPage = true
-        }
+        } 
         else if (course.name === '文档') {
           course.folderPage = true
         }
@@ -503,7 +621,7 @@
         course.size.top = '0';
         course.size.left = '0';
         course.size.width = '100vw';
-        course.size.height = mh + 'px';
+        course.size.height = mh + 'px'
         course.size.borderRadius = '0'
       },
       close(course) {
@@ -514,22 +632,28 @@
         course.size.height = initSize.height;
         course.size.top = initSize.top;
         course.size.left = initSize.left;
-        course.size.borderRadius = initSize.borderRadius;
+        course.size.borderRadius = initSize.borderRadius
         if (course.name === '此电脑') {
           course.computerPage = false
         } else if (course.name === '文档') {
           course.folderPage = false
         }
         else if (course.name === '第一章') {
-          course.chapterOne = false;
+          course.chapterOne = false
           course.nowPage = course.initPage
         }
         else if (course.name === '第二章') {
-          course.chapterTwo = false;
+          course.chapterTwo = false
           course.nowPage = course.initPage
+          course.inputValue = ''
+          course.results = []
+          course.secInputValue = ''
+          course.checkTime = '1'
+          course.errorTip = false
+          course.rigthTip = false
         }
         else if (course.name === '第三章') {
-          course.chapterThree = false;
+          course.chapterThree = false
           course.nowPage = course.initPage
         }
         if (course.name === '2219-4-1') {
@@ -552,6 +676,117 @@
       },
       nextPage(course) {
         course.nowPage ++
+      },
+      chaTwoRun(course) {
+        if(course.inputValue > '36') {
+          course.inputValue = ''
+          course.secInputValue = ''
+          course.results.push(course.runResultType.bigger)
+        }
+        else if (course.inputValue < '36') {
+          course.inputValue = ''
+          course.secInputValue = ''
+          course.results.push(course.runResultType.smaller)
+        }
+        else if(course.inputValue == '36'){
+          course.inputValue = ''
+          course.secInputValue = ''
+          course.results.push(course.runResultType.success)
+          let next = setTimeout(function(){
+            if(course.nowPage<=3){course.nowPage ++}}, 2000)
+        }
+      },
+      sigOper(course, index) {
+        if (index == 0) {
+          console.log(index)
+          console.log(course.checkTime)
+          if (course.checkTime == '1'){
+          course.inputValue = '>'
+          course.checkTime = '2'
+          }else {
+            course.secInputValue = '>'
+          }
+        }
+        else if (index == 1) {
+      
+         if (course.checkTime == '1'){
+          course.inputValue = '<'
+          course.checkTime = '2'
+          }else {
+            course.secInputValue = '<'
+          }
+        }
+        else if (index == 2) {
+          if (course.checkTime == '1'){
+          course.inputValue = '='
+          course.checkTime = '2'
+          }else {
+            course.secInputValue = '='
+          }
+        }
+        else if (index == 3) {
+          if (course.checkTime == '1'){
+          course.inputValue = '=='
+          course.checkTime = '2'
+          }else {
+            course.secInputValue = '=='
+          }
+        }
+        else if (index == 4) {
+          if (course.checkTime == '1'){
+          course.inputValue = '!='
+          course.checkTime = '2'
+          }else {
+            course.secInputValue = '!='
+          }
+        }
+        else if (index == 5) {
+          if (course.checkTime == '1'){
+          course.inputValue = '<='
+          course.checkTime = '2'
+          }else {
+            course.secInputValue = '<='
+          }
+        }
+        else if (index == 6) {
+          if (course.checkTime == '1'){
+          course.inputValue = ''
+          }else {
+            course.checkTime = '1'
+            course.secInputValue = ''
+          }
+        }
+        else if (index == 7) {
+          if (course.checkTime == '1'){
+          course.inputValue = '>='
+          course.checkTime = '2'
+          }else {
+            course.secInputValue = '>='
+          }
+        }
+        else if (index == 8) {
+          course.checkTime = '1'
+          course.inputValue = ''
+          course.secInputValue = ''
+        }
+      },
+      runSecGame(course) {
+        if (course.inputValue == '<' && course.secInputValue == '=') {
+          course.inputValue = ''
+          course.secInputValue = ''   
+          course.checkTime = '1'       
+          course.rigthTip = true
+          let next = setTimeout(function(){
+            if(course.nowPage<=4){course.nowPage ++}}, 3000)
+        }
+        else {
+          course.inputValue = ''
+          course.secInputValue = ''
+          course.checkTime = '1'          
+          course.errorTip = true
+          let next = setTimeout(function(){
+            if(course.nowPage<=4){course.errorTip = false}}, 4000)
+        }
       }
     },
     created() {
@@ -579,14 +814,16 @@
       },
       getMiniTasksWidth: {
         bind: function(el) {
-          let maxWidthNumber = window.innerWidth -199;
-          el.style.width = String(maxWidthNumber) + 'px'
+          let maxWidthNumber = window.innerWidth -199
+          let maxWdith = String(maxWidthNumber) + 'px'
+          el.style.width = maxWdith
         }
       },
       getMaxHeight: {
         bind: function(el) {
-          let maxHeightNumber = window.innerHeight - 55;
-          el.style.maxHeight = String(maxHeightNumber) + 'px'
+          let maxHeightNumber = window.innerHeight - 55
+          let maxHeight = String(maxHeightNumber) + 'px'
+          el.style.maxHeight = maxHeight
         }
       }
     }
@@ -600,21 +837,27 @@
     margin: 0;
     padding: 0;
   }
+
   .slide-fade-enter-active {
     transition: all .3s ease;
   }
+
   .slide-fade-leave-active {
     transition: all .3s ease;
     opacity: 0;
   }
+
   .slide-fade-enter, .slide-fade-leave-to {
     transform: translateY(10px);
   }
+
   #app {
     overflow: hidden;
   }
+
   .courses {
     height: 100vh;
+
     .courses-wrapper {
       display: flex;
       flex-direction: column;
@@ -623,6 +866,7 @@
       flex-wrap: wrap;
       padding-left: 39px;
       padding-top: 40px;
+
       .locked, .unlocked {
         display: flex;
         height: 86px;
@@ -633,9 +877,11 @@
           width: 54px;
           height: 54px;
         }
+
         #image-0 {
           background-image: url("../assets/icons/Desktop/computer.svg");
         }
+
         #image-1 {
           background-image: url("../assets/icons/Desktop/folder.svg");
           background-repeat: no-repeat;
@@ -663,20 +909,25 @@
         }
       }
       .locked {
+
       }
       .unlocked {
+
       }
     }
   }
+
   .slide {
     position: fixed;
     bottom: 55px;
     width: 188px;
     box-shadow: 0 0 14px 0 rgba(0, 0, 0, 0.12);
     border-radius: 12px 12px 0 0;
+
     .item-wrapper {
       display: flex;
       flex-direction: column;
+
       #self-info {
         .info-wrapper {
           border-radius: 12px 12px 0 0;
@@ -685,23 +936,27 @@
           justify-content: center;
           display: flex;
           background-color: @darkColor;
+
           .portrait {
             width: 41px;
             height: 41px;
-            background: url("../assets/avatars/2.png");
+            background: url("../assets/avatars/2_00000.png");
             background-size: 100%;
             border-radius: 50%;
             margin-right: 10px;
           }
+
           .name-email {
             display: flex;
             flex-direction: column;
+
             .user-name {
               width: 63px;
               height: 36px;
               font-size: 25px;
               color: rgba(255, 255, 255, 0.95);
             }
+
             .user-email {
               width: 78px;
               height: 11px;
@@ -713,15 +968,18 @@
           }
         }
       }
+
       #blank {
         height: 14px;
         background-color: @darkColor;
       }
+
       .slide-item {
         height: 40px;
         display: flex;
         align-items: center;
         background-color: #2b3034;
+
         i {
           margin-left: 9px;
           margin-right: 7px;
@@ -730,21 +988,27 @@
           background-color: #b9b9b9;
           border-radius: 5px;
         }
+
         #cPortrait {
           background: url("../assets/icons/toolbar/修改头像.svg");
         }
+
         #cPassword {
           background: url("../assets/icons/toolbar/修改密码.svg");
         }
+
         #aboutUs {
           background: url("../assets/icons/toolbar/关于.svg");
         }
+
         #logOut {
           background: url("../assets/icons/toolbar/注销.svg");
         }
+
         #shutDown {
           background: url("../assets/icons/toolbar/关机.svg");
         }
+
         p {
           height: 39px;
           width: 166px;
@@ -756,14 +1020,16 @@
           align-items: center;
         }
       }
+
       #blank-up p, #last p {
         border: none;
       }
     }
   }
+
   .window {
-    box-shadow: 0 2px 10px 0
-    rgba(0, 0, 0, 0.26);
+    box-shadow: 0px 2px 10px 0px 
+		rgba(0, 0, 0, 0.26);
     border-radius: 9px;
     overflow: hidden;
     width: 300px;
@@ -782,10 +1048,12 @@
       align-items: center;
       justify-content: space-between;
       background: linear-gradient(280deg, rgba(54, 55, 58, 0.8), #373c44, #262a32, black, black);
+
       .pro {
         display: flex;
         align-items: center;
         width: 120px;
+
         .pro-icon-wrapper {
           width: 20px;
           height: 20px;
@@ -831,27 +1099,32 @@
             background-size: 100%;
           }
         }
+
         .pro-name {
           font-size: 13px;
           letter-spacing: 0.7px;
           color: rgba(236, 236, 236, 0.95);
         }
       }
+
       .mmc-wrapper {
         width: 95px;
         display: flex;
         align-items: center;
+
         .minimize-button {
           width: 18px;
           height: 2px;
           background: #ffffff;
         }
+
         .maximize-button {
           margin-left: 15px;
           width: 12px;
           height: 13px;
           border: 2px solid #ffffff;
         }
+
         .close-button {
           margin-left: 15px;
           width: 20px;
@@ -860,7 +1133,9 @@
           background: url("../assets/icons/windows/X.svg") -8.5px -6.5px;
         }
       }
+
     }
+
     .w-body {
       overflow: auto;
       flex-grow: 1;
@@ -886,7 +1161,7 @@
           margin-bottom: 17px;
         }
         #passage-5 {
-          margin-bottom: 45px;
+          margin-bottom: 45 px;
         }
         #passage-6 {
           margin-bottom: 18px;
@@ -895,66 +1170,79 @@
           margin-bottom: 45px;
         }
         #passage-8 {
-
+          
         }
       }
-
+      
     }
+
     #computer {
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
+
       .os-logo {
         width: 189px;
         height: 189px;
         background: url("../assets/icons/logo.svg");
         background-size: 100%;
       }
+
       .os-name {
         margin-top: 5px;
         font-size: 20px;
         letter-spacing: 0.9px;
         color: rgba(255, 255, 255, 0.95);
       }
+
       .version {
         margin-top: 8px;
         font-size: 10px;
         letter-spacing: 0.6px;
         color: rgba(255, 255, 255, 0.95)
       }
+
       .os-info {
         margin-top: 40px;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
+
         div {
           margin-bottom: 9px;
         }
+
         .activeDate {
           font-size: 12px;
           letter-spacing: 0.7px;
           color: rgba(234, 234, 234, 0.95);
         }
+
         .cpu {
           .activeDate()
         }
+
         .stora {
           .activeDate()
         }
+
         .gpu {
           .activeDate()
         }
       }
+
       .advancedOp {
         margin-top: 30px;
         margin-bottom: 25px;
         font-size: 15px;
         letter-spacing: 0.8px;
         color: rgba(255, 255, 255, 0.95);
+
       }
     }
+
     #folder {
       .folds {
         display: flex;
@@ -981,7 +1269,7 @@
         }
       }
     }
-
+    
     #chapter-1 {
       background: #ffffff;
       .page {
@@ -994,15 +1282,18 @@
         #tw1 {
           margin-top: 200px;
           margin-bottom: 200px;
+          width: 217px;
+          height: 117px;
           display: flex;
           flex-direction: column;
           align-items: center;
           justify-content: center;
+          background: url("../assets/line/2.png");
         }
         .titile {
-          font-size: 23px;
-          letter-spacing: 1.6px;
-          color: rgba(0, 0, 0, 0.95);
+	        font-size: 23px;
+	        letter-spacing: 1.6px;
+	        color: rgba(0, 0, 0, 0.95);
         }
         .subt {
           margin-top: 20px;
@@ -1014,15 +1305,11 @@
           width: 100%;
           display: flex;
           justify-content: center;
-          & span {
+           & span {
             font-size: 14px;
             letter-spacing: 1px;
-            color: rgba(71, 71, 71, 0.95);
+	          color: rgba(71, 71, 71, 0.95);
           }
-        }
-        .blank {
-          width: 100%;
-          height: 200px;
         }
       }
       #c1-p2 {
@@ -1030,11 +1317,13 @@
           width: 270px;
           margin-bottom: 100px;
           margin-top: 150px;
+          background: url("../assets/line/3.svg");
+          background-size: 100%;
           #t2 {
             height: 55px;
             font-size: 23px;
-            letter-spacing: 1px;
-            color: rgba(71, 71, 71, 0.95);
+	          letter-spacing: 1px;
+	          color: rgba(71, 71, 71, 0.95);
           }
           .subt-wrapper {
             .subt {
@@ -1055,9 +1344,9 @@
           }
         }
         .tap-tip {
-          font-size: 14px;
-          letter-spacing: 1px;
-          color: rgba(71, 71, 71, 0.95);
+          	font-size: 14px;
+            letter-spacing: 1px;
+            color: rgba(71, 71, 71, 0.95);
         }
       }
       #c1-p3 {
@@ -1066,11 +1355,15 @@
           height: 365px;
           margin-bottom: 20px;
           margin-top: 90px;
+          background: url("../assets/line/4.svg");
+          background-size: 130%;
+          background-position: -10px -40px;
         }
         .title {
           font-size: 17px;
           color: rgba(71,71,71,0.95);
           letter-spacing: 1px;
+
         }
         .list {
           font-size: 14px;
@@ -1086,12 +1379,12 @@
           margin-bottom: 28px;
           font-size: 14px;
           color: rgba(71,71,71,0.95);
-          letter-spacing: 1px;
+          letter-spacing: 1px;   
         }
         .tap-tip {
-          font-size: 14px;
-          letter-spacing: 1px;
-          color: rgba(71, 71, 71, 0.95);
+          	font-size: 14px;
+            letter-spacing: 1px;
+            color: rgba(71, 71, 71, 0.95);          
         }
       }
       #c1-p4 {
@@ -1102,10 +1395,10 @@
           width: 336px;
           height: 193px;
           .code {
-            margin-top: 2px;
+            margin-top: 22px;
             margin-left: 17px;
             width: 234px;
-            height: 26px;
+	          height: 26px;
             font-size: 14px;
             letter-spacing: 1px;
             .keyw {
@@ -1130,7 +1423,7 @@
         .run-btn {
           margin-top: 40px;
           width: 331px;
-          height: 46px;
+	        height: 46px;
           display: flex;
           justify-content: center;
           align-items: center;
@@ -1160,7 +1453,7 @@
             height: 24px;
             font-size: 17px;
             letter-spacing: 1.2px;
-            color: rgba(0, 0, 0, 0.95);
+	          color: rgba(0, 0, 0, 0.95);
           }
         }
       }
@@ -1168,6 +1461,7 @@
         display: flex;
         flex-direction: column;
         align-items: center;
+
       }
       .c1-passages-wrapper {
         margin-top: 150px;
@@ -1192,7 +1486,7 @@
     }
     #chapter-2 {
       background: #ffffff;
-      #c2-p2 {
+      .page {
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -1206,6 +1500,9 @@
           align-items: center;
           margin: 20px;
           width: 215px;
+          background: url("../assets/line/B/1.svg");
+          background-size: 100%;
+          background-position: 0 -2px;
           #c2-t {
             font-size: 23px;
             letter-spacing: 1.6px;
@@ -1216,20 +1513,20 @@
           #subt {
             font-size: 14px;
             letter-spacing: 1px;
-            color: rgba(0, 0, 0, 0.95);
+	          color: rgba(0, 0, 0, 0.95);
           }
         }
       }
       .c2-tip {
         font-size: 14px;
-        letter-spacing: 1px;
-        color: rgba(71, 71, 71, 0.95);
+	      letter-spacing: 1px;
+	      color: rgba(71, 71, 71, 0.95);
       }
       #c2-p3 {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
         .passages-wrapper {
+          background: url("../assets/line/B/2.svg");
+          background-size: 110%;
+          background-position: -30px -2px;
           margin-top: 165px;
           margin-bottom: 102px;
           display: flex;
@@ -1241,13 +1538,368 @@
             font-size: 15px;
             letter-spacing: 1.1px;
           }
+
         }
         #c2-p3-tap {
           .c2-tip();
         }
       }
+      #c2-p4 {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        #gt1 {
+          margin-top: 30px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 335px;
+          height: 102px;
+          font-size: 14px;
+          letter-spacing: 1px;
+          color: rgba(0, 0, 0, 0.95);
+          background: url("../assets/line/B/3large.svg");
+          background-size: 100%;
+          background-position: 0 -5px;
+          &-wrapper {
+            width: 305px;
+          }
+        }
+        .answer-area {
+          margin-top: 33px;
+          box-shadow: 0px 2px 8px 0px 
+		        rgba(0, 0, 0, 0.16);
+          border-radius: 7px;
+          width: 329px;
+          height: 79px;
+          margin-bottom: 24px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          .answer-wrapper {
+            width: 305px;
+            font-size: 14px;
+            letter-spacing: 1px;
+            color: rgba(0, 0, 0, 0.95);
+            .answer-input {
+              width: 42px;
+              height: 16px;
+              border-radius: 3px;
+              border: solid 1px #bfbfbf;
+            }
+          }
+        }
+        .run-area {
+          margin-bottom: 17px;
+          width: 336px;
+          height: 219px;
+          background-color: #333333;
+          border-radius: 7px;
+          display: flex;
+          justify-content: center;
+          .run-asw {
+            margin-top: 21px;
+            width: 267px;
+            height: 177px;
+            overflow: auto;
+            font-size: 15px;
+            letter-spacing: 1.1px;
+            color: rgba(204, 204, 204, 0.95);
+            display: flex;
+            flex-direction: column;
+            &::-webkit-scrollbar {
+              width: 2px;
+              border-radius: 5px;
+              background-color: #bfbfbf;
+            }
+          }
+        }
+        .run-btn {
+          font-size: 16px;
+	        color: rgba(55, 55, 55, 0.95);
+          border-radius: 23.5px;
+          border: solid 1px #737373;
+          width: 332px;
+          height: 47px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          .run-icon {
+            width: 9px;
+          	height: 17px;
+            background: url("../assets/line/B/continue.svg");
+            background-size: 100%;
+            background-repeat: no-repeat;
+            margin-left: 7px;
+            background-position: 0 3px;
+          }
+        }
+      }
+      #c2-p5 {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        #gt2 {
+          width: 335px;
+          height: 107px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          background: url("../assets/line/B/3svg.svg");
+          background-size: 100%;
+          background-position: -10px 10px;
+          margin-top: 35px;
+          
+          .gt2-wrapper {
+            font-size: 14px;
+            letter-spacing: 1px;
+            color: rgba(0, 0, 0, 0.95);
+          }
+        }
+        #aa2 {
+          margin-top: 30px;
+          box-shadow: 0px 2px 8px 0px 
+		        rgba(0, 0, 0, 0.16);
+          border-radius: 7px;
+          width: 329px;
+          height: 79px;
+          margin-bottom: 29px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          .answer-wrapper {
+            width: 305px;
+            font-size: 14px;
+            letter-spacing: 1px;
+            color: rgba(0, 0, 0, 0.95);
+            .answer-input {
+              width: 42px;
+              height: 16px;
+              border-radius: 3px;
+              border: solid 1px #bfbfbf;
+            }
+            .warn-tip {
+              font-size: 14px;
+              letter-spacing: 1px;
+              color: rgba(248, 83, 0, 0.95);
+            }
+          }
+        }
+        .op-area {
+          width: 304px;
+          height: 192px;
+          display: flex;
+          flex-wrap: wrap;
+          margin-bottom: 14px;
+          .op-btn {
+            width: 69px;
+            height: 35px;
+            background-color: #686868;
+            box-shadow: 0px 2px 9px 0px 
+              rgba(0, 0, 0, 0.27);
+            border-radius: 8px;
+            font-size: 14px;
+            letter-spacing: 1px;
+            color: rgba(255, 255, 255, 0.95);
+            margin-left: 45px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          }
+          #oper-0 {
+            font-size: 24px;
+            margin-left: 0;
+          }
+          #oper-1 {
+            font-size: 24px;
+          }
+          #oper-2 {
+            font-size: 24px;
+          }
+          #oper-3 {
+            font-size: 24px;
+            margin-left: 0;
+          }
+          #oper-4 {
+            font-size: 24px;
+          }
+          #oper-5 {
+            font-size: 24px;
+          }
+          #oper-6 {
+            margin-left: 0;
+          }
+          #oper-7 {
+            font-size: 24px;
+          }
+        }
+        .run-btn {
+          font-size: 16px;
+	        color: rgba(55, 55, 55, 0.95);
+          width: 332px;
+          height: 43px;
+          border-radius: 23.5px;
+          border: solid 1px #737373;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          .run-icon {
+            width: 9px;
+          	height: 17px;
+            background: url("../assets/line/B/continue.svg");
+            background-size: 100%;
+            background-repeat: no-repeat;
+            margin-left: 7px;
+            background-position: 0 3px;
+          }
+        }
+        .s-f-warn-area-wrong {
+          border-top: solid 4px #d23333;
+          height: 81px;
+          width: 100%;
+          background: #ff5252;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          .error {
+            margin-left: 20px;
+            width: 61px;
+            height: 20px;
+            border: solid 2px #ffffff;
+            font-size: 11px;
+            letter-spacing: 1.3px;
+            color: rgba(255, 255, 255, 0.95);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          }
+          .tttips-wrapper {
+            display: flex;
+            margin-left: 27px;
+            margin-right: 25px;
+            .dot-wrapper {
+              margin-right: 5px;
+              height: 28px;
+              width: 5px;
+              display: flex;
+              flex-direction: column;
+              justify-content: space-between;
+              .dot {
+                width: 5px;
+                height: 5px;
+                color: #ffffff;
+              }
+            }
+            .tttips {
+              display: flex;
+              flex-direction: column;
+              .tttip {
+                font-size: 9px;
+                letter-spacing: 0.7px;
+                color: rgba(255, 255, 255, 0.95)
+              }
+            }
+          }
+        }
+        .s-f-warn-area-right {
+          border-top: solid 4px #08c806;
+          height: 81px;
+          width: 100%;
+          background: #24de59;
+          display: flex;
+          align-items: center;
+          .right {
+            margin-left: 20px;
+            width: 61px;
+            height: 20px;
+            border: solid 2px #ffffff;
+            font-size: 11px;
+            letter-spacing: 1.3px;
+            color: rgba(255, 255, 255, 0.95);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          }
+          #right {
+            margin-left: 75px;
+            .right-tip {
+              font-size: 21px;
+              letter-spacing: 1.5px;
+	            color: rgba(255, 255, 255, 0.95);
+            }
+            .gou {
+
+            }
+          }
+        }
+      }
+      #c2-p6 {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        .p6tw {
+          width: 336px;
+          height: 100px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background: url("../assets/line/B/3svg.svg");
+          background-size: 100%;
+          background-position: 0 10px;
+          margin-top: 34px; 
+          margin-bottom: 68px;
+          .p6t {
+            width: 270px;
+            height: 60px;
+            font-size: 14px;
+            letter-spacing: 1px;
+	          color: rgba(0, 0, 0, 0.95);
+          }
+        }
+        .p6li {
+          background: url("../assets/line/B/4.svg");
+          background-size: 100%;
+          font-size: 11px;
+          color: #000000;
+          display: flex;
+          margin-bottom: 81px;
+          .col-1 {
+            width: 60px;
+            .row {
+              height: 27px;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+            }
+          }
+          .col-2 {
+            width: 118px;
+            .row {
+              height: 27px;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+            }
+          }
+          .col-3 {
+            width: 145px;
+            .row {
+              height: 27px;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+            }
+          }
+        }
+        .next-step {
+          font-size: 12px;
+          letter-spacing: 0.9px;
+          color: #000000;
+        }
+      }
     }
   }
+
   .footer-wrapper {
     border-top: solid 1px #595959;
     z-index: 99;
@@ -1255,11 +1907,13 @@
     bottom: 0;
     width: 100%;
     background: linear-gradient(280deg, rgba(54, 55, 58, 0.8), #373c44, #262a32, black, black);
+
     .footer {
       height: 54px;
       display: flex;
       justify-content: space-between;
       align-items: center;
+
       .os-button {
         margin-left: 14px;
         width: 42px;
@@ -1269,6 +1923,7 @@
         background-position: -8px -8px;
         background-repeat: no-repeat;
       }
+
       .local-time {
         margin-right: 10px;
         width: 99px;
@@ -1277,6 +1932,7 @@
         letter-spacing: 0.7px;
       }
     }
+
     .mini-tasks {
       overflow: hidden;
       display: flex;
@@ -1290,6 +1946,7 @@
         padding-right: 10px;
         flex-shrink: 1;
       }
+
       .icon-wrapper {
         .task-icon {
           background-color: #f5f5f5;
